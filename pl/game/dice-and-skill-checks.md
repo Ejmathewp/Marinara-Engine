@@ -73,6 +73,8 @@ Test umiejętności sprawdza, czy ryzykowne działanie się powiedzie – skrada
 
 Test zażądany w tekście zaczyna się od próby działania. Silnik rozstrzyga rzut, a następnie wykonuje jedno dodatkowe żądanie do modelu z rzeczywistymi wynikami, aby postać Game Master mogła opisać rezultat w tej samej turze. Poprawia to również szkic, który zgadywał wynik przed rzutem. Dodatkowe żądanie ponownie wysyła prompt i zużywa więcej tokenów wejściowych oraz wyjściowych. Jeśli zawiedzie, tura zachowuje rozstrzygnięte wyniki w dzienniku, bez zapisywania zgadywanego lub częściowego rezultatu. Przy turze pozostaje komunikat z przyciskiem **Regenerate turn** (wygeneruj turę ponownie), także po ponownym załadowaniu czatu.
 
+Wyłącz **Narrate dice outcomes immediately** (natychmiast opisuj wyniki rzutów) w **Chat Settings → Function Calling**, aby zachować rzeczywiste wyniki na kolejną turę bez tego dodatkowego żądania. To ustawienie jest domyślnie włączone. Żądania, które nie prowadzą do żadnego rzeczywistego rzutu, nigdy nie uruchamiają dodatkowego żądania narracji.
+
 Na połączeniu obsługującym narzędzie kości postać Game Master może uzyskać rzeczywisty rzut już podczas generowania. Karta rzutu pojawia się po zwróceniu wyniku przez narzędzie; zakończony test zapisuje ten wynik bez ponownego rzucania. Każdy rozstrzygnięty test umiejętności dostaje osobny baner, po kartach rzutów czekających w kolejce.
 
 Baner pokazuje umiejętność i liczbę do osiągnięcia, na przykład **Stealth Check** (test skradania), a obok **DC 15**. DC to skrót od Difficulty Class, czyli poziomu trudności. Tę liczbę rzut musi osiągnąć albo przebić.

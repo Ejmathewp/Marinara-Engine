@@ -1,5 +1,6 @@
 {
   "language": "hi",
+  "sourceCommit": "14ec886cdd5ed10c5847afcc0be77bc580a0c507",
   "files": [
     {
       "path": "CONFIGURATION.md",
@@ -23,8 +24,8 @@
     },
     {
       "path": "TROUBLESHOOTING.md",
-      "sha256": "c8e22785b87cfe09635f7ed002dcbe6809518623b4a8f70d266c37561a53be24",
-      "bytes": 83080
+      "sha256": "c5c9e1c46ad6c641b8a28313915401e07886e63248d8755a0395e522a66bf17a",
+      "bytes": 83099
     },
     {
       "path": "UPGRADING.md",
@@ -63,8 +64,8 @@
     },
     {
       "path": "agents/memory.md",
-      "sha256": "bba441ba6417237b80adcfa8ecfd879e6911fe2e10b46a3c09e60d9e284e99c7",
-      "bytes": 42855
+      "sha256": "066d9c8012817141743e34c82aa6ee4b0a5c6035570a6eddeb06a07a5494311b",
+      "bytes": 46971
     },
     {
       "path": "appearance/appearance-settings.md",
@@ -368,8 +369,8 @@
     },
     {
       "path": "game/dice-and-skill-checks.md",
-      "sha256": "0a02e97e0dd34cddca04678e7f5acb4e66ffe9b6a95395c7b812837fc2649f55",
-      "bytes": 18555
+      "sha256": "6b0b565399001cb4214eee6159fd6f122b954c7c4d02f2321104cf8b8ec19ffd",
+      "bytes": 19318
     },
     {
       "path": "game/game-assets.md",

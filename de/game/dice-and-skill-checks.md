@@ -73,6 +73,8 @@ Eine Fertigkeitsprobe entscheidet, ob dir etwas Riskantes gelingt – anschleich
 
 Eine im Text angeforderte Probe beginnt mit dem Versuch. Die Engine würfelt und stellt dann eine zusätzliche Modellanfrage mit den tatsächlichen Ergebnissen, damit der Game Master den Ausgang in derselben Runde abschließen kann. Das korrigiert auch einen Entwurf, der vor dem Wurf ein Ergebnis geraten hat. Die zusätzliche Anfrage sendet den Prompt erneut und verbraucht weitere Eingabe- und Ausgabe-Tokens. Scheitert sie, behält die Runde die gewürfelten Ergebnisse im Protokoll, ohne einen geratenen oder unvollständigen Ausgang zu speichern. Ein Hinweis mit der Schaltfläche **Regenerate turn** (Runde neu generieren) bleibt an der Runde sichtbar, auch nach dem Neuladen des Chats.
 
+Deaktiviere **Narrate dice outcomes immediately** (Würfelergebnisse sofort erzählen) unter **Chat Settings → Function Calling**, um die tatsächlichen Ergebnisse ohne diese zusätzliche Anfrage für die nächste Runde aufzubewahren. Die Einstellung ist standardmäßig aktiviert. Anfragen, bei denen kein tatsächlicher Wurf stattfindet, lösen niemals die zusätzliche Erzählanfrage aus.
+
 Bei einer Verbindung mit Unterstützung für das Würfel-Tool kann der Game Master bereits während der Generierung einen echten Wurf erhalten. Die Würfelkarte erscheint, sobald das Tool antwortet; die abgeschlossene Probe übernimmt dieses Ergebnis, ohne erneut zu würfeln. Jede ausgewertete Fertigkeitsprobe erhält ein eigenes Banner nach den wartenden Würfelkarten.
 
 Das Banner nennt die Fertigkeit und die Zielzahl, zum Beispiel **Stealth Check** und daneben **DC 15**. DC steht für Difficulty Class, also den Schwierigkeitsgrad: die Zahl, die dein Wurf erreichen oder übertreffen muss.

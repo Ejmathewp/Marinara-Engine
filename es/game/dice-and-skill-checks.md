@@ -73,6 +73,8 @@ Una prueba de habilidad comprueba si tienes éxito en algo arriesgado, como esca
 
 Una prueba solicitada por texto empieza con el intento. El motor resuelve los dados y realiza una solicitud adicional al modelo con los resultados reales para que el Game Master complete el desenlace en el mismo turno. También corrige borradores que adivinaron el resultado antes de la tirada. La solicitud adicional vuelve a enviar el prompt y consume más tokens de entrada y salida. Si falla, el turno conserva los resultados resueltos en su registro sin guardar un desenlace inventado o parcial. Un aviso con el botón **Regenerate turn** (regenerar turno) permanece en el turno, incluso después de recargar el chat.
 
+Desactiva **Narrate dice outcomes immediately** (narrar los resultados de los dados inmediatamente) en **Chat Settings → Function Calling** para conservar los resultados reales para el siguiente turno sin esta solicitud adicional. Esta opción está activada de forma predeterminada. Las solicitudes que no producen ninguna tirada real nunca activan la solicitud de narración adicional.
+
 En una conexión compatible con la herramienta de dados, el Game Master puede obtener una tirada real durante la generación. La tarjeta aparece en cuanto responde la herramienta; la prueba completada registra ese resultado sin volver a tirar. Cada prueba de habilidad resuelta recibe su propio aviso de resultado después de las tarjetas de dados en cola.
 
 El banner muestra la habilidad y el número objetivo, por ejemplo **Stealth Check** con **DC 15** al lado. DC significa Clase de Dificultad (Difficulty Class). Es el número que tu tirada debe alcanzar o superar.

@@ -73,6 +73,8 @@ Um teste de perícia decide se você tem sucesso em algo arriscado, como se esgu
 
 Um teste solicitado no texto começa pela tentativa. O motor resolve os dados e faz uma solicitação adicional ao modelo com os resultados reais para que o Game Master conclua o desfecho no mesmo turno. Isso também corrige um rascunho que adivinhou o resultado antes da rolagem. A solicitação adicional reenvia o prompt e usa mais tokens de entrada e saída. Se ela falhar, o turno mantém os resultados resolvidos no registro sem salvar um desfecho inventado ou parcial. Um aviso com o botão **Regenerate turn** (regenerar turno) permanece no turno, inclusive após recarregar o chat.
 
+Desative **Narrate dice outcomes immediately** (narrar os resultados dos dados imediatamente) em **Chat Settings → Function Calling** para manter os resultados reais para o próximo turno sem essa solicitação extra. Essa configuração vem ativada por padrão. Solicitações que não produzem nenhuma rolagem real nunca acionam a solicitação extra de narração.
+
 Em uma conexão compatível com a ferramenta de dados, o Game Master pode obter uma rolagem real durante a geração. O cartão aparece assim que a ferramenta responde; o teste concluído registra esse resultado sem rolar novamente. Cada teste de habilidade resolvido recebe seu próprio banner, depois dos cartões de dados na fila.
 
 A faixa mostra a perícia e o número alvo, por exemplo **Stealth Check** com **DC 15** ao lado. DC quer dizer Difficulty Class, ou classe de dificuldade. É o número que a rolagem precisa alcançar ou superar.
