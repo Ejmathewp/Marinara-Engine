@@ -26,10 +26,11 @@ Sigue estos pasos:
 ```
 
 3. Pulsa Enter. Se abre la ventana **Scene Prompt Setup** (Preparación del prompt de escena).
-4. En **POV**, elige cómo se enmarca la escritura: **First Person**, **Second Person** o **Third Person**.
-5. En **Tense**, elige **Past**, **Present** o **Future**.
-6. Opcionalmente, escribe notas en la caja **Extra instructions** para dirigir la escena.
-7. Haz clic en **Plan Scene**.
+4. Elige un **Prompt preset** (preajuste de prompt) para la nueva escena o déjalo en **None** (ninguno). Marinara recuerda esta elección para la siguiente escena. Las instrucciones propias de la escena siguen aplicándose junto con el preajuste seleccionado.
+5. En **POV**, elige cómo se enmarca la escritura: **First Person**, **Second Person** o **Third Person**.
+6. En **Tense**, elige **Past**, **Present** o **Future**.
+7. Opcionalmente, escribe notas en la caja **Extra instructions** para dirigir la escena.
+8. Haz clic en **Plan Scene**.
 
 Marinara planifica la escena y la abre como un nuevo chat de roleplay. Deberías ver la nueva escena aparecer en tu lista de chats y abrirse automáticamente, con un mensaje de apertura que plantea la situación. Si cambias de idea en la ventana de preparación, haz clic en **Cancel** y no se crea ninguna escena.
 
@@ -41,7 +42,7 @@ También puedes iniciar una escena sin descripción. Escribe solo el comando por
 
 Si la conversación aún no tiene mensajes, Marinara te pide que añadas una descripción o que converses primero antes de poder planificar una escena.
 
-Un personaje también puede pedir iniciar una escena. Cuando eso pasa, se abre la misma ventana **Scene Prompt Setup**, con una línea como "[Character] wants to start a scene." Elige **POV** y **Tense** y haz clic en **Plan Scene** de la misma forma, o haz clic en **Cancel** para rechazarla.
+Un personaje también puede pedir iniciar una escena. Cuando eso pasa, se abre la misma ventana **Scene Prompt Setup**, con una línea como "[Character] wants to start a scene." Elige **Prompt preset**, **POV** y **Tense** y haz clic en **Plan Scene** de la misma forma, o haz clic en **Cancel** para rechazarla.
 
 ## La barra de escena: End Scene, Discard, Convert y Back to conversation
 

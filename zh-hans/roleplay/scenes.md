@@ -26,10 +26,11 @@
 ```
 
 3. 按 Enter。**Scene Prompt Setup**(场景提示词设置) 窗口会打开。
-4. 在 **POV**(视角) 下选择行文的人称：**First Person**、**Second Person** 或 **Third Person**。
-5. 在 **Tense**(时态) 下选择 **Past**、**Present** 或 **Future**。
-6. 需要的话，在 **Extra instructions**(额外说明) 输入框里写点提示，引导场景走向。
-7. 点击 **Plan Scene**(规划场景)。
+4. 为新场景选择一个**Prompt preset**(提示词预设)，或保留**None**(无)。Marinara会记住这个选择，供下次创建场景使用。场景自身的指令仍会与所选预设一起生效。
+5. 在 **POV**(视角) 下选择行文的人称：**First Person**、**Second Person** 或 **Third Person**。
+6. 在 **Tense**(时态) 下选择 **Past**、**Present** 或 **Future**。
+7. 需要的话，在 **Extra instructions**(额外说明) 输入框里写点提示，引导场景走向。
+8. 点击 **Plan Scene**(规划场景)。
 
 Marinara 会规划好场景，并把它作为一段新的角色扮演聊天打开。聊天列表里应该会出现这段新场景并自动打开，开场消息交代好当前情境。如果在设置窗口里改了主意，点击 **Cancel**(取消)，场景就不会创建。
 
@@ -41,7 +42,7 @@ Marinara 会规划好场景，并把它作为一段新的角色扮演聊天打�
 
 如果聊天里还一条消息都没有，Marinara 会提示先补一句描述，或者先聊几句，才能规划场景。
 
-角色也可以主动提出开一个场景。这时会打开同一个 **Scene Prompt Setup** 窗口，上面写着类似“[Character] wants to start a scene.”的一行字。照样选好 **POV** 和 **Tense** 再点击 **Plan Scene**，或者点击 **Cancel** 拒绝。
+角色也可以主动提出开一个场景。这时会打开同一个 **Scene Prompt Setup** 窗口，上面写着类似“[Character] wants to start a scene.”的一行字。照样选好 **Prompt preset**、**POV** 和 **Tense** 再点击 **Plan Scene**，或者点击 **Cancel** 拒绝。
 
 ## 场景操作条：End Scene、Discard、Convert 和 Back to conversation
 

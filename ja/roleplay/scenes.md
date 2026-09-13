@@ -26,10 +26,11 @@
 ```
 
 3. Enterを押します。**Scene Prompt Setup**(シーンプロンプトの設定)ウィンドウが開きます。
-4. **POV**で文章の視点を選びます。**First Person**、**Second Person**、**Third Person**のいずれかです。
-5. **Tense**で時制を選びます。**Past**、**Present**、**Future**のいずれかです。
-6. 必要に応じて、**Extra instructions**欄に補足を書いてシーンの方向性を指定します。
-7. **Plan Scene**をクリックします。
+4. 新しいシーンの**Prompt preset**(プロンプトプリセット)を選ぶか、**None**(なし)のままにします。Marinaraは次のシーンでもこの選択を記憶します。シーン固有の指示は、選んだプリセットと併せて引き続き適用されます。
+5. **POV**で文章の視点を選びます。**First Person**、**Second Person**、**Third Person**のいずれかです。
+6. **Tense**で時制を選びます。**Past**、**Present**、**Future**のいずれかです。
+7. 必要に応じて、**Extra instructions**欄に補足を書いてシーンの方向性を指定します。
+8. **Plan Scene**をクリックします。
 
 Marinaraがシーンを組み立て、新しいRoleplayのチャットとして開きます。新しいシーンがチャット一覧に現れ、状況を提示する最初のメッセージとともに自動で開くはずです。設定ウィンドウで気が変わったときは**Cancel**をクリックすれば、シーンは作られません。
 
@@ -41,7 +42,7 @@ Marinaraがシーンを組み立て、新しいRoleplayのチャットとして�
 
 Conversationにまだメッセージが1つもない場合は、シーンを組み立てられないため、説明を書き足すか先にチャットを進めるようMarinaraが促します。
 
-キャラクターの側からシーンの開始を持ちかけてくることもあります。その場合も同じ**Scene Prompt Setup**ウィンドウが開き、「[Character] wants to start a scene.」のような一文が表示されます。同じように**POV**と**Tense**を選んで**Plan Scene**をクリックするか、断るときは**Cancel**をクリックします。
+キャラクターの側からシーンの開始を持ちかけてくることもあります。その場合も同じ**Scene Prompt Setup**ウィンドウが開き、「[Character] wants to start a scene.」のような一文が表示されます。同じように**Prompt preset**、**POV**と**Tense**を選んで**Plan Scene**をクリックするか、断るときは**Cancel**をクリックします。
 
 ## シーンバー: End Scene、Discard、Convert、Back to conversation
 

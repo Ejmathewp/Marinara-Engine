@@ -26,10 +26,11 @@ Siga estes passos:
 ```
 
 3. Pressione Enter. A janela **Scene Prompt Setup** (preparação do prompt da cena) abre.
-4. Na seção **POV**, escolha o enquadramento da narração: **First Person**, **Second Person** ou **Third Person**.
-5. Na seção **Tense**, escolha **Past**, **Present** ou **Future**.
-6. Se quiser, escreva observações no campo **Extra instructions** para direcionar a cena.
-7. Clique em **Plan Scene**.
+4. Escolha um **Prompt preset** (predefinição de prompt) para a nova cena ou mantenha **None** (nenhum). Marinara lembra essa escolha para a próxima cena. As instruções da própria cena continuam valendo junto com a predefinição selecionada.
+5. Na seção **POV**, escolha o enquadramento da narração: **First Person**, **Second Person** ou **Third Person**.
+6. Na seção **Tense**, escolha **Past**, **Present** ou **Future**.
+7. Se quiser, escreva observações no campo **Extra instructions** para direcionar a cena.
+8. Clique em **Plan Scene**.
 
 Marinara planeja a cena e abre tudo como um novo chat de roleplay. A cena nova aparece na lista de chats e abre sozinha, já com uma mensagem de abertura que apresenta a situação. Mudou de ideia na janela de preparação? Clique em **Cancel** e nenhuma cena é criada.
 
@@ -41,7 +42,7 @@ Também é possível começar uma cena sem descrição nenhuma. Digite só o com
 
 Se a conversa ainda não tiver mensagem nenhuma, Marinara pede que você escreva uma descrição ou converse um pouco antes de planejar a cena.
 
-O personagem também pode pedir para começar uma cena. Nesse caso, abre a mesma janela **Scene Prompt Setup**, com uma linha do tipo "[Character] wants to start a scene." Escolha **POV** e **Tense** e clique em **Plan Scene**, do mesmo jeito. Para recusar, clique em **Cancel**.
+O personagem também pode pedir para começar uma cena. Nesse caso, abre a mesma janela **Scene Prompt Setup**, com uma linha do tipo "[Character] wants to start a scene." Escolha **Prompt preset**, **POV** e **Tense** e clique em **Plan Scene**, do mesmo jeito. Para recusar, clique em **Cancel**.
 
 ## A barra da cena: End Scene, Discard, Convert e Back to conversation
 

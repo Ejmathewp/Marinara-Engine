@@ -26,10 +26,11 @@ Voici la marche à suivre :
 ```
 
 3. Appuie sur Enter. La fenêtre **Scene Prompt Setup** (configuration du prompt de scène) s'ouvre.
-4. Sous **POV**, choisis le point de vue du texte : **First Person**, **Second Person** ou **Third Person**.
-5. Sous **Tense** (le temps), choisis **Past**, **Present** ou **Future**.
-6. Si tu le souhaites, écris des consignes dans le champ **Extra instructions** (instructions supplémentaires) pour orienter la scène.
-7. Clique sur **Plan Scene** (planifier la scène).
+4. Choisis un **Prompt preset** (préréglage de prompt) pour la nouvelle scène, ou garde **None** (aucun). Marinara mémorise ce choix pour la scène suivante. Les instructions propres à la scène continuent de s'appliquer avec le préréglage sélectionné.
+5. Sous **POV**, choisis le point de vue du texte : **First Person**, **Second Person** ou **Third Person**.
+6. Sous **Tense** (le temps), choisis **Past**, **Present** ou **Future**.
+7. Si tu le souhaites, écris des consignes dans le champ **Extra instructions** (instructions supplémentaires) pour orienter la scène.
+8. Clique sur **Plan Scene** (planifier la scène).
 
 Marinara planifie la scène et l'ouvre comme un nouveau chat de roleplay. La nouvelle scène apparaît dans la liste des chats et s'ouvre toute seule, avec un message d'accueil qui plante la situation. Si tu changes d'avis dans la fenêtre de configuration, clique sur **Cancel** (annuler) : aucune scène n'est créée.
 
@@ -41,7 +42,7 @@ Autre option : lancer une scène sans description. Tape seulement la commande, �
 
 Si la conversation ne contient encore aucun message, Marinara te demande d'ajouter une description ou de discuter un peu avant de pouvoir planifier une scène.
 
-Un personnage peut lui aussi proposer de lancer une scène. Dans ce cas, la même fenêtre **Scene Prompt Setup** s'ouvre, avec une ligne du type "[Character] wants to start a scene." Choisis le **POV** et le **Tense**, puis clique sur **Plan Scene** comme d'habitude – ou clique sur **Cancel** pour refuser.
+Un personnage peut lui aussi proposer de lancer une scène. Dans ce cas, la même fenêtre **Scene Prompt Setup** s'ouvre, avec une ligne du type "[Character] wants to start a scene." Choisis le **Prompt preset**, le **POV** et le **Tense**, puis clique sur **Plan Scene** comme d'habitude – ou clique sur **Cancel** pour refuser.
 
 ## La barre de scène : End Scene, Discard, Convert et Back to conversation
 

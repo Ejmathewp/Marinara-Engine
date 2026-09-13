@@ -26,10 +26,11 @@ So geht's:
 ```
 
 3. Drück Enter. Das Fenster **Scene Prompt Setup** (Szenen-Einrichtung) öffnet sich.
-4. Leg unter **POV** die Erzählperspektive fest: **First Person**, **Second Person** oder **Third Person**.
-5. Wähl unter **Tense** die Zeitform: **Past**, **Present** oder **Future**.
-6. Ins Feld **Extra instructions** (zusätzliche Anweisungen) kannst du optional Notizen schreiben, um die Szene zu lenken.
-7. Klick auf **Plan Scene**.
+4. Wähle eine **Prompt preset** (Prompt-Vorlage) für die neue Szene oder lasse **None** (keine) ausgewählt. Marinara merkt sich diese Auswahl für die nächste Szene. Die eigenen Anweisungen der Szene gelten weiterhin zusammen mit der ausgewählten Vorlage.
+5. Leg unter **POV** die Erzählperspektive fest: **First Person**, **Second Person** oder **Third Person**.
+6. Wähl unter **Tense** die Zeitform: **Past**, **Present** oder **Future**.
+7. Ins Feld **Extra instructions** (zusätzliche Anweisungen) kannst du optional Notizen schreiben, um die Szene zu lenken.
+8. Klick auf **Plan Scene**.
 
 Marinara plant die Szene und öffnet sie als neuen Roleplay-Chat. Die neue Szene taucht in der Chatliste auf und öffnet sich automatisch, mit einer Eröffnungsnachricht, die die Situation setzt. Wenn du es dir im Einrichtungsfenster anders überlegst, klick auf **Cancel** – dann entsteht keine Szene.
 
@@ -41,7 +42,7 @@ Eine Szene lässt sich auch ohne Beschreibung starten. Tipp einfach nur den Befe
 
 Stehen im Chat noch gar keine Nachrichten, bittet Marinara dich, erst eine Beschreibung zu ergänzen oder zu chatten, bevor eine Szene geplant werden kann.
 
-Auch ein Charakter kann von sich aus eine Szene vorschlagen. Dann öffnet sich dasselbe Fenster **Scene Prompt Setup**, mit einer Zeile wie „[Character] wants to start a scene“. Wähl **POV** und **Tense** und klick genauso auf **Plan Scene** – oder lehn mit **Cancel** ab.
+Auch ein Charakter kann von sich aus eine Szene vorschlagen. Dann öffnet sich dasselbe Fenster **Scene Prompt Setup**, mit einer Zeile wie „[Character] wants to start a scene“. Wähl **Prompt preset**, **POV** und **Tense** und klick genauso auf **Plan Scene** – oder lehn mit **Cancel** ab.
 
 ## Die Szenenleiste: End Scene, Discard, Convert und Back to conversation
 
