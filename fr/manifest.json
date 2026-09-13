@@ -1,6 +1,6 @@
 {
   "language": "fr",
-  "sourceCommit": "14ec886cdd5ed10c5847afcc0be77bc580a0c507",
+  "sourceCommit": "22c49ba6c9a21c5131eb759e2d5791a43279d697",
   "files": [
     {
       "path": "CONFIGURATION.md",
@@ -369,8 +369,8 @@
     },
     {
       "path": "game/dice-and-skill-checks.md",
-      "sha256": "94b8faff3858f3984b3b934c7debe1d7e342f7d851f80a4eb5b14a43f6711e8b",
-      "bytes": 9697
+      "sha256": "c4bd89df85741033f1b4b947234024bfd1cd0a239f5b952ccc6e211e6281fc7a",
+      "bytes": 9552
     },
     {
       "path": "game/game-assets.md",

@@ -103,7 +103,7 @@ Der Game Master kann eine andere Notation angeben, etwa `[skill_check: skill="En
 
 Erfolgspools müssen sowohl den Schwellenwert pro Würfel als auch die benötigte Anzahl an Erfolgen angeben: `[skill_check: skill="Intimidation" dc="4" dice="6d10" resolution="successes" threshold="6"]` würfelt sechs d10, zählt jeden Würfel mit mindestens 6 einmal und gelingt ab vier Erfolgen. Die Engine errät keinen fehlenden Schwellenwert und setzt weder explodierende Würfel noch Patzer oder andere besondere Poolregeln um. Ein Pool ohne gültigen Schwellenwert bleibt unaufgelöst; vom Modell erfundene Zahlen werden entfernt.
 
-Nicht unterstützte Anfragen wie `4d6kh3`, `3d6!` oder `4dF` werden nicht gewürfelt. Die Engine protokolliert die nicht unterstützte Notation und entfernt erfundene Zahlen aus Probenaufzeichnungen. Dieselbe zusätzliche Erzählanfrage weist den Game Master an, diese Ausgänge offenzulassen und zu erklären, was in unterstützter Notation präzisiert werden muss; sie ersetzt nicht stillschweigend das Würfelsystem.
+Nicht unterstützte Anfragen wie `4d6kh3`, `3d6!` oder `4dF` werden nicht gewürfelt. Die Engine protokolliert die nicht unterstützte Notation und entfernt erfundene Zahlen aus Probenaufzeichnungen. Diese Ausgänge bleiben offen; die Engine ersetzt nicht stillschweigend das Würfelsystem.
 
 ### Vorteil und Nachteil
 

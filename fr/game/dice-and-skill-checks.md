@@ -103,7 +103,7 @@ Le Game Master peut indiquer une autre notation, par exemple `[skill_check: skil
 
 Les réserves de succès doivent préciser le seuil de chaque dé et le nombre de succès nécessaires : `[skill_check: skill="Intimidation" dc="4" dice="6d10" resolution="successes" threshold="6"]` lance six d10, compte une fois chaque dé affichant au moins 6 et réussit avec au moins quatre succès. Le moteur ne devine pas un seuil absent et ne gère ni dés explosifs, ni échecs catastrophiques, ni autres règles particulières de réserve. Une réserve sans seuil valide reste non résolue, et les nombres inventés par le modèle sont supprimés.
 
-Les demandes non prises en charge, comme `4d6kh3`, `3d6!` ou `4dF`, ne sont pas lancées. Le moteur consigne la notation non prise en charge et retire les nombres inventés des enregistrements de tests. La même requête supplémentaire de narration demande au Game Master de laisser ces résultats ouverts et d'expliquer ce qui doit être précisé dans une notation prise en charge ; elle ne remplace pas silencieusement le système de dés.
+Les demandes non prises en charge, comme `4d6kh3`, `3d6!` ou `4dF`, ne sont pas lancées. Le moteur consigne la notation non prise en charge et retire les nombres inventés des enregistrements de tests. Ces résultats restent ouverts ; le moteur ne remplace pas silencieusement le système de dés.
 
 ### Avantage et désavantage
 
