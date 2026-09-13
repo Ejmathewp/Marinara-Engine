@@ -73,6 +73,8 @@ Um teste de perícia decide se você tem sucesso em algo arriscado, como se esgu
 
 Um teste solicitado no texto começa pela tentativa. O motor resolve os dados e faz uma solicitação adicional ao modelo com os resultados reais para que o Game Master conclua o desfecho no mesmo turno. Isso também corrige um rascunho que adivinhou o resultado antes da rolagem. A solicitação adicional reenvia o prompt e usa mais tokens de entrada e saída. Se ela falhar, o turno mantém os resultados resolvidos no registro sem salvar um desfecho inventado ou parcial. Um aviso com o botão **Regenerate turn** (regenerar turno) permanece no turno, inclusive após recarregar o chat.
 
+Desative **Narrate dice outcomes immediately** (narrar os resultados dos dados imediatamente) em **Chat Settings → Function Calling** para manter os resultados reais para o próximo turno sem essa solicitação extra. Essa configuração vem ativada por padrão. Solicitações que não produzem nenhuma rolagem real nunca acionam a solicitação extra de narração.
+
 Em uma conexão compatível com a ferramenta de dados, o Game Master pode obter uma rolagem real durante a geração. O cartão aparece assim que a ferramenta responde; o teste concluído registra esse resultado sem rolar novamente. Cada teste de habilidade resolvido recebe seu próprio banner, depois dos cartões de dados na fila.
 
 A faixa mostra a perícia e o número alvo, por exemplo **Stealth Check** com **DC 15** ao lado. DC quer dizer Difficulty Class, ou classe de dificuldade. É o número que a rolagem precisa alcançar ou superar.
@@ -101,7 +103,7 @@ O Game Master pode indicar outra notação, como `[skill_check: skill="Endurance
 
 As paradas de sucessos precisam informar tanto o limiar por dado quanto o número de sucessos necessários: `[skill_check: skill="Intimidation" dc="4" dice="6d10" resolution="successes" threshold="6"]` rola seis d10, conta uma vez cada dado com resultado de pelo menos 6 e passa com no mínimo quatro sucessos. O motor não adivinha um limiar ausente nem implementa dados explosivos, regras de botch ou outras regras especiais de paradas. Uma parada sem um limiar válido fica sem resolução, e os números inventados pelo modelo são removidos.
 
-Solicitações não compatíveis, como `4d6kh3`, `3d6!` ou `4dF`, não são roladas. O motor registra a notação não compatível e remove números inventados dos registros de testes. A mesma solicitação adicional de narração orienta o Game Master a deixar esses resultados em aberto e explicar o que precisa ser esclarecido em uma notação compatível; ela não substitui silenciosamente o sistema de dados.
+Solicitações não compatíveis, como `4d6kh3`, `3d6!` ou `4dF`, não são roladas. O motor registra a notação não compatível e remove números inventados dos registros de testes. Esses resultados permanecem em aberto; o motor não substitui silenciosamente o sistema de dados.
 
 ### Vantagem e desvantagem
 

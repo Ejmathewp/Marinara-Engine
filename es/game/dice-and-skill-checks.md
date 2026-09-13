@@ -73,6 +73,8 @@ Una prueba de habilidad comprueba si tienes éxito en algo arriesgado, como esca
 
 Una prueba solicitada por texto empieza con el intento. El motor resuelve los dados y realiza una solicitud adicional al modelo con los resultados reales para que el Game Master complete el desenlace en el mismo turno. También corrige borradores que adivinaron el resultado antes de la tirada. La solicitud adicional vuelve a enviar el prompt y consume más tokens de entrada y salida. Si falla, el turno conserva los resultados resueltos en su registro sin guardar un desenlace inventado o parcial. Un aviso con el botón **Regenerate turn** (regenerar turno) permanece en el turno, incluso después de recargar el chat.
 
+Desactiva **Narrate dice outcomes immediately** (narrar los resultados de los dados inmediatamente) en **Chat Settings → Function Calling** para conservar los resultados reales para el siguiente turno sin esta solicitud adicional. Esta opción está activada de forma predeterminada. Las solicitudes que no producen ninguna tirada real nunca activan la solicitud de narración adicional.
+
 En una conexión compatible con la herramienta de dados, el Game Master puede obtener una tirada real durante la generación. La tarjeta aparece en cuanto responde la herramienta; la prueba completada registra ese resultado sin volver a tirar. Cada prueba de habilidad resuelta recibe su propio aviso de resultado después de las tarjetas de dados en cola.
 
 El banner muestra la habilidad y el número objetivo, por ejemplo **Stealth Check** con **DC 15** al lado. DC significa Clase de Dificultad (Difficulty Class). Es el número que tu tirada debe alcanzar o superar.
@@ -101,7 +103,7 @@ El Game Master puede indicar otra notación, como `[skill_check: skill="Enduranc
 
 Las reservas de éxitos deben indicar tanto el umbral por dado como el número de éxitos necesarios: `[skill_check: skill="Intimidation" dc="4" dice="6d10" resolution="successes" threshold="6"]` tira seis d10, cuenta una vez cada dado que muestre al menos 6 y tiene éxito con un mínimo de cuatro éxitos. El motor no adivina un umbral ausente ni implementa dados explosivos, pifias u otras reglas especiales de reservas. Una reserva sin un umbral válido queda sin resolver y se eliminan los números inventados por el modelo.
 
-Las solicitudes no compatibles, como `4d6kh3`, `3d6!` o `4dF`, no se tiran. El motor registra la notación no compatible y elimina los números inventados de los registros de pruebas. La misma solicitud adicional de narración indica al Game Master que deje esos resultados abiertos y explique qué debe aclararse en una notación compatible; no sustituye silenciosamente el sistema de dados.
+Las solicitudes no compatibles, como `4d6kh3`, `3d6!` o `4dF`, no se tiran. El motor registra la notación no compatible y elimina los números inventados de los registros de pruebas. Estos resultados quedan sin resolver; el motor no sustituye silenciosamente el sistema de dados.
 
 ### Ventaja y desventaja
 

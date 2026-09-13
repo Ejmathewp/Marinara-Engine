@@ -73,6 +73,8 @@ Test umiejętności sprawdza, czy ryzykowne działanie się powiedzie – skrada
 
 Test zażądany w tekście zaczyna się od próby działania. Silnik rozstrzyga rzut, a następnie wykonuje jedno dodatkowe żądanie do modelu z rzeczywistymi wynikami, aby postać Game Master mogła opisać rezultat w tej samej turze. Poprawia to również szkic, który zgadywał wynik przed rzutem. Dodatkowe żądanie ponownie wysyła prompt i zużywa więcej tokenów wejściowych oraz wyjściowych. Jeśli zawiedzie, tura zachowuje rozstrzygnięte wyniki w dzienniku, bez zapisywania zgadywanego lub częściowego rezultatu. Przy turze pozostaje komunikat z przyciskiem **Regenerate turn** (wygeneruj turę ponownie), także po ponownym załadowaniu czatu.
 
+Wyłącz **Narrate dice outcomes immediately** (natychmiast opisuj wyniki rzutów) w **Chat Settings → Function Calling**, aby zachować rzeczywiste wyniki na kolejną turę bez tego dodatkowego żądania. To ustawienie jest domyślnie włączone. Żądania, które nie prowadzą do żadnego rzeczywistego rzutu, nigdy nie uruchamiają dodatkowego żądania narracji.
+
 Na połączeniu obsługującym narzędzie kości postać Game Master może uzyskać rzeczywisty rzut już podczas generowania. Karta rzutu pojawia się po zwróceniu wyniku przez narzędzie; zakończony test zapisuje ten wynik bez ponownego rzucania. Każdy rozstrzygnięty test umiejętności dostaje osobny baner, po kartach rzutów czekających w kolejce.
 
 Baner pokazuje umiejętność i liczbę do osiągnięcia, na przykład **Stealth Check** (test skradania), a obok **DC 15**. DC to skrót od Difficulty Class, czyli poziomu trudności. Tę liczbę rzut musi osiągnąć albo przebić.
@@ -101,7 +103,7 @@ Postać Game Master może podać inny zapis, na przykład `[skill_check: skill="
 
 Pula sukcesów wymaga podania zarówno progu dla pojedynczej kości, jak i wymaganej liczby sukcesów: `[skill_check: skill="Intimidation" dc="4" dice="6d10" resolution="successes" threshold="6"]` rzuca sześcioma kośćmi d10, liczy każdą kość z wynikiem co najmniej 6 jako jeden sukces i zdaje test przy co najmniej czterech sukcesach. Silnik nie zgaduje brakującego progu ani nie implementuje eksplodujących kości, pechów czy innych specjalnych zasad puli. Pula bez poprawnego progu pozostaje nierozstrzygnięta, a liczby wymyślone przez model są usuwane.
 
-Nieobsługiwane żądania, takie jak `4d6kh3`, `3d6!` lub `4dF`, nie powodują rzutu. Silnik zapisuje nieobsługiwaną notację w logu i usuwa wymyślone liczby z rekordów testów. To samo dodatkowe żądanie narracji każe postaci Game Master pozostawić te wyniki otwarte i wyjaśnić, co trzeba doprecyzować w obsługiwanej notacji; nie podmienia po cichu systemu kości.
+Nieobsługiwane żądania, takie jak `4d6kh3`, `3d6!` lub `4dF`, nie powodują rzutu. Silnik zapisuje nieobsługiwaną notację w logu i usuwa wymyślone liczby z rekordów testów. Te wyniki pozostają nierozstrzygnięte; silnik nie podmienia po cichu systemu kości.
 
 ### Ułatwienie i utrudnienie
 

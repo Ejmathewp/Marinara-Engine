@@ -73,6 +73,8 @@ Un jet de compétence détermine si tu réussis une action risquée : te faufile
 
 Un test demandé dans le texte commence par la tentative. Le moteur résout les dés, puis effectue une requête supplémentaire au modèle avec les résultats réels pour que le Game Master puisse terminer le dénouement dans le même tour. Cela corrige aussi un brouillon qui avait deviné le résultat avant le jet. La requête supplémentaire renvoie le prompt et consomme davantage de tokens d'entrée et de sortie. Si elle échoue, le tour conserve les résultats résolus dans son journal, sans enregistrer de dénouement inventé ou partiel. Un avis avec le bouton **Regenerate turn** (régénérer le tour) reste affiché sur le tour, même après avoir rechargé le chat.
 
+Désactive **Narrate dice outcomes immediately** (raconter immédiatement les résultats des dés) dans **Chat Settings → Function Calling** pour conserver les résultats réels pour le tour suivant sans cette requête supplémentaire. Ce réglage est activé par défaut. Les demandes qui ne produisent aucun lancer réel ne déclenchent jamais la requête de narration supplémentaire.
+
 Avec une connexion prenant en charge l'outil de dés, le Game Master peut obtenir un vrai jet pendant la génération. La carte apparaît dès que l'outil répond ; le jet de compétence terminé enregistre ce résultat sans relancer les dés. Chaque jet de compétence résolu reçoit son propre bandeau, après les cartes de dés en attente.
 
 Le bandeau affiche la compétence et le nombre à atteindre, par exemple **Stealth Check** avec **DC 15** juste à côté. DC signifie Difficulty Class, le degré de difficulté : c'est le nombre que ton jet doit atteindre ou dépasser.
@@ -101,7 +103,7 @@ Le Game Master peut indiquer une autre notation, par exemple `[skill_check: skil
 
 Les réserves de succès doivent préciser le seuil de chaque dé et le nombre de succès nécessaires : `[skill_check: skill="Intimidation" dc="4" dice="6d10" resolution="successes" threshold="6"]` lance six d10, compte une fois chaque dé affichant au moins 6 et réussit avec au moins quatre succès. Le moteur ne devine pas un seuil absent et ne gère ni dés explosifs, ni échecs catastrophiques, ni autres règles particulières de réserve. Une réserve sans seuil valide reste non résolue, et les nombres inventés par le modèle sont supprimés.
 
-Les demandes non prises en charge, comme `4d6kh3`, `3d6!` ou `4dF`, ne sont pas lancées. Le moteur consigne la notation non prise en charge et retire les nombres inventés des enregistrements de tests. La même requête supplémentaire de narration demande au Game Master de laisser ces résultats ouverts et d'expliquer ce qui doit être précisé dans une notation prise en charge ; elle ne remplace pas silencieusement le système de dés.
+Les demandes non prises en charge, comme `4d6kh3`, `3d6!` ou `4dF`, ne sont pas lancées. Le moteur consigne la notation non prise en charge et retire les nombres inventés des enregistrements de tests. Ces résultats restent ouverts ; le moteur ne remplace pas silencieusement le système de dés.
 
 ### Avantage et désavantage
 
