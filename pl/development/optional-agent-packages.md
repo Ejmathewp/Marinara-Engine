@@ -96,6 +96,21 @@ To ŻĄDANIE, a nie preferencja. Ustawienie zwinięcia wybrane przez gracza nigd
 
 Zasady bezpieczeństwa Engine mają pierwszeństwo. Pole jest przymusowo rozwijane zawsze, gdy widać pole tekstowe gracza, także na samym początku sceny przed powstaniem segmentu, oraz gdy działają kontrolki przejścia do kolejnego segmentu. Są one jedynym sposobem zakończenia tury; pakiet, który mógłby je ukryć, mógłby trwale zablokować gracza. Uchwyt nadal pokazuje wskaźnik uwagi przy oczekującej analizie sceny, generowaniu lub ponownej próbie generowania walki. Jeśli gracz rozwinie pole ręcznie podczas żądania, pozostaje ono otwarte do zakończenia żądania. Podobnie jak interfejsy 1.11 i 1.12 jest to miękki interfejs: pole działa niezależnie od zadeklarowanego `capabilityApi`. Etykieta 1.13 oznacza czas wprowadzenia, więc pakiet, który go wymaga, deklaruje 1.13.
 
+### Capability API 1.17: przygotowanie Experience przed pierwszą turą
+
+Pakiet `game-surface` może zadeklarować `contributions.gameSurface.prepareBeforeStart: true` przy schemacie w wersji 2 i Capability API 1.17. Engine montuje tę powierzchnię, gdy gra jest gotowa, zanim włączy **Start Game** (Rozpocznij grę). Klasyczne gry i pakiety bez tej flagi zachowują dotychczasowy przebieg uruchamiania.
+
+Główna powierzchnia, która włącza tę opcję, otrzymuje dwie dodatkowe właściwości:
+
+- `startup: boolean` pozostaje true, dopóki gracz nie zakończy wprowadzenia Engine przyciskiem **Continue** (Kontynuuj). W tym czasie wstrzymaj symulację świata i działania gracza.
+- `setStartupReady(context: string | null): void` zgłasza stan przygotowania. Wysyłaj `null` podczas ładowania, zapisywania lub wychodzenia z błędu. Wyślij ciąg znaków dopiero wtedy, gdy faktyczny świat jest trwale zapisany i gotowy do użycia; pusty ciąg pozwala rozpocząć bez dodatkowego kontekstu.
+
+Host blokuje **Start Game**, potwierdzenie przygotowania widżetów i ponowne próby pierwszej tury, dopóki nie otrzyma ciągu oznaczającego gotowość. Podczas blokady własny interfejs ładowania oraz błędu i ponowienia pakietu pozostaje widoczny. Po uzyskaniu gotowości pakiet jest ukryty za zwykłym wprowadzeniem Engine. **Continue** otwiera zwykłą powierzchnię, która może zostać zamontowana ponownie: zadbaj o idempotentne przygotowanie świata i odtwarzaj zapisany stan zamiast generować go od nowa. Powrót do gry, w której wprowadzenie już się zakończyło, nie powtarza przygotowania startowego.
+
+Kontekst otwarcia ma limit **8 000 znaków**. Niepoprawny lub zbyt długi kontekst nadal blokuje start i wyświetla błąd; host nie ucina faktów o świecie. Przekaż krótki opis przygotowanej lokacji początkowej i faktycznie obecnych tam postaci. Engine dołącza ten tekst do istniejącego `generationGuide` pierwszej tury ze źródłem `game_start`, aby otwarcie korzystało ze świata, który już istnieje. Nie rejestruje to kontekstu dla późniejszych tur; dla nich nadal używaj zwykłego wkładu pakietu do promptu lub kontekstu generowania tury.
+
+Wywołania zwrotne gotowości należą do zamontowanego czatu, gry i pakietu. Spóźnione wywołania z innego zakresu są ignorowane. Błąd modułu lub środowiska uruchomieniowego blokuje start, zamiast uznawać brak kontekstu świata za sukces. Po przeładowaniu pakiet musi zgłosić gotowość na podstawie zapisanego świata. Serwerowy dostawca kontekstu promptu nadal działa tylko do odczytu i ma krótki limit czasu; nie używaj go do generowania świata ani jako długotrwałej blokady startu.
+
 ## Pakiety początkowe
 
 - wszyscy dotychczas wbudowani agenci;
@@ -172,3 +187,27 @@ Na komputerze widać listę do przeglądania i sąsiadujący z nią obszar szcze
 ## Warunek zakończenia wydzielenia
 
 Wydzielenie jest kompletne dopiero wtedy, gdy podstawowe produkcyjne paczki klienta i serwera nie zawierają już implementacji pakietu, świeża instalacja nie potrafi jej aktywować bez pobrania pakietu, instalacja po aktualizacji ją zachowuje, a instalacja, aktualizacja i odinstalowanie pakietu przechodzą pomyślnie na komputerze, telefonie i systemach plików zgodnych z Termux.
+
+### Capability API 1.18: konfiguracja Experience w kreatorze Game
+
+Pakiet `game-surface` może zadeklarować `contributions.gameSurface.setup` przy schemacie w wersji 2 i Capability API 1.18. Engine zachowuje siedem zwykłych kroków konfiguracji, w tym **Party** (Drużyna), cele, modele i lorebooki. Experiences są dostępne tylko przy nowych grach; ponowne otwarcie konfiguracji istniejącej gry zachowuje jej Experience i konfigurację pakietu. Pakiety bez tej deklaracji zachowują dawny dialog konfiguracji.
+
+```json
+{
+  "setup": {
+    "seed": { "key": "seed", "label": "World seed" },
+    "config": { "generate": true, "packWanted": true },
+    "requires": { "enableCustomWidgets": false }
+  }
+}
+```
+
+Wszystkie trzy pola są opcjonalne. Zadeklarowane ziarno pojawia się pod wybranym Experience z przyciskiem **Randomize** (Losuj). Pusta lub nieskończona wartość albo wartość niebędąca liczbą blokuje **Start** (Rozpocznij). Host zapisuje liczbowe ziarno i zadeklarowane stałe w `experienceConfig`; `config` nie może zawierać klucza ziarna. Stałe po serializacji muszą mieścić się w 8 000 znaków. Etykieta ziarna to tekst wyświetlany autorstwa pakietu; pomiń ją, aby użyć zlokalizowanej etykiety Engine.
+
+Zadeklarowane wymaganie dotyczące widżetów ustala wartość domyślną tylko do chwili, gdy gracz zmieni tę kontrolkę. Wyłączenie Experience przywraca zwykłą wartość domyślną, a jawne wybory gracza pozostają bez zmian. Kontrolka wyjaśnia oczekiwanie Experience i nadal można ją edytować. Dla tych Experiences kontrolki konfiguracji mapy przestrzennej są ukryte, więc nie uruchamia się osobny szkic mapy, szablon ani kreator.
+
+Krok **Lorebooks** (Lorebooki) pozwala wybrać do 100 pojedynczych włączonych wpisów, także z niepodłączonych książek. Wyłączone książki i wpisy oraz wykluczenia czatu są respektowane. Identyfikatory trafiają do `GameSetupConfig.activeLorebookEntryIds`. W `/game/setup` są to dodatkowe wymuszone wpisy: pomijają losowanie prawdopodobieństwa, ale zachowują zwykłe limity tokenów. Lore globalne, powiązane z postaciami i podłączone nadal uczestniczy w zwykłym skanowaniu. Pakiety mogą odczytać te same wybrane identyfikatory z konfiguracji na potrzeby własnego żądania generowania świata.
+
+Import pliku konfiguracji odtwarza zainstalowane, zgodne Experience i jego poprawne liczbowe ziarno, ale odrzuca dowolną konfigurację pakietu. Stałe są ponownie dostarczane przez bieżący manifest. Istniejące gry pomijają import Experience z wyjaśnieniem. Migawki utworzenia zachowują nazwę Experience i ziarno do podsumowania konfiguracji.
+
+Gdy świat musi być przygotowany przed pierwszą turą, niezależnie użyj istniejącej deklaracji gotowości startowej. Zadeklaruj API 1.18 jako minimum pakietu; starsze hosty nie potrafią zinterpretować tej deklaracji konfiguracji.
