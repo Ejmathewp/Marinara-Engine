@@ -6,13 +6,13 @@ Z tego przewodnika dowiesz się, czym jest persona (postać, w którą się wcie
 
 Persona to ktoś, kim jesteś w czacie. Ma nazwę, opis i kilka dodatkowych, opcjonalnych szczegółów. Marinara wysyła te szczegóły w każdym prompcie (tekst, który Marinara wysyła do AI), żeby AI wiedziało, z kim rozmawia.
 
-Person może być dowolnie wiele. Wszystkie mieszkają w panelu **Personas** (Persony). Jedna z nich pełni rolę globalnie domyślnej i nosi nazwę **aktywnej persony**. Personę da się też podmienić dla pojedynczego czatu. Ten przewodnik opisuje tworzenie i edycję person. Sposób wybierania persony dla konkretnego czatu opisuje [Wybór persony w czacie](choosing-your-persona.md).
+Możesz tworzyć wiele person i przechowywać je w panelu **Personas** (Persony). Wybierz personę dla każdego czatu albo wybierz **None** (brak), żeby nie używać żadnej. Ten przewodnik opisuje tworzenie i edycję person. Sposób wybierania persony dla konkretnego czatu opisuje [Wybór persony w czacie](choosing-your-persona.md).
 
 ### Makro {{user}}
 
-Makro to symbol zastępczy w tekście, który aplikacja zamienia na prawdziwą wartość tuż przed wysłaniem promptu. Makro **{{user}}** zamienia się na nazwę persony używanej w danym czacie. Jest to persona przypisana do czatu, a jeśli jej nie ma – aktywna persona. Przykład: gdy taka persona nazywa się Alex, w prompcie **{{user}}** staje się Alex.
+Makro to symbol zastępczy w tekście, który aplikacja zamienia na prawdziwą wartość tuż przed wysłaniem promptu. Makro **{{user}}** zamienia się na nazwę persony używanej w danym czacie. Jest to persona wybrana dla czatu. Przykład: gdy taka persona nazywa się Alex, w prompcie **{{user}}** staje się Alex.
 
-Czasem czat nie ma własnej persony, a żadna persona nie jest aktywna. Dopiero wtedy AI zwraca się do ciebie ogólną nazwą "User" i nie wysyła żadnych szczegółów persony. Sposób, w jaki czat dobiera personę, opisuje [Wybór persony w czacie](choosing-your-persona.md). Więcej o makrach znajdziesz w przewodniku [Makra](../prompts/macros.md).
+Jeśli czat nie ma wybranej persony, AI zwraca się do ciebie ogólną nazwą "User" i nie otrzymuje żadnych szczegółów persony. Sposób, w jaki czat dobiera personę, opisuje [Wybór persony w czacie](choosing-your-persona.md). Więcej o makrach znajdziesz w przewodniku [Makra](../prompts/macros.md).
 
 ## Panel Personas
 
@@ -20,24 +20,18 @@ Panel **Personas** to biblioteka person. Otwiera go ikona osoby na górnym pasku
 
 Panel udostępnia takie kontrolki:
 
-- **Open Full Library** (otwarcie pełnej biblioteki) otwiera responsywną, pełnoekranową bibliotekę person. Ma ten sam układ siatki z podglądem co biblioteka postaci: opisy person, sekcje karty, tagi, szacowaną liczbę tokenów (małych kawałków tekstu) i plakietki aktywnej persony.
+- **Open Full Library** (otwarcie pełnej biblioteki) otwiera responsywną, pełnoekranową bibliotekę person. Ma ten sam układ siatki z podglądem co biblioteka postaci: opisy person, sekcje karty, tagi i szacowaną liczbę tokenów (małych kawałków tekstu).
 - **New** (nowa) tworzy personę.
 - **Import** (import) otwiera okno **Import Persona**.
 - **Select** (zaznaczanie) włącza tryb zaznaczania zbiorczego, dzięki czemu da się działać na wielu personach naraz.
 - Pole wyszukiwania z tekstem zastępczym **Search personas** przeszukuje nazwę, opis, komentarz i tagi.
 - Lista rozwijana sortowania oferuje **A-Z**, **Z-A**, **Newest**, **Oldest** oraz **Tokens** (szacowany rozmiar promptu).
 - **New Folder** (nowy folder) tworzy folder do porządkowania person.
-- Kafelki filtrów **All**, **Active** i **Inactive** filtrują persony według tego, czy dana persona jest aktualnie aktywna. Kafelek **Tags** rozwija listę tagów.
+- Kafelek **Tags** rozwija listę tagów do filtrowania.
 
-Każdy wiersz pokazuje awatar persony, nazwę i krótki fragment opisu. Aktywna persona ma na awatarze małą plakietkę z ptaszkiem. Po najechaniu na wiersz pojawiają się akcje: **Set as active** (ustawienie jako aktywnej), **Duplicate** (duplikowanie) i **Delete** (usunięcie). Kliknięty wiersz otwiera daną personę w pełnoekranowym edytorze **Persona Editor**.
+Każdy wiersz pokazuje awatar persony, nazwę i krótki fragment opisu. Po najechaniu na wiersz pojawiają się akcje **Duplicate** (duplikowanie) i **Delete** (usunięcie). Kliknięty wiersz otwiera daną personę w pełnoekranowym edytorze **Persona Editor**.
 
 Kiedy person jest więcej, niż mieści się na jednej stronie, na dole pojawia się przycisk **Load more**. Przy pustej bibliotece panel wyświetla krótki komunikat "No personas yet".
-
-### Aktywna persona
-
-Rolę globalnie domyślnej może pełnić najwyżej jedna persona naraz. To właśnie **aktywna persona**. Aby ją ustawić, najedź na wiersz persony i kliknij **Set as active**.
-
-Ustawienie persony jako aktywnej najpierw zdejmuje ten status ze wszystkich pozostałych. Aktywna nigdy nie jest więc więcej niż jedna persona. Nowe, zduplikowane i zaimportowane persony nigdy nie stają się aktywne same z siebie – aktywną personę zawsze wskazujesz samodzielnie. Brak aktywnej persony też jest w pełni w porządku.
 
 ## Tworzenie persony
 
@@ -48,7 +42,7 @@ Ustawienie persony jako aktywnej najpierw zdejmuje ten status ze wszystkich pozo
 
 Persona powstaje z pustym opisem. Od razu otwiera się w pełnym edytorze **Persona Editor**, żeby dało się uzupełnić resztę. W oknie tworzenia nie ustawia się innych pól – wszystko pozostałe edytuje się później w edytorze **Persona Editor**.
 
-Świeżo utworzona persona nigdy nie staje się aktywna sama z siebie. Ustaw ją jako aktywną, kiedy chcesz z niej korzystać.
+Po utworzeniu persony wybierz ją w czacie, w którym chcesz jej używać.
 
 ## Edytor Persona Editor
 
@@ -145,7 +139,7 @@ Przycisk **Reset** w nagłówku panelu usuwa wszystkie zapisane migawki persony 
 
 ## Duplikowanie persony
 
-Kliknij **Duplicate** w wierszu persony albo ikonę **Duplicate persona** w nagłówku edytora **Persona Editor**. Powstaje pełna kopia persony o nazwie "{oryginalna nazwa} (Copy)". Kopiują się wszystkie pola karty, kolory, statystyki i pola zakładki Convo. Kopia nigdy nie staje się aktywna sama z siebie, nawet jeśli oryginał był aktywny.
+Kliknij **Duplicate** w wierszu persony albo ikonę **Duplicate persona** w nagłówku edytora **Persona Editor**. Powstaje pełna kopia persony o nazwie "{oryginalna nazwa} (Copy)". Kopiują się wszystkie pola karty, kolory, statystyki i pola zakładki Convo. Duplikowanie persony nie zmienia persony wybranej w żadnym czacie.
 
 ## Usuwanie person
 

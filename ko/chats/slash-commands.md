@@ -6,7 +6,9 @@
 
 슬래시 명령어는 채팅 아래쪽 메시지 입력란에 입력한 다음 **Send**(전송)를 눌러 실행합니다. **Settings**(설정)에서 사용 중인 채팅 모드에 **Send on Enter**(엔터 키로 전송) 옵션이 켜져 있으면 Enter로도 보낼 수 있습니다. 기본값으로 Conversation(대화) 채팅에서는 Enter가 전송이고, Roleplay(롤플레이) 채팅에서는 줄바꿈입니다. 메시지 입력란은 슬래시 명령어를 쓸 수 있다고 알려 줍니다. Roleplay 채팅의 안내 문구는 **Write your response, / for commands**입니다. Conversation 채팅에서는 "Message @Alice, / for commands"처럼 캐릭터 이름이 들어갑니다. 캐릭터가 둘 이상인 대화라면 캐릭터 이름 대신 채팅 이름이 표시됩니다.
 
-빗금을 입력하는 순간 입력란 위에 조건에 맞는 명령어 목록이 작게 뜹니다. 각 줄에는 명령어 이름과 짧은 설명이 있습니다. 줄을 클릭하거나 탭하면 그 명령어가 입력란에 채워지고, 뒤에 필요한 내용을 덧붙여 보내면 됩니다.
+빗금을 입력하는 순간 입력란 위에 조건에 맞는 명령어 목록이 작게 뜹니다. 각 줄에는 인수를 포함한 명령어 형식과 짧은 설명이 있습니다. 줄을 클릭하거나 탭하면 그 명령어가 입력란에 채워지고, 뒤에 필요한 내용을 덧붙여 보내면 됩니다.
+
+`[name]`이나 `[range]`처럼 대괄호 안에 있는 이름은 실제 값으로 바꾸고, 대괄호 자체는 입력하지 마세요. `(optional)`로 표시된 인수는 생략할 수 있습니다. `|`는 선택지를 구분하며, `prompt|reset` 같은 값이나 전체 명령어 형식 중 하나를 고르라는 뜻입니다.
 
 명령어 상당수에는 짧은 별칭이 있습니다. 예를 들어 `/continue`와 별칭 `/cont`는 완전히 같은 동작입니다. 앱 안에서 전체 목록을 보고 싶을 때는 언제든 다음 명령어를 실행하세요.
 
@@ -27,13 +29,14 @@
 | 명령어 | 별칭 | 동작 |
 |---|---|---|
 | `/help` | | 모든 슬래시 명령어를 보여 줍니다. |
+| `/send [message]` | | 생성을 시작하지 않고 페르소나 이름으로 메시지를 게시합니다. |
 | `/continue` | `/cont` | 새 메시지를 보내지 않고 마지막 AI 답변을 이어서 씁니다. 이어 쓰는 글이 빈 줄 다음에서 시작할지, 끊긴 지점에 바로 붙을지는 **Settings → General → Responses**의 **Add a new line before /continue text** 옵션이 결정합니다. |
-| `/goto` | `/jump`, `/scroll` | 지정한 번호의 메시지 위치로 채팅을 스크롤합니다. |
-| `/hide` | | 이후 턴에서 AI가 보지 못하도록 메시지를 하나 이상 숨깁니다. |
-| `/unhide` | | 숨긴 메시지를 다시 AI에게 보이게 합니다. |
-| `/sys` | `/system` | 시스템 메시지를 추가합니다. 채팅에 표시되어 AI를 이끌지만, 어떤 캐릭터의 대사도 아닙니다. |
+| `/goto [number]` | `/jump`, `/scroll` | 지정한 번호의 메시지 위치로 채팅을 스크롤합니다. |
+| `/hide [range] [name (optional)]` | | 이후 턴에서 AI가 보지 못하도록 메시지를 하나 이상 숨깁니다. |
+| `/unhide [range]` | | 숨긴 메시지를 다시 AI에게 보이게 합니다. |
+| `/sys [message]` | `/system` | 시스템 메시지를 추가합니다. 채팅에 표시되어 AI를 이끌지만, 어떤 캐릭터의 대사도 아닙니다. |
 | `/macros` | `/macro` | `{{user}}`, `{{char}}`처럼 지원되는 프롬프트 매크로를 보여 줍니다. |
-| `/remind` | `/reminder`, `/timer` | 타이머를 걸어 두었다가 채팅에 알림 메시지를 남깁니다. |
+| `/remind [time] [message]` | `/reminder`, `/timer` | 타이머를 걸어 두었다가 채팅에 알림 메시지를 남깁니다. |
 
 27번 메시지로 이동하려면 다음과 같이 입력하세요.
 
@@ -47,7 +50,16 @@
 /hide 3-8
 ```
 
-메시지 하나만 숨길 때는 `/hide 5`, 여러 개를 지정할 때는 `/hide 2-5,9,12`처럼 쓸 수 있습니다. 숨긴 메시지는 채팅에 그대로 남지만, 다음 턴에서 AI가 읽지 않습니다. 다시 되돌릴 때는 같은 방식으로 번호를 적어 `/unhide`를 실행하세요.
+메시지 하나는 `/hide 5`, 여러 개는 `/hide 2-5,9,12`처럼 쓸 수도 있습니다. 캐릭터 이름을 생략하면 모든 캐릭터에게 숨겨집니다. 숨긴 메시지는 채팅에 남지만 AI는 다음 턴에 읽지 않습니다. 전체에 대해 숨긴 메시지를 복원하려면 `/unhide`에 같은 형식의 번호 목록을 지정하세요.
+
+**Roleplay**에서는 범위 뒤에 캐릭터 이름을 붙여 그 캐릭터에게만 메시지를 숨길 수 있습니다.
+
+```
+/hide 3-8 Maukie
+/hide 2-5,9 "Powers That Be"
+```
+
+다른 캐릭터의 접근 범위는 바뀌지 않습니다. 이름을 먼저 쓸 때 공백이 있는 이름은 따옴표로 감싸세요. 기존의 `/hide Maukie 3-8`과 `/hide "Powers That Be" 2-5,9` 형식도 계속 사용할 수 있습니다. 여러 캐릭터와 일치하면 전체 이름을 쓰세요. 숫자로 된 캐릭터 이름은 `/hide 1 "123"`처럼 따옴표로 감싸 메시지 번호와 구분하세요. Roleplay 그룹 채팅에서는 메시지의 **Hide from AI**(AI에게 숨기기) 아바타 선택기를 사용해 캐릭터별 숨김을 확인하거나 해제하세요. 캐릭터가 하나인 Roleplay 채팅에서는 메시지의 **Unhide from AI**(AI에게 다시 표시) 동작을 사용하세요. `/unhide`는 전체 숨김만 해제합니다.
 
 `/remind` 명령어는 시간을 먼저, 그다음 메시지를 받습니다. 시간은 `h`가 시간, `m`이 분, `s`가 초입니다. 아래 예는 30분 뒤에 알려 줍니다.
 
@@ -63,20 +75,33 @@
 
 | 명령어 | 별칭 | 동작 |
 |---|---|---|
-| `/guided` | `/narrator`, `/narrate`, `/nar` | 다음 AI 답변을 원하는 방향으로 이끕니다. |
-| `/as` | `/respond` | 캐릭터 이름으로 메시지를 올리거나, 특정 캐릭터에게 답변을 요청합니다. |
-| `/emote` | `/emotion`, `/sprite` | 캐릭터의 스프라이트 표정을 보여 주거나 바꿉니다. |
-| `/roll` | `/r`, `/dice` | 주사위를 굴리고 결과를 올립니다. |
+| `/guided [direction]` \| `/guided respond for [name] [direction (optional)]` | `/narrator`, `/narrate`, `/nar` | 다음 AI 답변을 원하는 방향으로 이끕니다. |
+| `/as [name] [message (optional)]` | `/respond` | 캐릭터 이름으로 메시지를 올리거나, 특정 캐릭터에게 답변을 요청합니다. |
+| `/emote [expression (optional)]` \| `/emote "[name]" [expression (optional)]` | `/emotion`, `/sprite` | 캐릭터의 스프라이트 표정을 보여 주거나 바꿉니다. |
+| `/roll [dice (optional)]` | `/r`, `/dice` | 주사위를 굴리고 결과를 올립니다. |
 | `/random` | `/rand`, `/event` | 이야기에 뜻밖의 사건을 넣도록 AI에 요청합니다. |
-| `/scene` | `/rp` | Conversation 채팅에서 실행합니다. 그 대화에서 갈라져 나오는 새 Roleplay 장면을 시작합니다. |
-| `/illustrate` | `/ill` | 현재 채팅에 쓸 갤러리 이미지를 생성합니다. |
-| `/impersonate` | `/imp` | 페르소나를 대신해 답변을 씁니다. |
-| `/impersonate_prompt` | `/imp_prompt` | 이 채팅에서 `/impersonate`가 사용할 지시 내용을 설정합니다. |
+| `/scene [description (optional)]` | `/rp` | Conversation 채팅에서 실행합니다. 그 대화에서 갈라져 나오는 새 Roleplay 장면을 시작합니다. |
+| `/illustrate [prompt (optional)]` | `/ill` | 현재 채팅에 쓸 갤러리 이미지를 생성합니다. |
+| `/impersonate [direction (optional)]` | `/imp` | 페르소나를 대신해 답변을 씁니다. |
+| `/impersonate_prompt [prompt\|reset]` | `/imp_prompt` | 이 채팅에서 `/impersonate`가 사용할 지시 내용을 설정합니다. |
 
 다음 답변을 이끌려면 `/guided` 뒤에 원하는 방향을 적으세요.
 
 ```
 /guided make him confess he is lying
+```
+
+Roleplay 그룹 채팅에서는 `/guided respond for [name] [direction (optional)]`로 응답할 캐릭터를 선택하세요. 예를 들면 다음과 같습니다.
+
+```
+/guided respond for "Powers That Be" describe the approaching storm
+```
+
+`/as [name] [message (optional)]`로 캐릭터 이름으로 텍스트를 게시하세요. 메시지를 생략하면 모델이 그 캐릭터의 다음 응답을 생성합니다.
+
+```
+/as Dottore "The experiment begins."
+/as Dottore
 ```
 
 `/roll` 명령어는 주사위 표기법을 읽습니다. 아래는 6면체 주사위 2개를 굴립니다.
@@ -92,6 +117,8 @@
 ```
 /emote joy
 ```
+
+캐릭터 하나를 지정하려면 `/emote "[name]" [expression (optional)]`를 사용하세요. 예를 들어 `/emote "Powers That Be" joy`입니다. 표정을 생략하면 해당 캐릭터가 사용할 수 있는 표정 목록을 보여 줍니다.
 
 스프라이트 전환은 스프라이트를 업로드해 둔 Roleplay 채팅에서만 됩니다. 추가하는 방법은 [캐릭터 스프라이트](../characters/sprites.md)를 참고하세요.
 
@@ -109,11 +136,13 @@
 
 | 명령어 | 동작 |
 |---|---|
+| `/games` | 설치된 Conversation 게임 선택기를 엽니다. `/game`과 `/play`도 같은 동작을 합니다. |
+| `/selfie [name (optional)]` | 설치된 Illustrator 에이전트로 셀피를 생성합니다. 이름을 붙이면 캐릭터를 선택할 수 있습니다. |
 | `/uno` | 채팅에 있는 캐릭터들과 UNO 게임을 시작합니다. |
 | `/chess` | 캐릭터 한 명과 일대일 체스 게임을 시작합니다. |
 | `/poker` | 캐릭터들과 텍사스 홀덤 포커 게임을 시작합니다. |
 | `/8ball` | 캐릭터 한 명과 일대일 에잇볼 당구 게임을 시작합니다. `/pool`도 같은 동작입니다. |
-| `/status` | 캐릭터의 접속 상태를 지정하거나 해제합니다. |
+| `/status [online\|idle\|dnd\|offline\|clear] [name (optional)]` | 캐릭터의 접속 상태를 지정하거나 해제합니다. |
 
 `/uno`, `/chess`, `/poker`, `/8ball` 명령어는 해당 게임의 설정 화면을 엽니다. 한 채팅에서는 한 번에 한 게임만 진행할 수 있습니다. 규칙과 옵션은 [테이블 게임](../conversation/table-games.md)을 참고하세요.
 

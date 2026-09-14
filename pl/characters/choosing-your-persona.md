@@ -1,35 +1,18 @@
 # Wybór persony w czacie
 
-Ten przewodnik wyjaśnia, jak wybrać personę, która reprezentuje cię w czacie. Znajdziesz tu opis globalnej persony aktywnej, persony ustawionej dla pojedynczego czatu oraz szybkich przełączników.
+Ten przewodnik wyjaśnia, jak wybrać personę, która reprezentuje cię w czacie. Opisuje szybkie przełączniki i możliwość korzystania z czatu bez persony.
 
-## Persona aktywna i persony poszczególnych czatów
+## Każdy czat ma własną personę
 
 Persona (postać, w którą się wcielasz) to twoja własna karta postaci – tożsamość, której aplikacja Marinara Engine używa, żeby cię przedstawić. Przekazuje AI imię i szczegóły, dzięki czemu AI wie, z kim rozmawia. O tym, jak ją zbudować, mówi przewodnik [Persony użytkownika](personas.md).
 
-Marinara wybiera personę na dwóch poziomach:
+Wybierz personę osobno dla każdego czatu, w którym chcesz jej używać. Wybór dotyczy tylko tego czatu. Wybierz **None** (brak), żeby nie używać persony; AI otrzyma ogólną nazwę "User" bez szczegółów persony.
 
-- **Persona aktywna** to globalne ustawienie domyślne. Marinara używa jej w każdym czacie, który nie ma własnej persony.
-- Persona czatu ma pierwszeństwo przed personą aktywną, ale tylko w tym jednym czacie.
-
-Aktywna może być dokładnie jedna persona naraz. Może też nie być żadnej.
-
-## Ustawianie persony aktywnej
-
-Oto, co trzeba zrobić, żeby ustawić globalną personę domyślną:
-
-1. Otwórz panel **Personas** (Persony) na pasku bocznym po prawej – ikona osoby.
-2. Najedź wskaźnikiem na wybraną personę na liście.
-3. Kliknij przycisk **Set as active** (ustawienie jako aktywnej) – ikona ptaszka w tym wierszu.
-
-Persona aktywna ma na awatarze małą plakietkę z ptaszkiem. Ustawienie nowej persony zdejmuje plakietkę z poprzedniej, więc aktywna jest zawsze tylko jedna.
-
-Listę da się filtrować kafelkami **Active** (aktywne) i **Inactive** (nieaktywne), żeby sprawdzić, która persona jest domyślna.
-
-Nowe, zduplikowane i zaimportowane persony nigdy nie stają się aktywne same z siebie. Aktywną trzeba ustawić samodzielnie.
+Dawne globalne ustawienie **aktywnej persony** zostało usunięte. Zapisane persony i dotychczasowy wybór w każdym czacie zostają zachowane. Czat bez wybranej persony pozostaje anonimowy.
 
 ## Wybór persony dla jednego czatu
 
-Każdy czat może mieć zapisaną własną personę. To właśnie persona czatu i zawsze ma ona pierwszeństwo przed personą aktywną.
+Każdy czat może mieć zapisaną własną personę. W różnych czatach możesz używać różnych person.
 
 ### Z panelu Chat Settings
 
@@ -61,13 +44,9 @@ Na telefonie przełączanie person dzieli menu z przełączaniem połączeń. Do
 
 ## Która persona wygrywa
 
-Marinara wybiera personę czatu w takiej kolejności:
+O twojej tożsamości decyduje persona wybrana dla czatu. Jeśli wybierzesz **None**, AI zwraca się do ciebie per "User" i nie otrzymuje szczegółów persony. Dotyczy to trybów Conversation, Roleplay i Game Mode.
 
-1. Persona czatu, jeśli została dla niego ustawiona.
-2. W przeciwnym razie globalna persona aktywna.
-3. Jeśli nie ma ani jednej, ani drugiej, AI zwraca się do ciebie per "User" i nie dostaje żadnych szczegółów persony.
-
-W trybie Game Mode personę wybiera się raz, w kreatorze **New Game Setup**. Czat zachowuje personę wybraną w tym miejscu. Czat w trybie Game Mode nie przełącza się na ekranie na personę aktywną.
+W trybie Game Mode wybierasz personę w kreatorze New Game Setup. Czat zachowuje ten wybór.
 
 Przełączenie persony w trakcie czatu nie zmienia wcześniejszych wiadomości. Każda wysłana wiadomość zachowuje tę personę, z którą została wysłana.
 

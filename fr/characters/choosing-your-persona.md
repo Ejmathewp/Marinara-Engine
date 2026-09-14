@@ -1,35 +1,18 @@
 # Choisir ton persona dans un chat
 
-Ce guide explique comment choisir le persona qui te représente dans un chat. Au programme : le persona actif global, les personas propres à un seul chat et les sélecteurs rapides.
+Ce guide explique comment choisir le persona qui te représente dans un chat, avec les sélecteurs rapides et la possibilité de ne pas utiliser de persona.
 
-## Le persona actif et les personas propres à un chat
+## Chaque chat a son propre persona
 
 Le persona (le personnage que tu incarnes) est ta propre fiche de personnage, l'identité que Marinara Engine utilise pour te représenter. Il transmet à l'IA ton nom et quelques détails, pour qu'elle sache à qui elle parle. Pour apprendre à en créer un, va voir [Les personas utilisateur](personas.md).
 
-Marinara choisit le persona sur deux niveaux :
+Choisis un persona pour chaque chat où tu veux en utiliser un. La sélection ne s'applique qu'à ce chat. Choisis **None** (aucun) pour ne pas utiliser de persona ; l'IA reçoit le nom générique "User" et aucun détail de persona.
 
-- Le **persona actif** sert de valeur par défaut globale. Marinara l'utilise dans tout chat qui n'a pas de persona à lui.
-- Un persona propre à un chat remplace le persona actif, mais pour ce chat seulement.
-
-Un seul persona actif à la fois, pas plus. Tu peux aussi n'en avoir aucun.
-
-## Définir le persona actif
-
-Voici la marche à suivre pour définir le persona par défaut global :
-
-1. Ouvre le panneau **Personas** depuis la barre latérale de droite (l'icône en forme de personne).
-2. Passe le pointeur sur le persona voulu dans la liste.
-3. Clique sur **Set as active** (définir comme actif), l'icône en forme de coche sur cette ligne.
-
-Le persona actif porte un petit badge en forme de coche sur son avatar. Dès que tu en désignes un nouveau, le badge disparaît de l'ancien : un seul persona reste actif.
-
-Les pastilles **Active** (actif) et **Inactive** (inactif) filtrent la liste et montrent d'un coup d'œil quel persona sert de valeur par défaut.
-
-Un persona créé, dupliqué ou importé n'est jamais actif d'office. C'est toujours à toi de le désigner.
+L'ancien réglage global du **persona actif** a été supprimé. Tes personas enregistrés et la sélection existante de chaque chat sont conservés. Un chat sans persona sélectionné reste anonyme.
 
 ## Choisir un persona pour un seul chat
 
-Chaque chat peut mémoriser son propre persona. Ce persona propre au chat l'emporte toujours sur le persona actif.
+Chaque chat peut enregistrer son propre persona. Tu peux utiliser des personas différents selon le chat.
 
 ### Depuis Chat Settings
 
@@ -61,13 +44,9 @@ Sur téléphone, le changement de persona partage un menu avec le changement de 
 
 ## Quel persona l'emporte
 
-Marinara choisit le persona du chat dans cet ordre :
+Le persona sélectionné pour le chat détermine ton identité. Si tu choisis **None**, l'IA t'appelle "User" et ne reçoit aucun détail de persona. Cela vaut pour Conversation, Roleplay et Game Mode.
 
-1. Le persona propre au chat, si tu en as défini un.
-2. Sinon, le persona actif global.
-3. Si aucun des deux n'existe, l'IA t'appelle "User" et n'envoie aucun détail de persona.
-
-En Game Mode, le persona se choisit une seule fois, dans l'assistant **New Game Setup**. Le chat conserve ensuite le persona retenu là. À l'écran, un chat en Game Mode ne bascule pas sur le persona actif.
+Dans Game Mode, tu choisis ton persona dans l'assistant New Game Setup. Le chat conserve cette sélection.
 
 Changer de persona en cours de chat ne réécrit pas les messages précédents. Chaque message déjà envoyé garde le persona sous lequel il est parti.
 

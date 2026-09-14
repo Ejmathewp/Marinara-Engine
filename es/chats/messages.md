@@ -85,7 +85,7 @@ El contexto de la IA es el conjunto de mensajes que la app envía a la IA en cad
 
 En un chat grupal de Roleplay con más de un personaje, **Hide from AI** abre un selector de avatares compacto. Selecciona el avatar del grupo para ocultar el mensaje a todos, o selecciona uno o más avatares de personaje para ocultarlo solo a esos personajes. Seleccionar a todos borra las selecciones individuales, mientras que seleccionar un personaje individual desactiva la opción de todos. La marca de ojo tachado en el mensaje muestra los avatares de los personajes que no pueden verlo. En un chat de un solo personaje, el botón sigue ocultando o mostrando el mensaje directamente.
 
-También puedes ocultar o mostrar mensajes por número con los comandos slash `/hide` y `/unhide`. Los números de mensaje empiezan en 1, contando desde el primer mensaje del chat.
+También puedes ocultar mensajes con `/hide [range] [name (optional)]`, por ejemplo `/hide 3-8`. En Roleplay, `/hide 3-8 Maukie` los oculta solo para Maukie; si omites el nombre, se ocultan para todos. `/unhide [range]` restaura los mensajes ocultos globalmente. Para deshacer la ocultación por personaje, usa el selector de avatares en un chat grupal de Roleplay, o la acción **Unhide from AI** del mensaje en un chat de Roleplay con un solo personaje. Los números de mensaje empiezan en 1, contando desde el primer mensaje del chat. Consulta la [Referencia de comandos slash](slash-commands.md) para ver formatos y ejemplos.
 
 ## Interruptores de visualización de mensajes
 

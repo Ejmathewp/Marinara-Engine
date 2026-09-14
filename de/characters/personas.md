@@ -6,13 +6,13 @@ In dieser Anleitung erfährst du, was eine Persona ist, wie du eine erstellst un
 
 Eine Persona ist die Rolle, die du im Chat einnimmst. Sie hat einen Namen, eine Beschreibung und weitere optionale Angaben. Marinara schickt diese Angaben in jeden Prompt – also in den Text, den Marinara an die KI sendet –, damit die KI weiß, mit wem sie spricht.
 
-Du kannst beliebig viele Personas anlegen. Verwaltet werden sie im **Personas**-Panel. Eine davon legst du als globalen Standard fest: die aktive Persona. Möglich ist außerdem, für einen einzelnen Chat eine andere Persona zu wählen. Diese Anleitung behandelt das Erstellen und Bearbeiten. Wie du festlegst, welche Persona ein Chat verwendet, steht unter [Die Persona für einen Chat wählen](choosing-your-persona.md).
+Du kannst beliebig viele Personas anlegen und im **Personas**-Panel verwalten. Wähle für jeden Chat eine Persona oder **None** (keine), um keine Persona zu verwenden. Diese Anleitung behandelt das Erstellen und Bearbeiten. Wie du festlegst, welche Persona ein Chat verwendet, steht unter [Die Persona für einen Chat wählen](choosing-your-persona.md).
 
 ### Das Makro {{user}}
 
-Ein Makro ist ein Platzhalter im Text, den die App vor dem Senden des Prompts durch einen echten Wert ersetzt. Für **{{user}}** setzt Marinara den Namen der Persona ein, die der Chat gerade verwendet – also die eigene Persona des Chats, falls du eine gesetzt hast, sonst die aktive Persona. Heißt diese Persona zum Beispiel Alex, dann steht im Prompt Alex.
+Ein Makro ist ein Platzhalter im Text, den die App vor dem Senden des Prompts durch einen echten Wert ersetzt. Für **{{user}}** setzt Marinara den Namen der Persona ein, die der Chat gerade verwendet – also die für diesen Chat ausgewählte Persona. Heißt diese Persona zum Beispiel Alex, dann steht im Prompt Alex.
 
-Manchmal hat ein Chat keine eigene Persona, und aktiv ist auch keine. Nur dann spricht die KI dich mit dem allgemeinen Namen „User“ an, und es gehen keinerlei Persona-Angaben mit. Wie ein Chat seine Persona auswählt, steht unter [Die Persona für einen Chat wählen](choosing-your-persona.md). Mehr zu Makros findest du unter [Makros](../prompts/macros.md).
+Wenn für einen Chat keine Persona ausgewählt ist, spricht die KI dich mit dem allgemeinen Namen "User" an, und es gehen keinerlei Persona-Angaben mit. Wie ein Chat seine Persona auswählt, steht unter [Die Persona für einen Chat wählen](choosing-your-persona.md). Mehr zu Makros findest du unter [Makros](../prompts/macros.md).
 
 ## Das Personas-Panel
 
@@ -20,24 +20,18 @@ Das **Personas**-Panel ist deine Persona-Bibliothek. Öffne es über das Persone
 
 Diese Bedienelemente stehen bereit:
 
-- **Open Full Library** (vollständige Bibliothek öffnen) öffnet die Persona-Bibliothek als eigene, responsive Seite. Sie nutzt dasselbe Layout aus Raster und Vorschau wie die Charakter-Bibliothek – mit Persona-Beschreibungen, Kartenabschnitten, Tags, Token-Schätzungen und einem Abzeichen für die aktive Persona.
+- **Open Full Library** (vollständige Bibliothek öffnen) öffnet die Persona-Bibliothek als eigene, responsive Seite. Sie nutzt dasselbe Layout aus Raster und Vorschau wie die Charakter-Bibliothek – mit Persona-Beschreibungen, Kartenabschnitten, Tags und Token-Schätzungen.
 - **New** (Neu) erstellt eine Persona.
 - **Import** (Importieren) öffnet das Fenster **Import Persona**.
 - **Select** (Auswählen) schaltet die Mehrfachauswahl ein, sodass du mehrere Personas auf einmal bearbeiten kannst.
 - Das Suchfeld mit dem Platzhaltertext **Search personas** (Personas durchsuchen) durchsucht Name, Beschreibung, Kommentar und Tags.
 - Das Sortier-Dropdown-Menü bietet **A-Z**, **Z-A**, **Newest**, **Oldest** und **Tokens** (geschätzte Prompt-Größe).
 - **New Folder** (Neuer Ordner) legt einen Ordner an, um Personas zu sortieren.
-- Die Filter-Chips **All**, **Active** und **Inactive** filtern danach, ob eine Persona gerade die aktive Persona ist. Der Chip **Tags** klappt die Tag-Liste auf.
+- Der Chip **Tags** klappt die Tag-Liste zum Filtern auf.
 
-Jede Zeile zeigt Avatar, Name und eine kurze Vorschau der Beschreibung. Bei der aktiven Persona trägt der Avatar ein kleines Häkchen-Abzeichen. Zeigst du auf eine Zeile, erscheinen die Zeilenaktionen **Set as active** (als aktiv setzen), **Duplicate** (Duplizieren) und **Delete** (Löschen). Ein Klick auf die Zeile öffnet die Persona im ganzseitigen **Persona Editor**.
+Jede Zeile zeigt Avatar, Name und eine kurze Vorschau der Beschreibung. Zeigst du auf eine Zeile, erscheinen die Aktionen **Duplicate** (Duplizieren) und **Delete** (Löschen). Ein Klick auf die Zeile öffnet die Persona im ganzseitigen **Persona Editor**.
 
 Passen nicht alle Personas auf eine Seite, erscheint unten die Schaltfläche **Load more** (Mehr laden). Solange noch keine Persona existiert, zeigt das Panel den kurzen Hinweis „No personas yet“.
-
-### Die aktive Persona
-
-Höchstens eine Persona ist gleichzeitig globaler Standard: die aktive Persona. Zeig dafür auf eine Persona-Zeile und klick auf **Set as active**.
-
-Beim Aktivieren entfernt Marinara zuerst die Aktiv-Markierung von allen anderen Personas. Mehr als eine aktive Persona gibt es also nie. Neue, duplizierte und importierte Personas werden nie von selbst aktiv – das übernimmst du. Genauso gut kann gar keine Persona aktiv sein.
 
 ## Eine Persona erstellen
 
@@ -48,7 +42,7 @@ Beim Aktivieren entfernt Marinara zuerst die Aktiv-Markierung von allen anderen 
 
 Die Persona entsteht mit leerer Beschreibung und öffnet sich sofort im vollständigen **Persona Editor**, wo du den Rest ausfüllst. Weitere Felder lassen sich im Erstellen-Fenster nicht setzen. Alles Übrige bearbeitest du danach im **Persona Editor**.
 
-Eine brandneue Persona wird nie von selbst aktiv. Setz sie selbst aktiv, sobald du sie verwenden willst.
+Wähle die neu erstellte Persona in dem Chat aus, in dem du sie verwenden möchtest.
 
 ## Der Persona Editor
 
@@ -145,7 +139,7 @@ Mit **Reset** (Zurücksetzen) in der Panel-Kopfzeile löschst du alle gespeicher
 
 ## Eine Persona duplizieren
 
-Klick in einer Persona-Zeile auf **Duplicate** oder in der Kopfzeile des **Persona Editor** auf das Symbol **Duplicate persona**. Das erzeugt eine vollständige Kopie mit dem Namen „{original name} (Copy)“. Übernommen werden alle Kartenfelder, Farben, Werte und Convo-Felder. Die Kopie wird nie von selbst aktiv – auch dann nicht, wenn das Original aktiv war.
+Klick in einer Persona-Zeile auf **Duplicate** oder in der Kopfzeile des **Persona Editor** auf das Symbol **Duplicate persona**. Das erzeugt eine vollständige Kopie mit dem Namen „{original name} (Copy)“. Übernommen werden alle Kartenfelder, Farben, Werte und Convo-Felder. Das Duplizieren einer Persona ändert die Persona-Auswahl keines Chats.
 
 ## Personas löschen
 

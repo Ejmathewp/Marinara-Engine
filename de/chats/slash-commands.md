@@ -6,7 +6,9 @@ In dieser Anleitung findest du alle Slash-Befehle, die sich in einem Marinara-En
 
 Tipp den Befehl unten im Chat ins Nachrichtenfeld und klick dann auf **Send** (Senden). Auch Enter sendet, sofern **Send on Enter** (mit Enter senden) für den jeweiligen Chat-Modus unter **Settings** (Einstellungen) aktiv ist. Standardmäßig sendet Enter in Conversation-Chats; in Roleplay-Chats beginnt es dagegen eine neue Zeile. Das Nachrichtenfeld weist selbst auf die Befehle hin. In einem Roleplay-Chat lautet der Platzhaltertext **Write your response, / for commands** („Schreib deine Antwort, / für Befehle“). In einem Conversation-Chat steht dort der Charaktername, etwa „Message @Alice, / for commands“. Sind mehrere Charaktere beteiligt, erscheint stattdessen der Chatname.
 
-Sobald du einen Schrägstrich tippst, öffnet sich über dem Feld ein kleines Menü mit passenden Befehlen. Jede Zeile zeigt den Namen und eine kurze Beschreibung. Ein Klick oder Tipp auf eine Zeile setzt den Befehl ins Feld ein – danach ergänzt du noch weiteren Text und schickst ihn ab.
+Sobald du einen Schrägstrich tippst, öffnet sich über dem Feld ein kleines Menü mit passenden Befehlen. Jede Zeile zeigt das Befehlsformat mit seinen Argumenten und eine kurze Beschreibung. Ein Klick oder Tipp auf eine Zeile setzt den Befehl ins Feld ein – danach ergänzt du noch weiteren Text und schickst ihn ab.
+
+Ersetze die Platzhalter in eckigen Klammern, etwa `[name]` oder `[range]`, durch deine Werte; tippe die Klammern nicht mit. Mit `(optional)` markierte Angaben kannst du weglassen. Ein `|` trennt Alternativen: einzelne Werte wie `prompt|reset` oder vollständige Befehlsformate.
 
 Viele Befehle haben kürzere Alternativen. `/continue` und die Kurzform `/cont` bewirken zum Beispiel genau dasselbe. Die vollständige Liste zeigt dir die App jederzeit über diesen Befehl:
 
@@ -27,13 +29,14 @@ Diese Befehle helfen dir beim Verwalten des Chats und seiner Nachrichten. Sie fu
 | Befehl | Auch als | Was er macht |
 |---|---|---|
 | `/help` | | Listet alle Slash-Befehle auf. |
+| `/send [message]` | | Postet eine Nachricht im Namen deiner Persona, ohne eine Generierung auszulösen. |
 | `/continue` | `/cont` | Hängt weiteren Text an die letzte KI-Antwort an, ohne eine neue Nachricht zu senden. Die Option **Add a new line before /continue text** unter **Settings → General → Responses** legt fest, ob der Text nach einer Leerzeile beginnt oder direkt an der Abbruchstelle. |
-| `/goto` | `/jump`, `/scroll` | Springt im Chat zu einer Nachricht mit der angegebenen Nummer. |
-| `/hide` | | Blendet eine oder mehrere Nachrichten für die KI aus, sodass sie in kommenden Zügen unsichtbar bleiben. |
-| `/unhide` | | Holt ausgeblendete Nachrichten wieder in die Sicht der KI zurück. |
-| `/sys` | `/system` | Fügt eine Systemnachricht ein. Der Hinweis erscheint im Chat und lenkt die KI, stammt aber von keinem Charakter. |
+| `/goto [number]` | `/jump`, `/scroll` | Springt im Chat zu einer Nachricht mit der angegebenen Nummer. |
+| `/hide [range] [name (optional)]` | | Blendet eine oder mehrere Nachrichten für die KI aus, sodass sie in kommenden Zügen unsichtbar bleiben. |
+| `/unhide [range]` | | Holt ausgeblendete Nachrichten wieder in die Sicht der KI zurück. |
+| `/sys [message]` | `/system` | Fügt eine Systemnachricht ein. Der Hinweis erscheint im Chat und lenkt die KI, stammt aber von keinem Charakter. |
 | `/macros` | `/macro` | Listet die unterstützten Prompt-Makros auf, etwa `{{user}}` und `{{char}}`. |
-| `/remind` | `/reminder`, `/timer` | Stellt einen Timer und postet danach eine Erinnerung im Chat. |
+| `/remind [time] [message]` | `/reminder`, `/timer` | Stellt einen Timer und postet danach eine Erinnerung im Chat. |
 
 So springst du zu Nachricht 27:
 
@@ -47,7 +50,16 @@ So springst du zu Nachricht 27:
 /hide 3-8
 ```
 
-Für eine einzelne Nachricht schreibst du `/hide 5`, für mehrere `/hide 2-5,9,12`. Ausgeblendete Nachrichten bleiben im Chat stehen, die KI liest sie im nächsten Zug aber nicht mit. Mit `/unhide` und derselben Art von Nummernliste holst du sie zurück.
+Du kannst auch `/hide 5` für eine einzelne Nachricht oder `/hide 2-5,9,12` für mehrere schreiben. Ohne Charakternamen werden die Nachrichten vor allen verborgen. Verborgene Nachrichten bleiben im Chat, aber die KI liest sie in der nächsten Runde nicht. Mit `/unhide` und derselben Art von Nummernliste stellst du global verborgene Nachrichten wieder her.
+
+Füge in **Roleplay** nach dem Bereich einen Charakternamen hinzu, um die Nachrichten nur vor diesem Charakter zu verbergen:
+
+```
+/hide 3-8 Maukie
+/hide 2-5,9 "Powers That Be"
+```
+
+Der Zugriff anderer Charaktere bleibt unverändert. Steht der Name zuerst, setze Namen mit Leerzeichen in Anführungszeichen: Die älteren Formen `/hide Maukie 3-8` und `/hide "Powers That Be" 2-5,9` funktionieren weiterhin. Passt ein Name zu mehreren Charakteren, verwende den vollständigen Namen. Setze rein numerische Charakternamen in Anführungszeichen, um sie von Nachrichtennummern zu unterscheiden, etwa `/hide 1 "123"`. In einem Roleplay-Gruppenchat kannst du über die Avatar-Auswahl bei **Hide from AI** (vor der KI verbergen) prüfen oder aufheben, vor welchen Charakteren die Nachricht verborgen ist. In einem Roleplay-Chat mit nur einem Charakter verwendest du stattdessen **Unhide from AI** (für die KI wieder einblenden) an der Nachricht. `/unhide` hebt nur das globale Verbergen auf.
 
 Der Befehl `/remind` erwartet erst eine Zeitangabe, dann eine Nachricht. Dabei steht `h` für Stunden, `m` für Minuten und `s` für Sekunden. Dieses Beispiel erinnert dich in 30 Minuten:
 
@@ -63,20 +75,33 @@ Mit diesen Befehlen lenkst du die Geschichte, spielst einen Charakter und ergän
 
 | Befehl | Auch als | Was er macht |
 |---|---|---|
-| `/guided` | `/narrator`, `/narrate`, `/nar` | Lenkt die nächste KI-Antwort in eine Richtung, die du vorgibst. |
-| `/as` | `/respond` | Postet eine Nachricht als Charakter oder bittet einen Charakter um eine Antwort. |
-| `/emote` | `/emotion`, `/sprite` | Zeigt die Gesichtsausdrücke eines Sprites an oder wechselt zwischen ihnen. |
-| `/roll` | `/r`, `/dice` | Würfelt und postet das Ergebnis. |
+| `/guided [direction]` \| `/guided respond for [name] [direction (optional)]` | `/narrator`, `/narrate`, `/nar` | Lenkt die nächste KI-Antwort in eine Richtung, die du vorgibst. |
+| `/as [name] [message (optional)]` | `/respond` | Postet eine Nachricht als Charakter oder bittet einen Charakter um eine Antwort. |
+| `/emote [expression (optional)]` \| `/emote "[name]" [expression (optional)]` | `/emotion`, `/sprite` | Zeigt die Gesichtsausdrücke eines Sprites an oder wechselt zwischen ihnen. |
+| `/roll [dice (optional)]` | `/r`, `/dice` | Würfelt und postet das Ergebnis. |
 | `/random` | `/rand`, `/event` | Bittet die KI, ein überraschendes Ereignis in die Geschichte einzubauen. |
-| `/scene` | `/rp` | Wird aus einem Conversation-Chat heraus ausgeführt. Startet eine neue Roleplay-Szene, die sich von diesem Chat verzweigt. |
-| `/illustrate` | `/ill` | Generiert ein Galeriebild für den aktuellen Chat. |
-| `/impersonate` | `/imp` | Schreibt eine Antwort im Namen deiner Persona. |
-| `/impersonate_prompt` | `/imp_prompt` | Legt die Anweisung fest, die `/impersonate` in diesem Chat verwendet. |
+| `/scene [description (optional)]` | `/rp` | Wird aus einem Conversation-Chat heraus ausgeführt. Startet eine neue Roleplay-Szene, die sich von diesem Chat verzweigt. |
+| `/illustrate [prompt (optional)]` | `/ill` | Generiert ein Galeriebild für den aktuellen Chat. |
+| `/impersonate [direction (optional)]` | `/imp` | Schreibt eine Antwort im Namen deiner Persona. |
+| `/impersonate_prompt [prompt\|reset]` | `/imp_prompt` | Legt die Anweisung fest, die `/impersonate` in diesem Chat verwendet. |
 
 Um die nächste Antwort zu lenken, hängst du deine Vorgabe hinter `/guided`:
 
 ```
 /guided make him confess he is lying
+```
+
+In einem Roleplay-Gruppenchat wählst du mit `/guided respond for [name] [direction (optional)]` den antwortenden Charakter. Zum Beispiel:
+
+```
+/guided respond for "Powers That Be" describe the approaching storm
+```
+
+Mit `/as [name] [message (optional)]` postest du Text im Namen eines Charakters. Lässt du die Nachricht weg, generiert das Modell stattdessen die nächste Antwort dieses Charakters:
+
+```
+/as Dottore "The experiment begins."
+/as Dottore
 ```
 
 Der Befehl `/roll` versteht Würfelnotation. So würfelst du zwei sechsseitige Würfel:
@@ -92,6 +117,8 @@ Ein Sprite ist ein Charakterbild auf der Bühne, das einen Gesichtsausdruck zeig
 ```
 /emote joy
 ```
+
+Für einen bestimmten Charakter verwendest du `/emote "[name]" [expression (optional)]`, etwa `/emote "Powers That Be" joy`. Lass den Gesichtsausdruck weg, um die verfügbaren Gesichtsausdrücke dieses Charakters aufzulisten.
 
 Der Wechsel klappt nur in einem Roleplay-Chat, in dem Sprites hochgeladen sind. Wie du sie hinzufügst, steht unter [Charakter-Sprites](../characters/sprites.md).
 
@@ -109,11 +136,13 @@ Diese Befehle funktionieren ausschließlich in einem **Conversation**-Chat.
 
 | Befehl | Was er macht |
 |---|---|
+| `/games` | Öffnet die Auswahl der installierten Conversation-Spiele. `/game` und `/play` machen dasselbe. |
+| `/selfie [name (optional)]` | Generiert ein Selfie mit dem installierten Illustrator-Agenten. Ergänze einen Namen, um einen Charakter auszuwählen. |
 | `/uno` | Startet eine Partie UNO mit den Charakteren im Chat. |
 | `/chess` | Startet eine Schachpartie zu zweit mit einem Charakter. |
 | `/poker` | Startet eine Runde Texas Hold'em mit den Charakteren. |
 | `/8ball` | Startet eine 8-Ball-Poolpartie zu zweit mit einem Charakter. `/pool` macht dasselbe. |
-| `/status` | Setzt den Anwesenheitsstatus eines Charakters oder hebt ihn auf. |
+| `/status [online\|idle\|dnd\|offline\|clear] [name (optional)]` | Setzt den Anwesenheitsstatus eines Charakters oder hebt ihn auf. |
 
 `/uno`, `/chess`, `/poker` und `/8ball` öffnen jeweils den Einrichtungsbildschirm des Spiels. Pro Chat läuft immer nur ein Spiel gleichzeitig. Regeln und Optionen findest du unter [Tischspiele](../conversation/table-games.md).
 

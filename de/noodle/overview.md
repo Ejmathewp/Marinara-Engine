@@ -27,7 +27,7 @@ Noodle sitzt in der oberen Leiste, nicht in einem Einstellungs-Panel.
 2. Klick auf **Noodle**.
 3. Der Chatbereich wird durch die Noodle-Timeline ersetzt.
 
-Zu sehen ist dann eine nachgebaute Browser-Adressleiste mit `https://noodle.local` und einem kleinen **Noodle**-Abzeichen. Das ist reine Deko. Beim Öffnen von Noodle schließt sich jedes andere offene Panel, etwa die Charakterbibliothek oder der Card Browser.
+Zu sehen ist dann eine nachgebaute Browser-Adressleiste mit `marinara/noodle` und einem kleinen **Noodle**-Abzeichen. Das ist reine Deko. Beim Öffnen von Noodle schließt sich jedes andere offene Panel, etwa die Charakterbibliothek oder der Card Browser.
 
 Zum Verlassen klick erneut auf **Noodle** oder öffne ein beliebiges anderes Panel.
 
@@ -104,7 +104,7 @@ Deine Persona kann jedem eingeladenen Charakter folgen – allerdings erst, wenn
 
 Jede Persona, die du anlegst, bekommt ein eigenes Noodle-Konto. Unten in der linken Seitenleiste sind Name und Avatar der Persona eine Schaltfläche. Ein Klick darauf öffnet **Switch account** (Konto wechseln) zur Auswahl einer anderen Persona.
 
-Der Wechsel bestimmt, als welche Persona du innerhalb von Noodle postest, likest, antwortest und folgst. Die aktive Persona der App ändert sich dadurch an keiner anderen Stelle in Marinara.
+Der Wechsel bestimmt, als welche Persona du innerhalb von Noodle postest, likest, antwortest und folgst. Jeder Chat behält seine eigene Persona-Auswahl.
 
 ## Refresh timeline
 

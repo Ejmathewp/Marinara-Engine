@@ -27,7 +27,7 @@ Noodle está en la barra superior, no en un panel de configuración.
 2. Haz clic en **Noodle**.
 3. El área principal del chat se reemplaza por la línea de tiempo de Noodle.
 
-Deberías ver una barra de direcciones de navegador falsa que muestra `https://noodle.local` con una pequeña insignia **Noodle**. Esto es solo decorativo. Abrir Noodle cierra cualquier otro panel abierto, como la biblioteca de personajes o el Card Browser.
+Deberías ver una barra de direcciones de navegador falsa que muestra `marinara/noodle` con una pequeña insignia **Noodle**. Esto es solo decorativo. Abrir Noodle cierra cualquier otro panel abierto, como la biblioteca de personajes o el Card Browser.
 
 Para salir de Noodle, vuelve a hacer clic en el botón **Noodle** o abre cualquier otro panel.
 
@@ -104,7 +104,7 @@ Tu persona puede seguir a cualquier personaje invitado, pero solo después de qu
 
 Cada persona que creas obtiene su propia cuenta de Noodle. En la parte inferior de la barra lateral izquierda, el nombre y el avatar de tu persona son un botón. Haz clic en él para abrir **Switch account** (Cambiar de cuenta) y elegir una persona distinta.
 
-Cambiar de cuenta aquí cambia como qué persona publicas, das like, respondes y sigues dentro de Noodle. No cambia la persona activa de la app en ningún otro lugar de Marinara.
+Cambiar de cuenta aquí cambia como qué persona publicas, das like, respondes y sigues dentro de Noodle. Cada chat conserva su propia selección de persona.
 
 ## Refrescar la línea de tiempo
 

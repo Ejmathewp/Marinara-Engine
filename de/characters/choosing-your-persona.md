@@ -1,35 +1,18 @@
 # Die Persona für einen Chat auswählen
 
-In dieser Anleitung erfährst du, wie du festlegst, welche Persona dich in einem Chat vertritt. Es geht um die global aktive Persona, um Persona-Überschreibungen pro Chat und um die Schnellumschalter.
+Diese Anleitung erklärt, wie du die Persona auswählst, die dich in einem Chat vertritt. Sie behandelt die Schnellwechsler und die Möglichkeit, keine Persona zu verwenden.
 
-## Aktive Persona und Personas pro Chat
+## Jeder Chat hat seine eigene Persona
 
 Eine Persona ist deine eigene Charakterkarte – die Identität, mit der Marinara Engine dich darstellt. Sie liefert der KI deinen Namen und weitere Details, damit die KI weiß, mit wem sie spricht. Wie du eine anlegst, steht unter [Nutzer-Personas](personas.md).
 
-Marinara wählt die Persona auf zwei Ebenen:
+Wähle für jeden Chat eine Persona, wenn du dort eine verwenden möchtest. Die Auswahl gilt nur für diesen Chat. Mit **None** (keine) verwendest du keine Persona; die KI erhält den allgemeinen Namen "User" und keine Persona-Angaben.
 
-- Die **aktive Persona** ist dein globaler Standard. Marinara greift in jedem Chat darauf zurück, der keine eigene Persona hat.
-- Eine Chat-Persona überschreibt die aktive Persona – aber nur für diesen einen Chat.
-
-Aktiv ist immer höchstens eine Persona. Auch gar keine ist möglich.
-
-## Die aktive Persona festlegen
-
-So legst du deinen globalen Standard fest:
-
-1. Öffne über die rechte Seitenleiste das Panel **Personas** (das Personen-Symbol).
-2. Zeig in der Liste auf die gewünschte Persona.
-3. Klick auf **Set as active** (als aktiv festlegen) – das Häkchen-Symbol in dieser Zeile.
-
-Die aktive Persona trägt ein kleines Häkchen am Avatar. Legst du eine neue fest, verschwindet das Häkchen bei der alten. So ist immer nur eine Persona aktiv.
-
-Mit den Chips **Active** (aktiv) und **Inactive** (inaktiv) filterst du die Liste und siehst sofort, welche Persona dein Standard ist.
-
-Neue, duplizierte und importierte Personas sind nie von selbst aktiv. Das musst du jeweils selbst festlegen.
+Die frühere globale Einstellung der **aktiven Persona** wurde entfernt. Deine gespeicherten Personas und die bestehende Auswahl jedes Chats bleiben erhalten. Ein Chat ohne ausgewählte Persona bleibt anonym.
 
 ## Eine Persona für einen einzelnen Chat wählen
 
-Jeder Chat kann eine eigene Persona speichern. Diese Chat-Persona überschreibt die aktive Persona immer.
+Jeder Chat kann seine eigene Persona speichern. Du kannst in verschiedenen Chats unterschiedliche Personas verwenden.
 
 ### Über Chat Settings
 
@@ -61,13 +44,9 @@ Auf dem Handy teilt sich der Persona-Wechsel ein Menü mit dem Wechsel der Verbi
 
 ## Welche Persona gewinnt
 
-Marinara wählt die Chat-Persona in dieser Reihenfolge:
+Die für den Chat ausgewählte Persona bestimmt deine Identität. Mit **None** spricht die KI dich als "User" an und erhält keine Persona-Angaben. Das gilt für Conversation, Roleplay und Game Mode.
 
-1. die Chat-eigene Persona, sofern du eine gesetzt hast;
-2. sonst die global aktive Persona;
-3. gibt es beides nicht, spricht dich die KI als „User“ an und schickt keine Persona-Details mit.
-
-Im Game Mode wählst du die Persona einmalig im Assistenten **New Game Setup**. Der Chat behält genau diese Persona. Auf dem Bildschirm wechselt ein Game-Mode-Chat nicht zur aktiven Persona.
+Im Game Mode wählst du deine Persona im Assistenten New Game Setup. Der Chat behält diese Auswahl.
 
 Wechselst du mitten im Chat die Persona, ändert das frühere Nachrichten nicht. Jede bereits gesendete Nachricht behält die Persona, unter der sie gesendet wurde.
 
