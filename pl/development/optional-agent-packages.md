@@ -210,4 +210,4 @@ Krok **Lorebooks** (Lorebooki) pozwala wybrać do 100 pojedynczych włączonych 
 
 Import pliku konfiguracji odtwarza zainstalowane, zgodne Experience i jego poprawne liczbowe ziarno, ale odrzuca dowolną konfigurację pakietu. Stałe są ponownie dostarczane przez bieżący manifest. Istniejące gry pomijają import Experience z wyjaśnieniem. Migawki utworzenia zachowują nazwę Experience i ziarno do podsumowania konfiguracji.
 
-Gdy świat musi być przygotowany przed pierwszą turą, niezależnie użyj istniejącej deklaracji gotowości startowej. Zadeklaruj API 1.18 jako minimum pakietu; starsze hosty nie potrafią zinterpretować tej deklaracji konfiguracji. Czytniki rejestru obsługujące zgodność osobno dla każdego wpisu pomijają nieobsługiwane rekordy z ostrzeżeniem, zamiast blokować pozostałe pakiety; nie dodaje to tej obsługi wstecznie do starszych wydań Engine.
+Gdy świat musi być przygotowany przed pierwszą turą, niezależnie użyj istniejącej deklaracji gotowości startowej. Zadeklaruj API 1.18 jako minimum pakietu; starsze hosty nie potrafią zinterpretować tej deklaracji konfiguracji.
