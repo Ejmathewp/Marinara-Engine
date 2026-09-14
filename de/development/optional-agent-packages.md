@@ -97,6 +97,21 @@ Es handelt sich um eine ANFRAGE, nicht um eine Einstellung. Die eigene Einklapp-
 
 Die Sicherheitsregeln der Engine haben Vorrang. Das Feld wird zwangsweise ausgeklappt, sobald die Texteingabe des Spielers sichtbar ist, auch ganz am Anfang einer Szene vor dem ersten Segment, und sobald die Steuerelemente zum Fortsetzen eines Segments aktiv sind. Diese Steuerelemente sind der einzige Weg, eine Runde zu beenden; könnte ein Paket sie verbergen, könnte es den Spieler dauerhaft festsetzen. Der Griff zeigt außerdem weiterhin seinen Aufmerksamkeitsindikator, wenn eine Szenenanalyse, Generierung oder Wiederholung der Kampf-Generierung aussteht. Klappt ein Spieler das Feld während einer Anfrage von Hand aus, bleibt es offen, bis die Anfrage endet. Wie die Schnittstellen 1.11 und 1.12 ist dies eine weiche Schnittstelle: Das Feld wird unabhängig von der deklarierten `capabilityApi` beachtet. Die Kennzeichnung 1.13 nennt nur den Zeitpunkt seiner Einführung, daher deklariert ein Paket, das es benötigt, 1.13.
 
+### Capability API 1.17: eine Experience vor ihrem ersten Zug vorbereiten
+
+Ein `game-surface`-Paket kann mit Schemaversion 2 und Capability API 1.17 `contributions.gameSurface.prepareBeforeStart: true` deklarieren. Die Engine bindet diese Oberfläche ein, sobald das Spiel bereit ist, bevor **Start Game** (Spiel starten) aktiviert wird. Klassische Spiele und Pakete ohne dieses Flag behalten ihren bisherigen Startablauf.
+
+Die Hauptoberfläche, die diese Option nutzt, erhält zwei zusätzliche Props:
+
+- `startup: boolean` bleibt true, bis der Spieler die Engine-Einführung mit **Continue** (Weiter) abschließt. Pausiere währenddessen Weltsimulation und Spieleraktionen.
+- `setStartupReady(context: string | null): void` meldet den Vorbereitungszustand. Sende beim Laden, Speichern oder Beheben eines Fehlers `null`. Sende erst dann eine Zeichenfolge, wenn die tatsächliche Welt dauerhaft gespeichert und nutzbar ist; eine leere Zeichenfolge erlaubt den Start ohne zusätzlichen Kontext.
+
+Der Host blockiert **Start Game**, die Bestätigung der Widget-Vorbereitung und erneute Versuche des ersten Zugs, bis eine Bereitschaftszeichenfolge eintrifft. Solange die Sperre besteht, bleiben die paketeigenen Lade-, Fehler- und Wiederholungsanzeigen sichtbar. Sobald das Paket bereit ist, wird es hinter der normalen Engine-Einführung verborgen. **Continue** öffnet die gewöhnliche Oberfläche, die dabei erneut eingebunden werden kann: Gestalte die Weltvorbereitung idempotent und stelle gespeicherten Zustand wieder her, statt ihn erneut zu generieren. Bei der Rückkehr zu einem Spiel mit bereits abgeschlossener Einführung wird die Startvorbereitung nicht wiederholt.
+
+Der Eröffnungskontext ist auf **8.000 Zeichen** begrenzt. Ungültiger oder zu langer Kontext hält den Start gesperrt und zeigt einen Fehler an; der Host schneidet keine Weltfakten ab. Liefere eine kompakte Beschreibung des vorbereiteten Startorts und seiner tatsächlich vorhandenen Charaktere. Die Engine hängt diesen Text mit der Quelle `game_start` an den bestehenden `generationGuide` des ersten Zugs an, damit die Eröffnung die vorhandene Welt verwendet. Dadurch wird kein Kontext für spätere Züge registriert; nutze dafür weiterhin den normalen Prompt-Beitrag des Pakets oder seinen Kontext zur Zuggenerierung.
+
+Bereitschafts-Callbacks gehören zum eingebundenen Chat, Spiel und Paket. Verspätete Callbacks aus einem anderen Geltungsbereich werden ignoriert. Ein Modul- oder Laufzeitfehler blockiert den Start, statt fehlenden Weltkontext als Erfolg zu behandeln. Nach dem Neuladen muss das Paket seine Bereitschaft anhand der gespeicherten Welt melden. Der serverseitige Anbieter von Prompt-Kontext bleibt schreibgeschützt und an seine kurze Frist gebunden; verwende ihn weder zur Weltgenerierung noch als lang andauernde Startsperre.
+
 ## Erste Pakete
 
 - alle bisher fest eingebauten Agenten;
@@ -173,3 +188,27 @@ Am Desktop steht neben der Übersichtsliste ein Detailbereich. Auf dem Handy gib
 ## Kriterium für eine abgeschlossene Auslagerung
 
 Eine Auslagerung gilt erst dann als abgeschlossen, wenn die produktiven Basis-Bundles von Client und Server die Paket-Implementierung nicht mehr enthalten, eine frische Installation sie ohne Download des Pakets nicht aktivieren kann, eine aktualisierte Installation sie behält und Installation, Update und Deinstallation des Pakets am Desktop, auf dem Handy und auf Termux-kompatiblen Dateisystemen durchlaufen.
+
+### Capability API 1.18: Experience-Einrichtung im Game-Assistenten
+
+Ein `game-surface`-Paket kann mit Schemaversion 2 und Capability API 1.18 `contributions.gameSurface.setup` deklarieren. Die Engine behält ihre üblichen sieben Einrichtungsschritte bei, einschließlich **Party** (Gruppe), Zielen, Modellen und Lorebooks. Experiences werden nur für neue Spiele angeboten; beim erneuten Öffnen der Einrichtung eines bestehenden Spiels bleiben dessen Experience und Paketkonfiguration erhalten. Pakete ohne diese Deklaration behalten ihren bisherigen Einrichtungsdialog.
+
+```json
+{
+  "setup": {
+    "seed": { "key": "seed", "label": "World seed" },
+    "config": { "generate": true, "packWanted": true },
+    "requires": { "enableCustomWidgets": false }
+  }
+}
+```
+
+Alle drei Felder sind optional. Der deklarierte Seed erscheint unter der gewählten Experience mit der Schaltfläche **Randomize** (Zufällig wählen). Eine leere Eingabe oder eine Eingabe ohne endlichen Zahlenwert blockiert **Start** (Starten). Der Host schreibt den numerischen Seed und die deklarierten Konstanten in `experienceConfig`; `config` darf den Seed-Schlüssel nicht enthalten. Die Konstanten dürfen serialisiert höchstens 8.000 Zeichen umfassen. Eine Seed-Beschriftung ist vom Paket verfasster Anzeigetext; lass sie weg, um die lokalisierte Engine-Beschriftung zu verwenden.
+
+Eine deklarierte Widget-Anforderung liefert den Standardwert nur, bis der Spieler dieses Steuerelement ändert. Wird die Experience ausgeschaltet, kehrt der gewöhnliche Standardwert zurück, während ausdrückliche Spielerentscheidungen unverändert bleiben. Das Steuerelement erläutert die Erwartung der Experience und bleibt bearbeitbar. Die Einrichtungselemente für räumliche Karten sind für diese Experiences ausgeblendet, sodass kein separater Kartenentwurf, keine Vorlage und kein Kartenersteller gestartet wird.
+
+Im Schritt **Lorebooks** (Lorebooks) lassen sich bis zu 100 einzelne aktivierte Einträge auswählen, auch aus nicht angehängten Büchern. Deaktivierte Bücher, Einträge und Chat-Ausschlüsse werden berücksichtigt. Diese IDs werden in `GameSetupConfig.activeLorebookEntryIds` übergeben. Bei `/game/setup` sind sie zusätzliche erzwungene Einträge: Sie überspringen Wahrscheinlichkeitswürfe, behalten aber die üblichen Token-Limits. Globale, charaktergebundene und angehängte Lore nimmt weiterhin am gewöhnlichen Scan teil. Pakete können dieselben ausgewählten IDs aus der Einrichtungskonfiguration für ihre eigene Weltgenerierungsanfrage lesen.
+
+Der Import einer Einrichtungsdatei stellt eine installierte kompatible Experience und ihren gültigen numerischen Seed wieder her, verwirft aber beliebige Paketkonfiguration. Das aktuelle Manifest liefert die Konstanten erneut. Bestehende Spiele überspringen Experience-Importe mit einer Erklärung. Erstellungssnapshots behalten Experience-Name und Seed für die Einrichtungsübersicht.
+
+Nutze die bestehende Startbereitschaftsdeklaration unabhängig davon, wenn die Welt vor dem ersten Zug vorbereitet werden muss. Deklariere API 1.18 als Mindestversion des Pakets; ältere Hosts können diese Einrichtungsdeklaration nicht interpretieren. Registry-Leser mit Kompatibilitätsbehandlung pro Eintrag überspringen nicht unterstützte Datensätze mit einer Warnung, statt andere Pakete zu blockieren; diese Behandlung wird dadurch nicht nachträglich in ältere Engine-Versionen eingebaut.

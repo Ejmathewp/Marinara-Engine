@@ -1,6 +1,5 @@
 {
   "language": "fr",
-  "sourceCommit": "22c49ba6c9a21c5131eb759e2d5791a43279d697",
   "files": [
     {
       "path": "CONFIGURATION.md",
@@ -334,8 +333,8 @@
     },
     {
       "path": "development/optional-agent-packages.md",
-      "sha256": "28646209808243830ce4c3e6289a836be3539f6c892a39ea00d2d311b7819618",
-      "bytes": 24487
+      "sha256": "1dbed733b7b46831b92d58007be574cd88c22c6ad93267e4807d80f4631bdb7f",
+      "bytes": 31023
     },
     {
       "path": "development/personal-extensions.md",

@@ -96,6 +96,21 @@ C'est une DEMANDE, pas une préférence. Le réglage de repli du joueur n'est ja
 
 Les règles de sécurité du moteur ont priorité. Le panneau s'ouvre de force lorsque la saisie de texte du joueur est affichée, y compris au tout début d'une scène avant tout segment, et lorsque les contrôles d'avancement du segment sont actifs. Ces contrôles sont le seul moyen de finir un tour ; un package capable de les masquer pourrait bloquer définitivement le joueur. La poignée continue aussi d'afficher son indicateur d'attention lorsqu'une nouvelle tentative d'analyse de scène, de génération ou de génération de combat est en attente. Si le joueur ouvre manuellement le panneau pendant une demande, il reste ouvert jusqu'à la fin de celle-ci. Comme les interfaces 1.11 et 1.12, il s'agit d'une interface souple : le champ est respecté quel que soit le `capabilityApi` déclaré. L'étiquette 1.13 indique son apparition ; un package qui en dépend déclare donc 1.13.
 
+### Capability API 1.17 : préparer une Experience avant son premier tour
+
+Un package `game-surface` peut déclarer `contributions.gameSurface.prepareBeforeStart: true` avec la version 2 du schéma et Capability API 1.17. Engine monte cette surface lorsque la partie est prête, avant d'activer **Start Game** (démarrer la partie). Les parties classiques et les packages sans cet indicateur conservent leur déroulement de démarrage habituel.
+
+La surface principale qui active cette option reçoit deux propriétés supplémentaires :
+
+- `startup: boolean` reste à true jusqu'à ce que le joueur termine l'introduction d'Engine avec **Continue** (continuer). Suspends la simulation du monde et les actions du joueur pendant ce temps.
+- `setStartupReady(context: string | null): void` signale l'état de préparation. Envoie `null` pendant le chargement, l'enregistrement ou la récupération après un échec. N'envoie une chaîne qu'une fois le monde réel enregistré durablement et utilisable ; une chaîne vide autorise le démarrage sans contexte supplémentaire.
+
+L'hôte bloque **Start Game**, sa confirmation de préparation des widgets et les nouvelles tentatives du premier tour jusqu'à réception d'une chaîne signalant que tout est prêt. Pendant le blocage, l'interface de chargement et d'échec avec nouvelle tentative du package reste visible. Une fois prêt, le package est masqué derrière l'introduction habituelle d'Engine. **Continue** ouvre la surface ordinaire, qui peut être remontée : rends la préparation du monde idempotente et restaure l'état enregistré au lieu de le générer à nouveau. Revenir dans une partie dont l'introduction est déjà terminée ne répète pas la préparation initiale.
+
+Le contexte d'ouverture est limité à **8 000 caractères**. Un contexte invalide ou trop long maintient le démarrage bloqué et affiche une erreur ; l'hôte ne tronque pas les faits du monde. Fournis une description compacte du lieu de départ préparé et des personnages qui s'y trouvent réellement. Engine ajoute ce texte à son `generationGuide` existant du premier tour avec la source `game_start`, afin que l'ouverture utilise le monde qui existe. Cela n'enregistre pas de contexte pour les tours suivants ; continue d'utiliser la contribution habituelle du package au prompt ou son contexte de génération de tour.
+
+Les fonctions de rappel de disponibilité appartiennent au chat, à la partie et au package montés. Les rappels tardifs d'un autre périmètre sont ignorés. Un échec du module ou de l'environnement d'exécution bloque le démarrage au lieu de considérer l'absence de contexte du monde comme une réussite. Après un rechargement, le package doit signaler sa disponibilité à partir de son monde enregistré. Le fournisseur de contexte du prompt côté serveur reste en lecture seule et soumis à son délai court ; ne l'utilise ni pour générer le monde ni comme barrière de démarrage prolongée.
+
 ## Packages initiaux
 
 - tous les agents actuellement intégrés ;
@@ -172,3 +187,27 @@ Sur ordinateur, une liste de navigation s'accompagne d'une zone de détail voisi
 ## Critère d'extraction
 
 Une extraction n'est complète que lorsque les bundles de production du client et du serveur de base ne contiennent plus l'implémentation du package, qu'une installation neuve ne peut pas l'activer sans télécharger le package, qu'une installation mise à jour la conserve, et que l'installation, la mise à jour et la désinstallation du package fonctionnent sur les systèmes de fichiers d'ordinateur, de mobile et compatibles Termux.
+
+### Capability API 1.18 : conserver la configuration d'Experience dans l'assistant Game
+
+Un package `game-surface` peut déclarer `contributions.gameSurface.setup` avec la version 2 du schéma et Capability API 1.18. Engine conserve ses sept étapes habituelles de configuration, dont **Party** (groupe), les objectifs, les modèles et les lorebooks. Seules les nouvelles parties proposent des Experiences ; rouvrir la configuration d'une partie existante conserve son Experience et la configuration du package. Les packages sans cette déclaration conservent leur ancienne boîte de dialogue de configuration.
+
+```json
+{
+  "setup": {
+    "seed": { "key": "seed", "label": "World seed" },
+    "config": { "generate": true, "packWanted": true },
+    "requires": { "enableCustomWidgets": false }
+  }
+}
+```
+
+Les trois champs sont facultatifs. La graine déclarée apparaît sous l'Experience sélectionnée avec un bouton **Randomize** (choisir au hasard). Une saisie vide ou sans valeur numérique finie bloque **Start** (démarrer). L'hôte écrit la graine numérique et les constantes déclarées dans `experienceConfig` ; `config` ne peut pas contenir la clé de la graine. Les constantes doivent tenir dans 8 000 caractères après sérialisation. Le libellé de la graine est un texte d'affichage rédigé par le package ; omets-le pour utiliser le libellé localisé d'Engine.
+
+Une exigence déclarée concernant les widgets fournit la valeur par défaut uniquement jusqu'à ce que le joueur modifie ce contrôle. Désactiver l'Experience rétablit la valeur par défaut habituelle, tandis que les choix explicites du joueur restent inchangés. Le contrôle explique ce qu'attend l'Experience et reste modifiable. Les contrôles de configuration de carte spatiale sont masqués pour ces Experiences : aucun brouillon, modèle ou outil de création de carte distinct n'est lancé.
+
+L'étape **Lorebooks** (lorebooks) permet de sélectionner jusqu'à 100 entrées individuelles activées, y compris dans des livres non joints. Les livres et entrées désactivés ainsi que les exclusions du chat sont respectés. Ces identifiants sont transmis dans `GameSetupConfig.activeLorebookEntryIds`. Dans `/game/setup`, ce sont des entrées forcées supplémentaires : elles évitent les tirages de probabilité tout en conservant les limites habituelles de tokens. Le lore global, lié aux personnages et joint participe toujours à l'analyse ordinaire. Les packages peuvent lire les mêmes identifiants sélectionnés dans la configuration pour leur propre requête de génération du monde.
+
+L'importation d'un fichier de configuration restaure une Experience installée et compatible ainsi que sa graine numérique valide, mais écarte toute configuration arbitraire du package. Le manifeste actuel fournit à nouveau les constantes. Les parties existantes ignorent les importations d'Experience avec une explication. Les instantanés de création conservent le nom de l'Experience et la graine pour le résumé de configuration.
+
+Utilise indépendamment la déclaration existante de disponibilité au démarrage lorsque le monde doit être préparé avant le premier tour. Déclare API 1.18 comme minimum du package ; les hôtes plus anciens ne savent pas interpréter cette déclaration de configuration. Les lecteurs du registre qui gèrent la compatibilité par entrée ignorent les enregistrements non pris en charge avec un avertissement au lieu de bloquer les autres packages ; cela n'ajoute pas rétroactivement cette gestion aux anciennes versions d'Engine.
