@@ -85,7 +85,7 @@ Le contexte de l'IA, c'est l'ensemble des messages que l'application envoie à l
 
 Dans un chat de groupe en mode Roleplay comptant plusieurs personnages, **Hide from AI** ouvre un sélecteur d'avatars compact. Sélectionne l'avatar du groupe pour masquer le message à tout le monde, ou sélectionne un ou plusieurs avatars de personnages pour ne le masquer qu'à ces personnages. Sélectionner tout le monde efface les sélections individuelles, et sélectionner un personnage précis désactive l'option "tout le monde". Le marqueur en forme d'œil barré sur le message montre les avatars des personnages qui ne peuvent pas le voir. Dans un chat à un seul personnage, le bouton masque ou réaffiche le message directement.
 
-Autre option : masquer ou réafficher les messages par numéro, avec les commandes slash `/hide` et `/unhide`. La numérotation des messages commence à 1, à partir du premier message du chat.
+Tu peux aussi masquer des messages avec `/hide [range] [name (optional)]`, par exemple `/hide 3-8`. Dans Roleplay, `/hide 3-8 Maukie` les masque uniquement pour Maukie ; sans nom, ils sont masqués pour tout le monde. `/unhide [range]` rétablit les messages masqués globalement. Pour annuler le masquage par personnage, utilise le sélecteur d'avatars dans un chat Roleplay de groupe, ou l'action **Unhide from AI** du message dans un chat Roleplay avec un seul personnage. La numérotation des messages commence à 1, à partir du premier message du chat. Consulte la [Référence des commandes slash](slash-commands.md) pour les formats et les exemples.
 
 ## Interrupteurs d'affichage des messages
 

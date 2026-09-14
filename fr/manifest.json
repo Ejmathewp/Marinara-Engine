@@ -1,6 +1,6 @@
 {
   "language": "fr",
-  "sourceCommit": "19bcb60e4a5776448b5e6bc056b86e3e7d35b7af",
+  "sourceCommit": "cec53fb6e8db544436144d0fa27495acefb35404",
   "files": [
     {
       "path": "CONFIGURATION.md",
@@ -99,8 +99,8 @@
     },
     {
       "path": "characters/choosing-your-persona.md",
-      "sha256": "961578b6466eaf42b08d9a1cb7fd94ae35d0907ae29cd3b076426eb0e995ee60",
-      "bytes": 4570
+      "sha256": "ca3660d451db9244e6c5b6182d10ab951eafe45f71d67b8015030e58f55e2151",
+      "bytes": 3688
     },
     {
       "path": "characters/colors-and-stats.md",
@@ -129,8 +129,8 @@
     },
     {
       "path": "characters/personas.md",
-      "sha256": "7df9db47511769ddfe1a853d6f35e169399629e4e124b054d327f5068eddfbc1",
-      "bytes": 17806
+      "sha256": "a84b2693862f4711e8f7fe9b801e9e580d92dac6fe522dfb9e6332b2e1c1329f",
+      "bytes": 16835
     },
     {
       "path": "characters/sprites.md",
@@ -174,8 +174,8 @@
     },
     {
       "path": "chats/messages.md",
-      "sha256": "a91a5137bd0abb0b2bea5e700eca6e4ecfbb1e8d16f87f4abd6cb9b8548e4f93",
-      "bytes": 11423
+      "sha256": "6f31373256336315be3276cf0588c9fd4543a45d65b5820feb93fc21c13df743",
+      "bytes": 11887
     },
     {
       "path": "chats/peek-prompt.md",
@@ -194,8 +194,8 @@
     },
     {
       "path": "chats/slash-commands.md",
-      "sha256": "8041c457e708040d8496045e16d209bf136a263c61aa60f75cbd9eb9977b482b",
-      "bytes": 8454
+      "sha256": "7a5a87cc4f4ff2eee507ad865e6340b075a43f81bb36feba422d0862460ed2c4",
+      "bytes": 11184
     },
     {
       "path": "connections/connecting-to-a-provider.md",
@@ -554,8 +554,8 @@
     },
     {
       "path": "noodle/overview.md",
-      "sha256": "3914abf0f62fb054a07ce0c9f7996ff1647711538d833abb7a771016abbf6675",
-      "bytes": 13012
+      "sha256": "4bfe7914655b52f6ce7735617ad70642a554e7daea654fc7bd946643b2ccca01",
+      "bytes": 12986
     },
     {
       "path": "noodle/settings.md",

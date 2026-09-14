@@ -6,7 +6,9 @@
 
 在聊天底部的消息输入框里输入命令，然后点击 **Send**(发送) 就能运行。如果当前聊天模式在 **Settings**(设置) 里开启了 **Send on Enter**(按 Enter 发送)，按 Enter 也能发出去。默认情况下，Conversation(对话模式) 聊天里 Enter 是发送，Roleplay(角色扮演) 聊天里 Enter 是换行。消息输入框本身会提示斜杠命令：Roleplay 聊天的占位文字是 **Write your response, / for commands**，Conversation 聊天的占位文字显示角色名字，比如“Message @Alice, / for commands”；如果一个对话里有多个角色，显示的则是聊天名称。
 
-只要输入一个斜杠，输入框上方就会弹出匹配命令的小菜单。每一行显示命令名和一句简短说明。点击或轻触某一行，命令就会填进输入框，接着补上额外的文字发送即可。
+只要输入一个斜杠，输入框上方就会弹出匹配命令的小菜单。每一行显示包含参数的命令格式和一句简短说明。点击或轻触某一行，命令就会填进输入框，接着补上额外的文字发送即可。
+
+把 `[name]` 或 `[range]` 这样的方括号标签替换成自己的值，不要输入方括号。标有 `(optional)` 的参数可以省略。`|` 用来分隔可选项，既可以是 `prompt|reset` 这样的值，也可以是完整的命令格式。
 
 不少命令还有更短的别名。比如 `/continue` 和别名 `/cont` 效果完全一样。想随时在应用里查看完整列表，运行这条命令：
 
@@ -27,13 +29,14 @@
 | 命令 | 别名 | 作用 |
 |---|---|---|
 | `/help` | | 列出全部斜杠命令。 |
+| `/send [message]` | | 以用户角色的身份发送消息，不触发生成。 |
 | `/continue` | `/cont` | 在最后一条 AI 回复后面接着写，不新发一条消息。**Settings → General → Responses** 里的 **Add a new line before /continue text**(在 /continue 文本前另起一行) 选项决定续写内容是空一行再开始，还是紧接着断点继续。 |
-| `/goto` | `/jump`、`/scroll` | 按编号把聊天滚动到某条消息。 |
-| `/hide` | | 让 AI 在之后的回合里看不到一条或多条消息。 |
-| `/unhide` | | 把隐藏的消息重新放回 AI 的视野。 |
-| `/sys` | `/system` | 添加一条系统消息。这条备注会出现在聊天里并影响 AI，但不属于任何角色的发言。 |
+| `/goto [number]` | `/jump`、`/scroll` | 按编号把聊天滚动到某条消息。 |
+| `/hide [range] [name (optional)]` | | 让 AI 在之后的回合里看不到一条或多条消息。 |
+| `/unhide [range]` | | 把隐藏的消息重新放回 AI 的视野。 |
+| `/sys [message]` | `/system` | 添加一条系统消息。这条备注会出现在聊天里并影响 AI，但不属于任何角色的发言。 |
 | `/macros` | `/macro` | 列出支持的提示词宏，比如 `{{user}}` 和 `{{char}}`。 |
-| `/remind` | `/reminder`、`/timer` | 设一个定时器，到点在聊天里发出提醒消息。 |
+| `/remind [time] [message]` | `/reminder`、`/timer` | 设一个定时器，到点在聊天里发出提醒消息。 |
 
 跳到第 27 条消息，这样输入：
 
@@ -47,7 +50,16 @@
 /hide 3-8
 ```
 
-也可以写 `/hide 5` 只隐藏一条，或者写 `/hide 2-5,9,12` 一次隐藏多条。隐藏的消息仍然留在聊天里，只是 AI 下一回合不会读到。用同样格式的编号列表配合 `/unhide`，就能把它们放回来。
+也可以用 `/hide 5` 隐藏单条消息，或用 `/hide 2-5,9,12` 隐藏多条。不加角色名时，消息会对所有角色隐藏。隐藏的消息仍留在聊天中，但 AI 在下一轮不会读取。用 `/unhide` 配合同样格式的编号列表，可以恢复全局隐藏的消息。
+
+在 **Roleplay** 中，把角色名加在区间后面，就能只对该角色隐藏这些消息：
+
+```
+/hide 3-8 Maukie
+/hide 2-5,9 "Powers That Be"
+```
+
+其他角色的访问范围不变。把名字放在前面时，含空格的名字要加引号：原来的 `/hide Maukie 3-8` 和 `/hide "Powers That Be" 2-5,9` 格式仍然可用。如果名字匹配多个角色，请使用全名。纯数字角色名要加引号，以免和消息编号混淆，例如 `/hide 1 "123"`。在 Roleplay 群聊中，用消息上的 **Hide from AI**(对 AI 隐藏) 头像选择器查看或取消针对特定角色的隐藏。在只有一个角色的 Roleplay 聊天中，改用消息上的 **Unhide from AI**(对 AI 恢复显示) 操作。`/unhide` 只取消全局隐藏。
 
 `/remind` 命令先跟时间，再跟提醒内容。时间用 `h` 表示小时，`m` 表示分钟，`s` 表示秒。下面这条会在 30 分钟后提醒：
 
@@ -63,20 +75,33 @@
 
 | 命令 | 别名 | 作用 |
 |---|---|---|
-| `/guided` | `/narrator`、`/narrate`、`/nar` | 按描述的方向引导 AI 的下一条回复。 |
-| `/as` | `/respond` | 以某个角色的身份发一条消息，或者点名让某个角色回复。 |
-| `/emote` | `/emotion`、`/sprite` | 列出或切换角色的立绘表情。 |
-| `/roll` | `/r`、`/dice` | 掷骰子并把结果发出来。 |
+| `/guided [direction]` \| `/guided respond for [name] [direction (optional)]` | `/narrator`、`/narrate`、`/nar` | 按描述的方向引导 AI 的下一条回复。 |
+| `/as [name] [message (optional)]` | `/respond` | 以某个角色的身份发一条消息，或者点名让某个角色回复。 |
+| `/emote [expression (optional)]` \| `/emote "[name]" [expression (optional)]` | `/emotion`、`/sprite` | 列出或切换角色的立绘表情。 |
+| `/roll [dice (optional)]` | `/r`、`/dice` | 掷骰子并把结果发出来。 |
 | `/random` | `/rand`、`/event` | 让 AI 给故事加一个意外事件。 |
-| `/scene` | `/rp` | 在 Conversation 聊天里运行。从这段对话分支出一个新的 Roleplay 场景。 |
-| `/illustrate` | `/ill` | 为当前聊天生成一张图库图像。 |
-| `/impersonate` | `/imp` | 以用户角色的身份写一条回复。 |
-| `/impersonate_prompt` | `/imp_prompt` | 设定本聊天里 `/impersonate` 使用的指示内容。 |
+| `/scene [description (optional)]` | `/rp` | 在 Conversation 聊天里运行。从这段对话分支出一个新的 Roleplay 场景。 |
+| `/illustrate [prompt (optional)]` | `/ill` | 为当前聊天生成一张图库图像。 |
+| `/impersonate [direction (optional)]` | `/imp` | 以用户角色的身份写一条回复。 |
+| `/impersonate_prompt [prompt\|reset]` | `/imp_prompt` | 设定本聊天里 `/impersonate` 使用的指示内容。 |
 
 想引导下一条回复，把方向写在 `/guided` 后面：
 
 ```
 /guided make him confess he is lying
+```
+
+在 Roleplay 群聊中，用 `/guided respond for [name] [direction (optional)]` 选择要回复的角色。例如：
+
+```
+/guided respond for "Powers That Be" describe the approaching storm
+```
+
+用 `/as [name] [message (optional)]` 以某个角色的身份发送文字。省略消息内容时，模型会改为生成该角色的下一条回复：
+
+```
+/as Dottore "The experiment begins."
+/as Dottore
 ```
 
 `/roll` 命令识别骰子表达式。下面这条掷两个六面骰：
@@ -92,6 +117,8 @@
 ```
 /emote joy
 ```
+
+要指定一个角色，使用 `/emote "[name]" [expression (optional)]`，例如 `/emote "Powers That Be" joy`。省略表情时，会列出该角色可用的表情。
 
 切换立绘的前提是这个 Roleplay 聊天已经上传了立绘。添加方法见[角色立绘](../characters/sprites.md)。
 
@@ -109,11 +136,13 @@
 
 | 命令 | 作用 |
 |---|---|
+| `/games` | 打开已安装的 Conversation 游戏选择器。`/game` 和 `/play` 的作用相同。 |
+| `/selfie [name (optional)]` | 通过已安装的 Illustrator 智能体生成自拍。加上名字即可选择角色。 |
 | `/uno` | 和聊天里的角色开一局 UNO。 |
 | `/chess` | 和一个角色单挑国际象棋。 |
 | `/poker` | 和聊天里的角色开一局德州扑克。 |
 | `/8ball` | 和一个角色单挑美式八球台球。`/pool` 效果相同。 |
-| `/status` | 设置或清除角色的在线状态。 |
+| `/status [online\|idle\|dnd\|offline\|clear] [name (optional)]` | 设置或清除角色的在线状态。 |
 
 `/uno`、`/chess`、`/poker`、`/8ball` 会打开对应游戏的设置界面。一个聊天里同时只能进行一局游戏。规则和选项见 [Conversation 桌游](../conversation/table-games.md)。
 

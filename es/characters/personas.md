@@ -6,13 +6,13 @@ Esta guía explica qué es una persona, cómo crear y editar una, y cómo import
 
 Una persona es quién eres tú en un chat. Tiene un nombre, una descripción y otros datos opcionales. Marinara envía estos datos en cada prompt (las instrucciones enviadas a la IA), para que la IA sepa con quién está hablando.
 
-Puedes crear muchas personas. Las guardas en el panel **Personas**. Eliges una persona como tu predeterminada global, llamada la persona activa. También puedes anular la persona para un solo chat. Esta guía trata de crear y editar personas. Para saber cómo elegir qué persona usa un chat, consulta [Elegir tu persona en un chat](choosing-your-persona.md).
+Puedes crear muchas personas y guardarlas en el panel **Personas**. Elige qué persona usar en cada chat, o elige **None** (Ninguna) para no usar ninguna. Esta guía trata de crear y editar personas. Para saber cómo elegir qué persona usa un chat, consulta [Elegir tu persona en un chat](choosing-your-persona.md).
 
 ### El macro {{user}}
 
-Un macro es un marcador de posición en tu texto que la app reemplaza por un valor real antes de enviar el prompt. El macro **{{user}}** se reemplaza por el nombre de la persona que el chat está usando. Esa es la persona propia del chat si le asignaste una; si no, tu persona activa. Por ejemplo, si esa persona se llama Alex, entonces **{{user}}** se convierte en Alex en el prompt.
+Un macro es un marcador de posición en tu texto que la app reemplaza por un valor real antes de enviar el prompt. El macro **{{user}}** se reemplaza por el nombre de la persona que el chat está usando. Es la persona seleccionada para el chat. Por ejemplo, si esa persona se llama Alex, entonces **{{user}}** se convierte en Alex en el prompt.
 
-A veces un chat no tiene persona propia y ninguna persona está activa. Solo entonces la IA te llama con el nombre genérico "User" (Usuario), y no se envía ningún dato de persona. Para saber cómo un chat elige su persona, consulta [Elegir tu persona en un chat](choosing-your-persona.md). Para saber más sobre los macros, consulta [Macros](../prompts/macros.md).
+Si un chat no tiene persona seleccionada, la IA te llama con el nombre genérico "User" (Usuario), y no se envía ningún dato de persona. Para saber cómo un chat elige su persona, consulta [Elegir tu persona en un chat](choosing-your-persona.md). Para saber más sobre los macros, consulta [Macros](../prompts/macros.md).
 
 ## El panel Personas
 
@@ -20,24 +20,18 @@ El panel **Personas** es tu biblioteca de personas. Ábrelo desde el icono de pe
 
 El panel te ofrece estos controles:
 
-- **Open Full Library** (Abrir biblioteca completa) abre la Persona Library de página completa y adaptable. Usa el mismo diseño de cuadrícula y vista previa que la Character Library, con descripciones de personas, secciones de tarjeta, etiquetas, estimaciones de tokens (los tokens son fragmentos de texto) e insignias de persona activa.
+- **Open Full Library** (Abrir biblioteca completa) abre la Persona Library de página completa y adaptable. Usa el mismo diseño de cuadrícula y vista previa que la Character Library, con descripciones de personas, secciones de tarjeta, etiquetas y estimaciones de tokens (los tokens son fragmentos de texto).
 - **New** (Nuevo) crea una persona.
 - **Import** (Importar) abre la ventana **Import Persona**.
 - **Select** (Seleccionar) activa el modo de selección múltiple para que puedas actuar sobre muchas personas a la vez.
 - El cuadro de búsqueda, con el texto de ejemplo **Search personas** (Buscar personas), coincide con el nombre, la descripción, el comentario y las etiquetas.
 - El menú desplegable de orden ofrece **A-Z**, **Z-A**, **Newest** (Más recientes), **Oldest** (Más antiguas) y **Tokens** (tamaño estimado del prompt).
 - **New Folder** (Nueva carpeta) crea una carpeta para organizar personas.
-- Los chips de filtro **All** (Todas), **Active** (Activas) e **Inactive** (Inactivas) filtran según si una persona es la persona activa actual. Un chip **Tags** (Etiquetas) despliega la lista de etiquetas.
+- El chip **Tags** (Etiquetas) despliega la lista de etiquetas para filtrar.
 
-Cada fila muestra el avatar de la persona, su nombre y una vista previa corta de la descripción. La persona activa muestra una pequeña insignia de verificación en su avatar. Al pasar el cursor sobre una fila, ves las acciones de fila: **Set as active** (Establecer como activa), **Duplicate** (Duplicar) y **Delete** (Eliminar). Haz clic en una fila para abrir esa persona en el **Persona Editor** (Editor de personas) de página completa.
+Cada fila muestra el avatar de la persona, su nombre y una vista previa corta de la descripción. Al pasar el cursor sobre una fila, aparecen las acciones **Duplicate** (Duplicar) y **Delete** (Eliminar). Haz clic en una fila para abrir esa persona en el **Persona Editor** (Editor de personas) de página completa.
 
 Si tienes más personas de las que caben en una página, aparece un botón **Load more** (Cargar más) al final. Cuando todavía no tienes ninguna persona, el panel muestra un mensaje corto "No personas yet" (Todavía no hay personas).
-
-### La persona activa
-
-Como máximo una persona a la vez puede ser la predeterminada global. Esta es la persona activa. Para establecer una, pasa el cursor sobre una fila de persona y haz clic en **Set as active**.
-
-Establecer una persona como activa primero desactiva el indicador de activa en todas las demás personas. Así que nunca hay más de una persona activa. Las personas nuevas, las duplicadas y las importadas nunca se activan por sí solas. Debes establecer la persona activa tú mismo. También es válido no tener ninguna persona activa.
 
 ## Crear una persona
 
@@ -48,7 +42,7 @@ Establecer una persona como activa primero desactiva el indicador de activa en t
 
 La persona se crea con una descripción vacía. Se abre de inmediato en el **Persona Editor** completo para que puedas rellenar el resto. No puedes establecer otros campos en la ventana de creación. Todo lo demás se edita después en el **Persona Editor**.
 
-Una persona recién creada nunca se activa por sí sola. Actívala tú mismo cuando quieras usarla.
+Después de crear una persona, selecciónala en el chat donde quieras usarla.
 
 ## El Persona Editor
 
@@ -145,7 +139,7 @@ Usa **Reset** (Restablecer) en el encabezado del panel para eliminar todas las i
 
 ## Duplicar una persona
 
-Haz clic en **Duplicate** en una fila de persona, o en el icono **Duplicate persona** en el encabezado del **Persona Editor**. Esto hace una copia completa de la persona, con el nombre "{original name} (Copy)". Copia todos los campos de tarjeta, colores, estadísticas y campos de convo. La copia nunca se activa por sí sola, aunque la original estuviera activa.
+Haz clic en **Duplicate** en una fila de persona, o en el icono **Duplicate persona** en el encabezado del **Persona Editor**. Esto hace una copia completa de la persona, con el nombre "{original name} (Copy)". Copia todos los campos de tarjeta, colores, estadísticas y campos de convo. Duplicar una persona no cambia la persona seleccionada en ningún chat.
 
 ## Eliminar personas
 

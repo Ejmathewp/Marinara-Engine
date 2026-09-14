@@ -1,35 +1,18 @@
 # Escolhendo a persona de um chat
 
-Neste guia você aprende a escolher qual persona representa você em um chat. Ele explica a persona ativa global, a persona definida para um chat específico e os seletores rápidos.
+Este guia explica como escolher a persona que representa você em um chat, incluindo os seletores rápidos e a opção de não usar nenhuma persona.
 
-## A persona ativa e as personas por chat
+## Cada chat tem sua própria persona
 
 A persona é o seu próprio card de personagem, a identidade que Marinara Engine usa para representar você – o personagem que você interpreta. Ela informa à IA o seu nome e os seus detalhes, para que a IA saiba com quem está falando. Para aprender a criar uma, veja [Personas do usuário](personas.md).
 
-Marinara escolhe a persona em duas camadas:
+Escolha uma persona para cada chat em que quiser usá-la. A seleção vale apenas para aquele chat. Escolha **None** (nenhuma) para não usar persona; a IA recebe o nome genérico "User" e nenhum detalhe de persona.
 
-- A **persona ativa** é o padrão global. Marinara usa essa persona em qualquer chat que não tenha uma persona própria.
-- A persona definida em um chat substitui a persona ativa, mas só naquele chat.
-
-Só uma persona fica ativa por vez. Também é possível não ter nenhuma.
-
-## Como definir a persona ativa
-
-Siga estes passos para definir a persona padrão global.
-
-1. Abra o painel **Personas** pela barra lateral direita (o ícone de pessoa).
-2. Passe o ponteiro sobre a persona que você quer na lista.
-3. Clique em **Set as active** (definir como ativa), o ícone de visto naquela linha.
-
-A persona ativa exibe um pequeno selo de visto sobre o avatar. Ao definir outra persona como ativa, o selo sai da anterior, então só uma persona fica ativa.
-
-Para saber qual persona é a padrão, filtre a lista com os botões **Active** e **Inactive**.
-
-Personas novas, duplicadas e importadas nunca ficam ativas sozinhas. Você mesmo precisa definir uma como ativa.
+A antiga configuração global de **persona ativa** foi removida. Suas personas salvas e a seleção existente de cada chat são mantidas. Um chat sem persona selecionada continua anônimo.
 
 ## Como escolher uma persona para um chat
 
-Cada chat pode salvar a própria persona. Essa persona vale só para aquele chat e sempre vence a persona ativa.
+Cada chat pode salvar sua própria persona. Você pode usar personas diferentes em chats diferentes.
 
 ### Pelo Chat Settings
 
@@ -61,13 +44,9 @@ No celular, a troca de persona divide o mesmo menu com a troca de conexão. Toqu
 
 ## Qual persona prevalece
 
-Marinara escolhe a persona do chat nesta ordem:
+A persona selecionada para o chat determina sua identidade. Se escolher **None**, a IA chama você de "User" e não recebe detalhes de persona. Isso vale para Conversation, Roleplay e Game Mode.
 
-1. A persona do próprio chat, se você definiu uma.
-2. Se não houver, a persona ativa global.
-3. Sem nenhuma das duas, a IA chama você de "User" e não envia detalhe nenhum de persona.
-
-No Game Mode, você escolhe a persona uma única vez, no assistente de configuração New Game Setup. O chat mantém a persona escolhida ali. Na tela, um chat de Game Mode não muda para a persona ativa.
+No Game Mode, você escolhe sua persona no assistente New Game Setup. O chat mantém essa seleção.
 
 Trocar de persona no meio de um chat não reescreve as mensagens anteriores. Cada mensagem já enviada mantém a persona usada no envio.
 

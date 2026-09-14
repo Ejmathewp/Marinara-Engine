@@ -7542,7 +7542,6 @@
   "ui.panels.personaspanel.openPersonasLibrary": "페르소나 라이브러리 열기",
   "ui.panels.personaspanel.removeTagValue1FromAllPersonas": "모든 페르소나에서 \"{{value1}}\" 태그를 제거하시겠습니까?",
   "ui.panels.personaspanel.selectPersona": "페르소나 선택",
-  "ui.panels.personaspanel.setAsActive": "활성으로 설정",
   "ui.panels.personaspanel.tokens": "토큰",
   "ui.panels.pocketttsvoicecontrol.chooseServerVoice": "서버 음성 선택",
   "ui.panels.pocketttsvoicecontrol.loadingServerVoices": "서버 음성 불러오는 중…",

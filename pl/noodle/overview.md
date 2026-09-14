@@ -27,7 +27,7 @@ Noodle znajdziesz na górnym pasku, a nie w panelu ustawień.
 2. Kliknij przycisk **Noodle**.
 3. Główny obszar czatu zmienia się w oś czasu Noodle.
 
-Na górze widać udawany pasek adresu przeglądarki z adresem `https://noodle.local` i małą plakietką **Noodle**. To tylko ozdoba. Otwarcie zakładki Noodle zamyka każdy inny otwarty panel, na przykład bibliotekę postaci albo panel Card Browser.
+Na górze widać udawany pasek adresu przeglądarki z adresem `marinara/noodle` i małą plakietką **Noodle**. To tylko ozdoba. Otwarcie zakładki Noodle zamyka każdy inny otwarty panel, na przykład bibliotekę postaci albo panel Card Browser.
 
 Aby wyjść z zakładki Noodle, kliknij przycisk **Noodle** ponownie albo otwórz dowolny inny panel.
 
@@ -104,7 +104,7 @@ Persona może obserwować każdą zaproszoną postać, ale dopiero wtedy, gdy ta
 
 Każda utworzona persona dostaje własne konto w zakładce Noodle. Na dole lewego paska bocznego nazwa i awatar persony działają jak przycisk. Kliknij go, żeby otworzyć okno **Switch account** (przełączenie konta) i wybrać inną personę.
 
-Przełączenie konta w tym miejscu zmienia personę, w imieniu której publikujesz posty, lubisz, odpowiadasz i obserwujesz w zakładce Noodle. Nie zmienia to aktywnej persony w pozostałych częściach aplikacji Marinara Engine.
+Przełączenie konta w tym miejscu zmienia personę, w imieniu której publikujesz posty, lubisz, odpowiadasz i obserwujesz w zakładce Noodle. Każdy czat zachowuje własny wybór persony.
 
 ## Odświeżanie osi czasu przyciskiem Refresh timeline
 

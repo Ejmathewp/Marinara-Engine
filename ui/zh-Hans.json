@@ -7540,7 +7540,6 @@
   "ui.panels.personaspanel.openPersonasLibrary": "打开人设资料库",
   "ui.panels.personaspanel.removeTagValue1FromAllPersonas": "要从所有人设中移除标签“{{value1}}”吗？",
   "ui.panels.personaspanel.selectPersona": "选择人设",
-  "ui.panels.personaspanel.setAsActive": "设为当前人设",
   "ui.panels.personaspanel.tokens": "token",
   "ui.panels.pocketttsvoicecontrol.chooseServerVoice": "选择服务器语音",
   "ui.panels.pocketttsvoicecontrol.loadingServerVoices": "正在加载服务器语音…",

@@ -27,7 +27,7 @@ Noodle se trouve dans la barre supérieure, pas dans un panneau de réglages.
 2. Clique sur **Noodle**.
 3. La timeline Noodle remplace la zone de chat principale.
 
-Une fausse barre d'adresse de navigateur affiche `https://noodle.local`, accompagnée d'un petit badge **Noodle**. C'est purement décoratif. Ouvrir Noodle referme tout autre panneau ouvert, comme la bibliothèque de personnages ou le Card Browser.
+Une fausse barre d'adresse de navigateur affiche `marinara/noodle`, accompagnée d'un petit badge **Noodle**. C'est purement décoratif. Ouvrir Noodle referme tout autre panneau ouvert, comme la bibliothèque de personnages ou le Card Browser.
 
 Pour quitter Noodle, clique de nouveau sur le bouton **Noodle** ou ouvre n'importe quel autre panneau.
 
@@ -104,7 +104,7 @@ Ton persona peut suivre n'importe quel personnage invité, mais seulement une fo
 
 Chaque persona que tu crées reçoit son propre compte Noodle. En bas de la barre latérale de gauche, le nom et l'avatar de ton persona forment un bouton. Clique dessus pour ouvrir **Switch account** (changer de compte) et choisir un autre persona.
 
-Ce changement détermine sous quel persona tu publies, aimes, réponds et suis des comptes dans Noodle. Il ne change pas le persona actif de l'application ailleurs dans Marinara.
+Ce changement détermine sous quel persona tu publies, aimes, réponds et suis des comptes dans Noodle. Chaque chat conserve sa propre sélection de persona.
 
 ## Actualiser la timeline
 
