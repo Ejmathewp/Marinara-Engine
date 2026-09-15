@@ -30,7 +30,7 @@ Agent **Illustrator** jest domyślnie wyłączony. Oto, jak dodać go do czatu *
 3. Znajdź sekcję **Agents** (Agenci) i włącz przełącznik **Enable Agents** (włączenie agentów).
 4. W grupie **Misc Agents** (pozostali agenci) znajdź pozycję **Illustrator** i dodaj ją przyciskiem z plusem.
 
-Teraz na ekranie widać kartę ustawień agenta **Illustrator** z jego własnymi opcjami. Dodanie agenta zużywa dodatkowe tokeny i oznacza dodatkowe zapytania do AI w każdej turze, dlatego panel pokazuje na bieżąco szacowany koszt.
+Teraz na ekranie widać kartę ustawień agenta **Illustrator** z jego własnymi opcjami. Dodanie agenta zużywa dodatkowe tokeny i może oznaczać dodatkowe zapytania do AI w każdej turze. Szacunkowe liczby tokenów opisują wybrany kontekst i instrukcje agentów, a nie bieżący koszt.
 
 ### Game Mode: przełącznik Game Illustrator
 
