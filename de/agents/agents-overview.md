@@ -46,6 +46,7 @@ Die hinzugefügten Agenten erscheinen anschließend als aktiv, jeweils mit einer
 
 Der Abschnitt **Agents** bietet noch ein paar weitere Bedienelemente:
 
+- **Attach chat summaries** (Chat-Zusammenfassungen anhängen, nur in Roleplay-Chats): standardmäßig aus, auch in bestehenden Chats ohne gespeicherte Auswahl. Aktiviere die Option, um gespeicherte Zusammenfassungen an Agent-Anfragen anzuhängen, auch bei der Nachverarbeitung und manuellen Wiederholungen. Zusammenfassungen bleiben für die Hauptantwort verfügbar und werden weiterhin erzeugt. Agenten mit ausdrücklich gewährtem Zugriff auf den vollständigen Hauptprompt können darin enthaltene Zusammenfassungen weiterhin lesen.
 - **Review Agent Outputs** (Agent-Ausgaben prüfen): Ist das aktiv, warten Änderungen an Lorebook, Zusammenfassung und Charakterkarte auf deine Freigabe, bevor sie gespeichert werden. Ein Lorebook ist eine Sammlung von Weltwissen. Ist die Option aus, speichern sich Lorebook- und Zusammenfassungs-Änderungen selbst – Bearbeitungen an der Charakterkarte fragen aber weiterhin bei dir nach. Mehr dazu unter [Agent-Freigaben und die Agent Suite](approvals-and-agent-suite.md).
 - **Manual Trackers** (manuelle Tracker, nur in Roleplay-Chats): Ist das aktiv, laufen Tracker-Agenten nicht nach jeder Antwort. Du löst sie von Hand über eine Schaltfläche im HUD aus. HUD steht für Heads-up-Display, die Info-Leiste am oberen Chatrand in Roleplay.
 - **Agent Suite**: öffnet eine Ansicht, in der du alles lesen und bearbeiten kannst, was die Agenten für diesen Chat gespeichert haben.
@@ -54,7 +55,7 @@ Der Abschnitt **Agents** bietet noch ein paar weitere Bedienelemente:
 
 Agenten kosten zusätzliche Tokens und zusätzliche Modellaufrufe – ein Token ist ein kleines Textstück. Jeder Agent bringt eigene Anweisungen mit, oft auch einen eigenen Modellaufruf. Wo möglich, bündelt Marinara Agenten mit derselben Verbindung in einem einzigen Aufruf. Über der Agentenliste schätzt eine Anzeige die Last deiner aktuellen Auswahl. Sie nennt ungefähr, wie viele Tokens an Agent-Anweisungen dazukommen und wie viele zusätzliche Aufrufe pro Zug anfallen.
 
-Wird die Last hoch, färbt sich diese Anzeige bernsteinfarben und zeigt ein Warnsymbol. Die tatsächlichen Kosten pro Zug liegen über dem angezeigten Wert, denn mit jedem Aufruf gehen auch Chatverlauf und Charakterdetails mit. Erscheint die Warnung, entferne nicht benötigte Agenten oder verschiebe einige auf eine günstigere oder lokale Verbindung.
+Klicke oder tippe auf das Hilfesymbol neben der Anzeige, um die Erklärung auf dem Computer oder Smartphone zu öffnen. Wird die Last hoch, färbt sich diese Anzeige bernsteinfarben und zeigt ein Warnsymbol. Die tatsächlichen Kosten pro Zug liegen über dem angezeigten Wert, denn mit jedem Aufruf gehen auch Chatverlauf und Charakterdetails mit. Erscheint die Warnung, entferne nicht benötigte Agenten oder verschiebe einige auf eine günstigere oder lokale Verbindung. Das Limit für die letzten Nachrichten betrifft nur Chatnachrichten; Agent-Anweisungen, Charakterdetails und angehängte Zusammenfassungen kommen als zusätzlicher Kontext dazu.
 
 ## Womit die einzelnen Modi starten
 

@@ -30,7 +30,7 @@ L'agent Illustrator est désactivé par défaut. Dans un chat **Roleplay**, ajou
 3. Va dans la section **Agents** et active l'interrupteur **Enable Agents** (activer les agents).
 4. Dans le groupe **Misc Agents**, repère **Illustrator** et ajoute-le avec le bouton Plus.
 
-Une carte de réglages **Illustrator** apparaît alors, avec ses propres options. Un agent supplémentaire consomme des tokens en plus (un token est un petit morceau de texte) et déclenche des appels à l'IA à chaque tour : le panneau affiche donc une estimation du coût en continu.
+Une carte de réglages **Illustrator** apparaît alors, avec ses propres options. Un agent supplémentaire consomme des tokens en plus et peut déclencher des appels supplémentaires à l'IA à chaque tour. Les estimations de tokens portent uniquement sur les instructions des agents ; elles ne représentent pas une estimation du coût en continu.
 
 ### Game Mode : l'interrupteur Game Illustrator
 

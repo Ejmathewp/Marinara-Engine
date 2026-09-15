@@ -46,6 +46,7 @@ Deberías ver los agentes que añadiste listados como activos, cada uno con un p
 
 La sección **Agents** tiene algunos controles más:
 
+- **Attach chat summaries** (Adjuntar resúmenes del chat, solo en chats de Roleplay): desactivado de forma predeterminada, también en chats existentes sin una elección guardada. Actívalo para incluir los resúmenes guardados en las solicitudes de los agentes, incluido el posprocesamiento y los reintentos manuales. Esto no elimina los resúmenes del contexto de la respuesta principal ni detiene su generación. Los agentes con acceso explícito al prompt principal completo pueden seguir leyendo los resúmenes incluidos en él.
 - **Review Agent Outputs** (Revisar resultados de los agentes): cuando está activado, los cambios en el lorebook (libro de trasfondo), el resumen y la tarjeta de personaje esperan tu aprobación antes de guardarse. Cuando está apagado, los cambios en el lorebook y el resumen pueden guardarse por su cuenta, pero las ediciones de la tarjeta de personaje siguen preguntándote primero. Consulta [Agent Approvals and the Agent Suite](approvals-and-agent-suite.md).
 - **Manual Trackers** (solo chats de Roleplay): cuando está activado, los trackers no se ejecutan después de cada respuesta. Los activas a mano desde un botón en el HUD (barra de estado en pantalla). HUD significa heads-up display, la superposición de estado en pantalla en Roleplay.
 - **Agent Suite**: abre un visor donde puedes leer y editar todo lo que los agentes han guardado para este chat.
@@ -54,7 +55,7 @@ La sección **Agents** tiene algunos controles más:
 
 Los agentes cuestan tokens (fragmentos de texto) adicionales y llamadas al modelo adicionales. Cada agente añade sus propias instrucciones, y a menudo su propia llamada al modelo. Marinara agrupa en una sola llamada los agentes que comparten la misma conexión cuando puede. Encima de la lista de agentes, un indicador estima la carga para tu configuración actual. Muestra aproximadamente cuántos tokens de instrucciones de agente añadiste y aproximadamente cuántas llamadas adicionales ocurren por turno.
 
-Este indicador se pone ámbar con un icono de advertencia cuando la carga se vuelve pesada. El costo real por turno es más alto que el número mostrado. Tu historial de chat y los detalles del personaje se envían con cada llamada. Si ves la advertencia, quita agentes que no necesites, o mueve algunos a una conexión más barata o local.
+Toca o haz clic en el icono de ayuda junto al indicador para abrir la explicación en el móvil o en el escritorio. Este indicador se pone ámbar con un icono de advertencia cuando la carga se vuelve pesada. El costo real por turno es más alto que el número mostrado. Tu historial de chat y los detalles del personaje se envían con cada llamada. Si ves la advertencia, quita agentes que no necesites, o mueve algunos a una conexión más barata o local. El límite de mensajes recientes solo controla los mensajes del chat; las instrucciones de los agentes, los detalles de los personajes y los resúmenes adjuntos son contexto adicional.
 
 ## Con qué agentes empieza cada modo
 

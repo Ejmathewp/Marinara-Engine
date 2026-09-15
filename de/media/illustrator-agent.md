@@ -30,7 +30,7 @@ Der Illustrator ist standardmäßig aus. In einem **Roleplay**-Chat fügst du ih
 3. Geh zum Abschnitt **Agents** und aktiviere **Enable Agents**.
 4. Such in der Gruppe **Misc Agents** den Eintrag **Illustrator** und füge ihn über die Plus-Schaltfläche hinzu.
 
-Jetzt erscheint eine **Illustrator**-Einstellungskarte mit eigenen Optionen. Ein zusätzlicher Agent verbraucht zusätzliche Tokens und löst pro Zug weitere KI-Aufrufe aus – deshalb zeigt das Panel laufend eine Kostenschätzung an.
+Jetzt erscheint eine **Illustrator**-Einstellungskarte mit eigenen Optionen. Ein zusätzlicher Agent verbraucht zusätzliche Tokens und kann pro Zug weitere KI-Aufrufe auslösen. Die Token-Schätzungen beziehen sich nur auf die Agent-Anweisungen, nicht auf die laufenden Kosten.
 
 ### Game Mode: der Schalter Game Illustrator
 

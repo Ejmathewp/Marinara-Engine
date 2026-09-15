@@ -46,6 +46,7 @@ Dodani agenci powinni pojawić się na liście jako aktywni, każdy z małym prz
 
 W sekcji **Agents** jest jeszcze kilka opcji:
 
+- **Attach chat summaries** (dołączanie podsumowań czatu; tylko czaty Roleplay): domyślnie wyłączone, także w istniejących czatach bez zapisanego wyboru. Włącz tę opcję, aby dołączać zapisane podsumowania do zapytań agentów, również podczas przetwarzania po odpowiedzi i ręcznych ponowień. Nie usuwa to podsumowań z kontekstu głównej odpowiedzi ani nie zatrzymuje ich generowania. Agenci z przyznanym dostępem do pełnego głównego promptu nadal mogą odczytać zawarte w nim podsumowania.
 - **Review Agent Outputs** (przeglądanie wyników agentów): po włączeniu zmiany w lorebooku, podsumowaniu i karcie postaci czekają na twoje zatwierdzenie przed zapisem. Po wyłączeniu zmiany w lorebooku i podsumowaniu zapisują się same, ale zmiany w karcie postaci nadal wymagają wcześniejszego potwierdzenia. Zobacz [Zatwierdzanie zapisów agentów i Agent Suite](approvals-and-agent-suite.md).
 - **Manual Trackers** (ręczne uruchamianie trackerów; tylko czaty Roleplay): po włączeniu agenci trackerów nie działają po każdej odpowiedzi. Uruchamiasz je ręcznie przyciskiem na pasku HUD. HUD to pasek informacji na górze czatu w trybie Roleplay.
 - **Agent Suite**: otwiera podgląd, w którym można przeczytać i zmienić wszystko, co agenci zapisali dla tego czatu.
@@ -54,7 +55,7 @@ W sekcji **Agents** jest jeszcze kilka opcji:
 
 Agenci kosztują dodatkowe tokeny, czyli małe kawałki tekstu, oraz dodatkowe wywołania modelu. Każdy agent dokłada własne instrukcje, a często też własne wywołanie modelu. Marinara łączy agentów korzystających z tego samego połączenia w jedno wywołanie, o ile to możliwe. Nad listą agentów widnieje odczyt z szacunkowym obciążeniem przy obecnych ustawieniach. Pokazuje on w przybliżeniu, ile tokenów instrukcji agentów doszło i ile dodatkowych wywołań przypada na turę.
 
-Odczyt robi się bursztynowy i dostaje ikonę ostrzeżenia, gdy obciążenie rośnie. Rzeczywisty koszt tury jest wyższy niż pokazana liczba. Z każdym wywołaniem idzie historia czatu i szczegóły postaci. Po zobaczeniu ostrzeżenia usuń zbędnych agentów albo przenieś część na tańsze lub lokalne połączenie.
+Kliknij lub stuknij ikonę pomocy obok odczytu, aby otworzyć wyjaśnienie na komputerze lub telefonie. Odczyt robi się bursztynowy i dostaje ikonę ostrzeżenia, gdy obciążenie rośnie. Rzeczywisty koszt tury jest wyższy niż pokazana liczba. Z każdym wywołaniem idzie historia czatu i szczegóły postaci. Limit ostatnich wiadomości dotyczy tylko wiadomości z czatu; instrukcje agentów, szczegóły postaci i dołączone podsumowania stanowią dodatkowy kontekst. Po zobaczeniu ostrzeżenia usuń zbędnych agentów albo przenieś część na tańsze lub lokalne połączenie.
 
 ## Z jakimi agentami startuje każdy tryb
 
