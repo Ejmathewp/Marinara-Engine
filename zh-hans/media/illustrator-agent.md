@@ -30,7 +30,7 @@ Illustrator 默认是关闭的。在 **Roleplay** 聊天里这样添加：
 3. 找到 **Agents**(智能体) 区域，打开 **Enable Agents**(启用智能体)。
 4. 在 **Misc Agents**(其他智能体) 分组里找到 **Illustrator**，点加号按钮添加。
 
-这时应该能看到一张**Illustrator**设置卡片，上面是它自己的选项。添加智能体会额外消耗Token，也可能增加每轮的AI调用次数。Token估算表示所选上下文和智能体指令的大小，并不是实时费用估算。
+这时应该能看到一张**Illustrator**设置卡片，上面是它自己的选项。添加智能体会额外消耗Token，也可能增加每轮的AI调用次数。Token估算只包含智能体指令，并不是实时费用估算。
 
 ### Game Mode：Game Illustrator 开关
 

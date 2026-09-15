@@ -1,6 +1,6 @@
 {
   "language": "es",
-  "sourceCommit": "51607508a4a7d1dc65ce30a23e4de0165e6efad6",
+  "sourceCommit": "b2b26e25cb94fdd88594afe3b54a0f497692811d",
   "files": [
     {
       "path": "CONFIGURATION.md",
@@ -519,8 +519,8 @@
     },
     {
       "path": "media/illustrator-agent.md",
-      "sha256": "205afce739cbbfd85f96d65c237eb50e54a6055ac58135e2c221628b9f012e28",
-      "bytes": 10675
+      "sha256": "2bc17cce3244d0edb495c674900a4c58288b6cbbcb1492b46ef550b1cd667132",
+      "bytes": 10652
     },
     {
       "path": "media/image-providers.md",
