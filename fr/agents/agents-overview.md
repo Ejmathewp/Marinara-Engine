@@ -46,6 +46,7 @@ Les agents ajoutés apparaissent alors dans la liste des agents actifs, chacun a
 
 La section **Agents** contient quelques réglages supplémentaires :
 
+- **Attach chat summaries** (joindre les résumés du chat, chats Roleplay uniquement) : désactivé par défaut, y compris dans les chats existants sans choix enregistré. Active cette option pour joindre les résumés enregistrés aux requêtes des agents, y compris lors du traitement après la réponse et des relances manuelles. Les résumés restent dans le contexte de la réponse principale et leur génération continue. Les agents disposant explicitement d'un accès au prompt principal complet peuvent toujours lire les résumés qu'il contient.
 - **Review Agent Outputs** (relire les résultats des agents) : sur on, les modifications de lorebook, de résumé et de fiche de personnage attendent ton accord avant d'être enregistrées. Sur off, les modifications de lorebook et de résumé s'enregistrent seules, mais les retouches de fiche de personnage te sont toujours soumises. Voir [Validations des agents et Agent Suite](approvals-and-agent-suite.md).
 - **Manual Trackers** (trackers manuels, chats Roleplay uniquement) : sur on, les trackers ne se déclenchent pas après chaque réponse. Tu les lances à la main depuis un bouton du HUD. HUD signifie heads-up display, le bandeau d'infos affiché par-dessus l'écran en Roleplay.
 - **Agent Suite** : ouvre une visionneuse où tu peux lire et modifier tout ce que les agents ont enregistré pour ce chat.
@@ -54,7 +55,7 @@ La section **Agents** contient quelques réglages supplémentaires :
 
 Les agents consomment des tokens et des appels au modèle en plus. Un token est un petit morceau de texte. Chaque agent ajoute ses propres instructions, et souvent son propre appel au modèle. Quand c'est possible, Marinara regroupe en un seul appel les agents qui partagent la même connexion. Au-dessus de la liste des agents, un indicateur estime la charge de ta configuration actuelle. Il affiche à peu près le nombre de tokens d'instructions d'agents ajoutés, et le nombre d'appels supplémentaires par tour.
 
-Cet indicateur passe à l'orange, avec une icône d'avertissement, quand la charge devient lourde. Le coût réel par tour dépasse le chiffre affiché : l'historique du chat et les détails du personnage partent avec chaque appel. Si l'avertissement s'affiche, retire les agents dont tu n'as pas besoin, ou bascule certains d'entre eux sur une connexion moins chère ou locale.
+Clique ou appuie sur l'icône d'aide à côté de l'indicateur pour ouvrir son explication sur ordinateur ou mobile. Cet indicateur passe à l'orange, avec une icône d'avertissement, quand la charge devient lourde. Le coût réel par tour dépasse le chiffre affiché : l'historique du chat et les détails du personnage partent avec chaque appel. Si l'avertissement s'affiche, retire les agents dont tu n'as pas besoin, ou bascule certains d'entre eux sur une connexion moins chère ou locale. La limite de messages récents concerne uniquement les messages du chat ; les instructions des agents, les détails des personnages et les résumés joints constituent du contexte supplémentaire.
 
 ## Les agents fournis avec chaque mode
 

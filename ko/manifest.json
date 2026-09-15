@@ -1,6 +1,6 @@
 {
   "language": "ko",
-  "sourceCommit": "cec53fb6e8db544436144d0fa27495acefb35404",
+  "sourceCommit": "51607508a4a7d1dc65ce30a23e4de0165e6efad6",
   "files": [
     {
       "path": "CONFIGURATION.md",
@@ -34,8 +34,8 @@
     },
     {
       "path": "agents/agents-overview.md",
-      "sha256": "6d7ecd2bbad90066e4a21569da52b0108a85ad7a5d615204392b3f0f08b87992",
-      "bytes": 11418
+      "sha256": "55655b7693f4f08eb48a018c302b89b412b268f2d33339113b2671aa224065e8",
+      "bytes": 12285
     },
     {
       "path": "agents/approvals-and-agent-suite.md",
@@ -519,8 +519,8 @@
     },
     {
       "path": "media/illustrator-agent.md",
-      "sha256": "1e7dae986634bf2836bf224869c56cf4e0242350e1b707f85da977dd57c1c372",
-      "bytes": 11507
+      "sha256": "81d1d1a1c84566bc8e6f2f4fd3c0c2c7c03a6ba1855aaa64b8aef5c1bc3664fc",
+      "bytes": 11597
     },
     {
       "path": "media/image-providers.md",

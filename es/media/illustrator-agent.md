@@ -30,7 +30,7 @@ El Illustrator está desactivado de forma predeterminada. En un chat de **Rolepl
 3. Busca la sección **Agents** (Agentes) y activa **Enable Agents** (Activar agentes).
 4. En el grupo **Misc Agents**, busca **Illustrator** y agrégalo con el botón Plus (el botón **+**).
 
-Ahora deberías ver una tarjeta de ajustes de **Illustrator** con sus propias opciones. Agregar un agente usa tokens (fragmentos de texto) extra y hace llamadas de IA extra por turno, así que el panel muestra una estimación de costo continua.
+Ahora deberías ver una tarjeta de ajustes de **Illustrator** con sus propias opciones. Agregar un agente usa tokens adicionales y puede generar llamadas adicionales a la IA por turno. Las estimaciones de tokens describen el contexto seleccionado y las instrucciones de los agentes; no son una estimación continua del costo.
 
 ### Game Mode: el interruptor Game Illustrator
 

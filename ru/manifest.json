@@ -1,6 +1,6 @@
 {
   "language": "ru",
-  "sourceCommit": "cec53fb6e8db544436144d0fa27495acefb35404",
+  "sourceCommit": "51607508a4a7d1dc65ce30a23e4de0165e6efad6",
   "files": [
     {
       "path": "CONFIGURATION.md",
@@ -34,8 +34,8 @@
     },
     {
       "path": "agents/agents-overview.md",
-      "sha256": "256abc3b8c5ae7eca40425009a4e2cddc0ee698cb7d4d1cbf158dfba6a15dc8e",
-      "bytes": 15880
+      "sha256": "d4ac8d3eec43eb338415c36136ff9387050299f547b7bb6907dd462c684692ce",
+      "bytes": 17259
     },
     {
       "path": "agents/approvals-and-agent-suite.md",
@@ -519,8 +519,8 @@
     },
     {
       "path": "media/illustrator-agent.md",
-      "sha256": "9d0bf7ecea53a8065693ce56b1fe3284d6a1e8b9aa28b18b7b9341c1498f0013",
-      "bytes": 16866
+      "sha256": "df4fb8a6685848a11f43e7eb385973d606f0e437cdcd3b34411c4bf82e19a7a6",
+      "bytes": 16914
     },
     {
       "path": "media/image-providers.md",
