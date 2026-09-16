@@ -10,6 +10,16 @@ W tej sekcji nie ma akcji tworzenia nowego szkicu ani żadnych kontrolek importu
 
 Jeśli chcesz napisać i zaimportować własny pakiet, skorzystaj z [przewodnika tworzenia rozszerzeń osobistych](writing-personal-extensions.md). Pakiety napisane samodzielnie przechodzą przez osobno chroniony proces External Extensions.
 
+## Szacowanie liczby tokenów w tekście
+
+Rozszerzenia osobiste typu Browser, Full page access i Server mogą korzystać ze wbudowanej w Marinara funkcji szacowania liczby tokenów w tekście:
+
+```js
+const tokens = marinara.estimateTextTokens(text);
+```
+
+Sygnatura funkcji to `estimateTextTokens(text: string): number`. Opisuje ją również typ `PersonalExtensionTokenApi` eksportowany z `@marinara-engine/shared`. Wywołanie jest synchroniczne, nie wymaga dodatkowych uprawnień i zwraca niezależny od modelu szacunek liczby tokenów używany przez Marinara, a nie dokładny wynik tokenizera. W starszych wersjach Engine przed wywołaniem sprawdź `typeof marinara.estimateTextTokens === "function"`.
+
 ## Przegląd kodu i włączenie
 
 Każdy szkic zaczyna jako wyłączony. Marinara wylicza odcisk dokładnie tego kodu, który ma się wykonać, algorytmem SHA-256. Otwórz szkic, przejrzyj kod, porównaj wyświetlony odcisk i dopiero wtedy wybierz **Review and Run** (przegląd i uruchomienie) – tylko jeśli akceptujesz dokładnie tę wersję. Każda zmiana w wykonywanym kodzie i każda przywrócona wersja wyłączają rozszerzenie i wymagają ponownego zatwierdzenia.
@@ -64,7 +74,7 @@ const panel = marinara.ui.registerContribution({
 marinara.onCleanup(() => panel.remove());
 ```
 
-Wartość `kind: "button"` daje zwięzłą akcję, a `kind: "menu-item"` — akcję w menu Extensions. Przyciski domyślnie używają `surface: "top-bar"`. Mogą też wskazywać `chats`, `bots`, `characters`, `personas`, `lorebooks`, `presets`, `connections`, `agents` lub `settings`, z pozycją `header`, `before-content` albo `after-content`. Pole `icon` przyjmuje każdą obsługiwaną przez Marinara Engine nazwę ikony Lucide w formacie kebab-case. Oba typy akcji wywołują `onActivate`. Rodzaj `panel` wywołuje `onActivate` przy otwarciu, a jego przyciski wywołują `onEvent` z bieżącymi wartościami kontrolek. Uchwyt obsługuje aktualizacje zależne od typu: `button` przyjmuje `label`, `description`, `icon`, `surface` i `position`; `menu-item` — `label`, `description` i `icon`; `panel` — `label`, `description`, `icon` i `elements`. Wszystkie uchwyty obsługują `remove()`. Identyfikatory mogą zawierać litery, cyfry oraz `.`, `_` i `-`.
+Wartość `kind: "button"` daje zwięzłą akcję, a `kind: "menu-item"` — akcję w menu Extensions. Przyciski domyślnie używają `surface: "top-bar"`. Mogą też wskazywać `chats`, `bots`, `characters`, `personas`, `lorebooks`, `presets`, `connections`, `agents` lub `settings`, z polem `position` ustawionym na `header`, `before-content` albo `after-content`. Pole `icon` przyjmuje każdą obsługiwaną przez Marinara Engine nazwę ikony Lucide w formacie kebab-case. Oba typy akcji wywołują `onActivate`. Rodzaj `panel` wywołuje `onActivate` przy otwarciu, a jego przyciski wywołują `onEvent` z bieżącymi wartościami kontrolek. Uchwyt obsługuje aktualizacje zależne od typu: `button` przyjmuje `label`, `description`, `icon`, `surface` i `position`; `menu-item` — `label`, `description` i `icon`; `panel` — `label`, `description`, `icon` i `elements`. Wszystkie uchwyty obsługują `remove()`. Identyfikatory mogą zawierać litery, cyfry oraz `.`, `_` i `-`.
 
 Ten przykład umieszcza natywną akcję nad zawartością panelu Presets:
 
@@ -150,6 +160,8 @@ Jeśli rozszerzenie zewnętrzne naprawdę potrzebuje dostępu do drzewa DOM apli
 
 **Full page access nie jest uprawnieniem w piaskownicy.** Zatwierdzony kod JavaScript i CSS działa wewnątrz strony aplikacji Marinara Engine. Taki kod może odczytać lub zmienić wszystko, co widzi bieżąca sesja przeglądarki, zajrzeć do czatów i kart, korzystać z pamięci przeglądarki, wysyłać zapytania sieciowe oraz wywoływać interfejsy API aplikacji Marinara Engine z tego samego pochodzenia. W praktyce ma na stronie takie same uprawnienia jak kod wklejony do konsoli przeglądarki. Szkice od Professor Mari nie mogą o to prosić.
 
+Rozszerzenia z pełnym dostępem do strony powinny używać `marinara.fetch(...)` do żądań sieciowych. Funkcja ma taką samą sygnaturę i zwraca taki sam wynik jak `window.fetch`, a jednocześnie pozwala sekcji **Settings > Addons > External Extensions** (Ustawienia > Dodatki > Rozszerzenia zewnętrzne) wyświetlać liczbę żądań tego rozszerzenia w bieżącej sesji, liczbę przesłanych bajtów zgłaszaną przez odpowiedzi, ostatnią częstotliwość żądań oraz ostrzeżenie o utrzymującym się dużym ruchu. Bezpośrednie wywołania `window.fetch` pozostają dostępne, ponieważ pełny dostęp oznacza uruchamianie zaufanego kodu strony, ale tych żądań nie można przypisać do rozszerzenia.
+
 Starszą kopertę `kind: "marinara.extension"` w wersji 1, bez wyraźnego pola `capabilities`, Marinara rozpoznaje jako paczkę sprzed piaskownicy i przy imporcie przypisuje jej **Full page access**. Dzięki temu starsze paczki, na przykład WeatherTweaker, trafiają do właściwej ścieżki przeglądu, zamiast po cichu zawodzić w wątku Worker. Nowoczesna paczka, która używa tej koperty, ale chce bezpiecznego środowiska, musi zawierać `"capabilities": []`.
 
 Obie blokady rozszerzeń zewnętrznych oraz zatwierdzenie dokładnego odcisku obowiązują tak samo. Zmiana kodu, arkusza CSS lub uprawnień wyłącza rozszerzenie i wymaga ponownego zatwierdzenia. Wyłączenie usuwa węzły skryptu i arkusza stylów dodane przez Marinara Engine, anuluje liczniki czasu utworzone przez interfejs zgodności i uruchamia funkcje zarejestrowane przez `marinara.onCleanup(...)`. Kod działający na stronie może jednak tworzyć niezarejestrowane nasłuchy, liczniki czasu, zmienne globalne i zmiany w drzewie DOM, więc sprzątanie bywa niepełne. Jeśli coś zostanie, odśwież stronę po wyłączeniu rozszerzenia.
@@ -167,8 +179,11 @@ Rozszerzenia przeglądarkowe zamyka w piaskownicy sama przeglądarka, więc dzia
 | macOS                    | ✅ W piaskownicy                          | ⚠️ Wymaga wyraźnego zaufania                        | ✅ W piaskownicy (Seatbelt)                     |
 | Linux (z Bubblewrap)     | ✅ W piaskownicy                          | ⚠️ Wymaga wyraźnego zaufania                        | ✅ W piaskownicy (Bubblewrap)                   |
 | Linux (bez `bwrap`)      | ✅ W piaskownicy                          | ⚠️ Wymaga wyraźnego zaufania                        | ⛔ Wyłączone – zainstaluj `bwrap`               |
+| Docker (domyślnie) | ✅ W piaskownicy | ⚠️ Wymaga wyraźnego zaufania | ⛔ Wyłączone – uprawnienia kontenera |
 | Windows                  | ✅ W piaskownicy                          | ⚠️ Wymaga wyraźnego zaufania                        | ⛔ Wyłączone – użyj rozszerzenia przeglądarkowego |
 | Android                  | ✅ W piaskownicy                          | ⚠️ Wymaga wyraźnego zaufania                        | ⛔ Wyłączone – użyj rozszerzenia przeglądarkowego |
+
+Oficjalny obraz Docker zawiera Bubblewrap, ale domyślny kontener z minimalnymi uprawnieniami nie może tworzyć zagnieżdżonych przestrzeni nazw i montowań wymaganych przez Bubblewrap. Marinara sprawdza sandbox podczas działania i pozostawia rozszerzenia serwerowe wyłączone, gdy kontener na niego nie pozwala. W sekcji [Rozwiązywanie problemów](../TROUBLESHOOTING.md#a-server-extension-says-no-supported-sandbox-is-available) znajdziesz opis jawnej zmiany uprawnień Docker oraz jej konsekwencji dla bezpieczeństwa.
 
 Na systemach Windows i Android nie ma obsługiwanej systemowej piaskownicy procesów, więc rozszerzeń serwerowych celowo tam nie ma. Użyj zamiast tego rozszerzenia przeglądarkowego albo uruchom serwer Marinara Engine na macOS lub Linux (z `bwrap`), jeśli rozszerzenie serwerowe jest niezbędne.
 

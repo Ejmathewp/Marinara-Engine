@@ -10,6 +10,16 @@
 
 要自己编写并导入软件包，请使用[个人扩展编写指南](writing-personal-extensions.md)。自行编写的软件包走单独授权的 External Extensions 流程。
 
+## 估算文本的 Token 数
+
+Browser、Full page access 和 Server 个人扩展都可以使用 Marinara 内置的文本 Token 数估算函数：
+
+```js
+const tokens = marinara.estimateTextTokens(text);
+```
+
+函数签名是 `estimateTextTokens(text: string): number`，`@marinara-engine/shared` 导出的 `PersonalExtensionTokenApi` 类型也描述了这个接口。调用是同步的，不需要额外权限，返回的是 Marinara 不依赖特定模型的 Token 数估算值，并非分词器计算的精确结果。在旧版 Engine 上，调用前先检查 `typeof marinara.estimateTextTokens === "function"`。
+
 ## 审查并启用
 
 每份草稿一开始都是禁用状态。Marinara 会用 SHA-256 给可执行代码算出精确指纹。打开草稿，逐行看代码，核对界面上显示的哈希值，只有认可这个确切版本时才选 **Review and Run**(审查并运行)。可执行部分只要有任何改动，或者恢复了某个历史修订版本，扩展就会自动禁用，需要重新批准。
@@ -150,6 +160,8 @@ Marinara 绝不会发送消息、创作者备注、系统提示词、历史后�
 
 **整页访问权限不是一项沙箱能力。** 获批的 JavaScript 和 CSS 直接跑在 Marinara 的页面里。这些代码能读取或修改当前浏览器会话可见的一切，能查看聊天和角色卡，能使用浏览器存储、发起网络请求、调用同源的 Marinara API。它的实际页面权限，和你往浏览器控制台里粘贴一段代码没有区别。Professor Mari 的草稿不能申请这项权限。
 
+拥有完整页面访问权限的扩展应使用 `marinara.fetch(...)` 发送网络请求。它的签名和返回结果与 `window.fetch` 相同，同时让 **Settings > Addons > External Extensions**(设置 > 附加组件 > 外部扩展)能够显示该扩展在当前会话中的请求数、响应所报告的传输字节数、近期请求频率，以及持续高流量警告。完整页面访问代码属于受信任的页面代码，因此仍可直接调用 `window.fetch`，但这些请求无法归属于该扩展。
+
 Marinara 会把不带显式 `capabilities` 字段的旧版 `kind: "marinara.extension"` v1 封装识别成沙箱之前的老扩展包，并在导入时给它分配 **Full page access**。这样 WeatherTweaker 这类旧扩展包就能走进正确的审查流程，而不是在 Worker 里悄无声息地失败。如果一个新扩展包用了这种封装、却想留在安全运行时里，就必须写上 `"capabilities": []`。
 
 外部扩展的那两道开关和精确哈希审批依然有效。代码、CSS 或权限一旦变化，扩展就会自动禁用，需要重新批准。禁用时，Marinara 会移除自己插入的脚本和样式表节点，取消通过兼容 API 创建的定时器，并执行通过 `marinara.onCleanup(...)` 注册的回调。由于页面代码可以创建未登记的监听器、定时器、全局变量和 DOM 改动，清理只能做到尽力而为；禁用扩展后如果还有残留，刷新一下页面。
@@ -167,8 +179,11 @@ Marinara 会把不带显式 `capabilities` 字段的旧版 `kind: "marinara.exte
 | macOS                   | ✅ 已沙箱隔离                | ⚠️ 需要明确信任               | ✅ 已沙箱隔离（Seatbelt）            |
 | Linux(装了 Bubblewrap) | ✅ 已沙箱隔离                | ⚠️ 需要明确信任               | ✅ 已沙箱隔离（Bubblewrap）          |
 | Linux(没有 `bwrap`)   | ✅ 已沙箱隔离                | ⚠️ 需要明确信任               | ⛔ 已禁用，请安装 `bwrap`             |
+| Docker（默认） | ✅ 已沙箱隔离 | ⚠️ 需要明确信任 | ⛔ 已禁用，受容器权限限制 |
 | Windows                 | ✅ 已沙箱隔离                | ⚠️ 需要明确信任               | ⛔ 已禁用，请改用浏览器扩展           |
 | Android                 | ✅ 已沙箱隔离                | ⚠️ 需要明确信任               | ⛔ 已禁用，请改用浏览器扩展           |
+
+官方 Docker 镜像包含 Bubblewrap，但默认容器采用最小权限，无法创建 Bubblewrap 所需的嵌套命名空间和挂载。Marinara 会在运行时测试沙箱；如果容器不允许使用沙箱，服务器扩展就会保持禁用。有关显式调整 Docker 权限的方法及其安全取舍，请参阅[故障排除](../TROUBLESHOOTING.md#a-server-extension-says-no-supported-sandbox-is-available)。
 
 Windows 和 Android 上没有受支持的操作系统进程沙箱，所以服务器扩展按设计就不可用。请改用浏览器扩展；确实需要服务器扩展的话，把 Marinara 服务器跑在 macOS 或 Linux(装了 `bwrap`) 上。
 

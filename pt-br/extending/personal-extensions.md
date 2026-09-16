@@ -10,6 +10,16 @@ Nesta seção não existe a ação New Draft nem controles de importação. Peç
 
 Para escrever e importar seu próprio pacote, use o [guia de criação de extensões pessoais](writing-personal-extensions.md). Pacotes criados por você passam pelo fluxo External Extensions, que tem uma autorização separada.
 
+## Estimar os tokens de um texto
+
+As extensões pessoais de Browser, Full page access e Server podem usar o estimador de tokens de texto integrado ao Marinara:
+
+```js
+const tokens = marinara.estimateTextTokens(text);
+```
+
+A assinatura é `estimateTextTokens(text: string): number`, também descrita pelo tipo `PersonalExtensionTokenApi`, exportado de `@marinara-engine/shared`. A chamada é síncrona, não exige permissões adicionais e retorna a estimativa de tokens do Marinara, independente do modelo, em vez do resultado exato de um tokenizador. Em versões antigas do Engine, verifique `typeof marinara.estimateTextTokens === "function"` antes de chamar a função.
+
 ## Revisar e ativar
 
 Todo rascunho começa desativado. Marinara gera uma impressão digital SHA-256 do código executável exato. Abra o rascunho, examine o código, compare o hash exibido e só então escolha **Review and Run** (revisar e executar), se você aceitar aquela versão exata. Qualquer alteração no código executável, ou a restauração de uma revisão, desativa a extensão e exige uma nova aprovação.
@@ -150,6 +160,8 @@ Se uma External Extension realmente depender do acesso ao DOM do aplicativo, ela
 
 **A permissão Full page access não é um recurso do sandbox.** O JavaScript e o CSS aprovados rodam dentro da página do Marinara. O código consegue ler ou alterar qualquer coisa visível na sessão atual do navegador, inspecionar chats e cards, usar o armazenamento do navegador, fazer requisições de rede e chamar as APIs do Marinara na mesma origem. Na prática, ele tem o mesmo poder sobre a página que um código colado no console do navegador. Os rascunhos da Professor Mari não podem pedir esse acesso.
 
+Extensões com acesso completo à página devem usar `marinara.fetch(...)` para solicitações de rede. A função tem a mesma assinatura e retorna o mesmo resultado que `window.fetch`, permitindo que **Settings > Addons > External Extensions** (Configurações > Complementos > Extensões externas) mostre a quantidade de solicitações dessa extensão na sessão, os bytes transferidos informados pelas respostas, a taxa recente de solicitações e um aviso de tráfego elevado contínuo. Chamadas diretas a `window.fetch` continuam disponíveis porque o acesso completo executa código de página confiável, mas essas solicitações não podem ser atribuídas à extensão.
+
 Marinara reconhece o envelope v1 mais antigo `kind: "marinara.extension"` sem um campo `capabilities` explícito como um pacote anterior ao sandbox e atribui a permissão **Full page access** durante a importação. Assim, pacotes antigos como o WeatherTweaker chegam ao fluxo de revisão correto, em vez de falhar em silêncio dentro de um Worker. Um pacote moderno que use esse envelope mas queira o ambiente seguro precisa incluir `"capabilities": []`.
 
 As duas travas das External Extensions e a aprovação por hash exato continuam valendo. Uma mudança de código, de CSS ou de permissão desativa a extensão e exige uma nova aprovação. Ao desativar, Marinara remove os nós de script e de folha de estilo, cancela os temporizadores criados pela API de compatibilidade e executa os retornos registrados em `marinara.onCleanup(...)`. Como o código da página pode criar ouvintes, temporizadores, variáveis globais ou mudanças no DOM sem registro, a limpeza é feita na medida do possível; recarregue a página depois de desativar uma extensão se algo permanecer.
@@ -167,8 +179,11 @@ As Browser Extensions são isoladas pelo próprio navegador, então funcionam em
 | macOS                   | ✅ Em sandbox                  | ⚠️ Exige confiança explícita           | ✅ Em sandbox (Seatbelt)               |
 | Linux (com Bubblewrap) | ✅ Em sandbox                  | ⚠️ Exige confiança explícita           | ✅ Em sandbox (Bubblewrap)             |
 | Linux (sem `bwrap`) | ✅ Em sandbox                  | ⚠️ Exige confiança explícita           | ⛔ Desativadas – instale o `bwrap`         |
+| Docker (padrão) | ✅ Em sandbox | ⚠️ Exige confiança explícita | ⛔ Desativadas – permissões do contêiner |
 | Windows                 | ✅ Em sandbox                  | ⚠️ Exige confiança explícita           | ⛔ Desativadas – use uma Browser Extension |
 | Android                 | ✅ Em sandbox                  | ⚠️ Exige confiança explícita           | ⛔ Desativadas – use uma Browser Extension |
+
+A imagem oficial do Docker contém o Bubblewrap, mas o contêiner padrão, que usa privilégios mínimos, não consegue criar os espaços de nomes aninhados e as montagens necessários para o Bubblewrap. O Marinara testa o sandbox durante a execução e mantém as extensões de servidor desativadas quando o contêiner não o permite. Consulte [Solução de problemas](../TROUBLESHOOTING.md#a-server-extension-says-no-supported-sandbox-is-available) para conhecer a alteração explícita das permissões do Docker e suas implicações de segurança.
 
 No Windows e no Android não existe sandbox de processo compatível no sistema, então as Server Extensions ficam indisponíveis por decisão de projeto. Use uma Browser Extension no lugar delas, ou rode o servidor do Marinara no macOS ou no Linux (com `bwrap`) se você precisar de uma Server Extension.
 
