@@ -10,6 +10,16 @@ Personal Extensions(개인 확장)는 Professor Mari가 만들어 주는 비공�
 
 직접 패키지를 작성하고 가져오려면 [개인 확장 작성 안내서](writing-personal-extensions.md)를 이용하세요. 직접 만든 패키지는 별도로 권한을 확인하는 External Extensions 흐름을 사용합니다.
 
+## 텍스트 토큰 수 추정
+
+Browser, Full page access, Server의 개인 확장에서는 Marinara에 내장된 텍스트 토큰 수 추정 함수를 사용할 수 있습니다.
+
+```js
+const tokens = marinara.estimateTextTokens(text);
+```
+
+시그니처는 `estimateTextTokens(text: string): number`이며, `@marinara-engine/shared`에서 내보내는 `PersonalExtensionTokenApi` 타입에도 정의되어 있습니다. 이 호출은 동기식이며 추가 권한이 필요하지 않습니다. 특정 모델에 종속되지 않는 Marinara의 토큰 수 추정값을 반환하며, 토크나이저로 센 정확한 값은 아닙니다. 이전 Engine 버전에서는 호출 전에 `typeof marinara.estimateTextTokens === "function"`을 확인하세요.
+
 ## 검토와 활성화
 
 모든 초안은 비활성화 상태로 시작합니다. Marinara는 실행될 코드 그 자체를 SHA-256으로 지문화합니다. 초안을 열어 코드를 살펴보고, 화면에 표시된 해시를 대조한 다음, 그 버전을 그대로 받아들일 때만 **Review and Run**(검토 및 실행)을 선택하세요. 실행 코드를 조금이라도 수정하거나 이전 개정판을 되살리면 확장이 비활성화되고 승인을 처음부터 다시 받아야 합니다.

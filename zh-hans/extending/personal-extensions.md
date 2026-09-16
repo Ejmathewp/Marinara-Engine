@@ -10,6 +10,16 @@
 
 要自己编写并导入软件包，请使用[个人扩展编写指南](writing-personal-extensions.md)。自行编写的软件包走单独授权的 External Extensions 流程。
 
+## 估算文本的 Token 数
+
+Browser、Full page access 和 Server 个人扩展都可以使用 Marinara 内置的文本 Token 数估算函数：
+
+```js
+const tokens = marinara.estimateTextTokens(text);
+```
+
+函数签名是 `estimateTextTokens(text: string): number`，`@marinara-engine/shared` 导出的 `PersonalExtensionTokenApi` 类型也描述了这个接口。调用是同步的，不需要额外权限，返回的是 Marinara 不依赖特定模型的 Token 数估算值，并非分词器计算的精确结果。在旧版 Engine 上，调用前先检查 `typeof marinara.estimateTextTokens === "function"`。
+
 ## 审查并启用
 
 每份草稿一开始都是禁用状态。Marinara 会用 SHA-256 给可执行代码算出精确指纹。打开草稿，逐行看代码，核对界面上显示的哈希值，只有认可这个确切版本时才选 **Review and Run**(审查并运行)。可执行部分只要有任何改动，或者恢复了某个历史修订版本，扩展就会自动禁用，需要重新批准。

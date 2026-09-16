@@ -10,6 +10,16 @@ W tej sekcji nie ma akcji tworzenia nowego szkicu ani żadnych kontrolek importu
 
 Jeśli chcesz napisać i zaimportować własny pakiet, skorzystaj z [przewodnika tworzenia rozszerzeń osobistych](writing-personal-extensions.md). Pakiety napisane samodzielnie przechodzą przez osobno chroniony proces External Extensions.
 
+## Szacowanie liczby tokenów w tekście
+
+Rozszerzenia osobiste typu Browser, Full page access i Server mogą korzystać z wbudowanej w Marinara funkcji szacowania liczby tokenów w tekście:
+
+```js
+const tokens = marinara.estimateTextTokens(text);
+```
+
+Sygnatura funkcji to `estimateTextTokens(text: string): number`. Opisuje ją również typ `PersonalExtensionTokenApi` eksportowany z `@marinara-engine/shared`. Wywołanie jest synchroniczne, nie wymaga dodatkowych uprawnień i zwraca niezależny od modelu szacunek liczby tokenów używany przez Marinara, a nie dokładny wynik tokenizera. W starszych wersjach Engine przed wywołaniem sprawdź `typeof marinara.estimateTextTokens === "function"`.
+
 ## Przegląd kodu i włączenie
 
 Każdy szkic zaczyna jako wyłączony. Marinara wylicza odcisk dokładnie tego kodu, który ma się wykonać, algorytmem SHA-256. Otwórz szkic, przejrzyj kod, porównaj wyświetlony odcisk i dopiero wtedy wybierz **Review and Run** (przegląd i uruchomienie) – tylko jeśli akceptujesz dokładnie tę wersję. Każda zmiana w wykonywanym kodzie i każda przywrócona wersja wyłączają rozszerzenie i wymagają ponownego zatwierdzenia.

@@ -10,6 +10,16 @@ Einen Befehl für einen neuen Entwurf gibt es in diesem Bereich nicht, und Impor
 
 Wenn du dein eigenes Paket schreiben und importieren möchtest, nutze die [Anleitung zum Erstellen persönlicher Erweiterungen](writing-personal-extensions.md). Selbst erstellte Pakete verwenden den separat geschützten Ablauf für externe Erweiterungen.
 
+## Text-Tokens schätzen
+
+Personal Extensions für Browser, Full page access und Server können Marinaras eingebauten Schätzer für Text-Tokens verwenden:
+
+```js
+const tokens = marinara.estimateTextTokens(text);
+```
+
+Die Signatur lautet `estimateTextTokens(text: string): number`. Auch der aus `@marinara-engine/shared` exportierte Typ `PersonalExtensionTokenApi` beschreibt sie. Der Aufruf ist synchron, braucht keine zusätzliche Berechtigung und liefert Marinaras modellunabhängige Schätzung der Token-Anzahl, keinen exakten Tokenizer-Wert. Prüfe bei älteren Engine-Versionen vor dem Aufruf, ob `typeof marinara.estimateTextTokens === "function"` gilt.
+
 ## Prüfen und aktivieren
 
 Jeder Entwurf ist zunächst deaktiviert. Marinara berechnet aus dem ausführbaren Code einen SHA-256-Fingerabdruck. Öffne den Entwurf, sieh dir den Code an, vergleiche den angezeigten Hash und wähle **Review and Run** (prüfen und ausführen) nur dann, wenn du genau dieser Version vertraust. Jede Änderung am ausführbaren Code und jede wiederhergestellte Fassung deaktiviert die Erweiterung wieder und verlangt eine neue Freigabe.

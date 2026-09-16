@@ -10,6 +10,16 @@
 
 自分でパッケージを作成してインポートする場合は、[個人用拡張機能の作成ガイド](writing-personal-extensions.md)を参照してください。自作パッケージは、個別に許可を求めるExternal Extensionsのフローを使用します。
 
+## テキストのトークン数を推定する
+
+Browser、Full page access、Serverの個人用拡張機能では、Marinaraに組み込まれたテキストのトークン数推定機能を使えます。
+
+```js
+const tokens = marinara.estimateTextTokens(text);
+```
+
+シグネチャは`estimateTextTokens(text: string): number`です。`@marinara-engine/shared`からエクスポートされる`PersonalExtensionTokenApi`型にも定義されています。呼び出しは同期的に処理され、追加の権限は必要ありません。返される値はモデルに依存しないMarinaraの推定トークン数で、トークナイザーによる正確な計数ではありません。古いEngineでは、呼び出す前に`typeof marinara.estimateTextTokens === "function"`を確認してください。
+
 ## コードの確認と有効化
 
 草案は必ず無効の状態から始まります。Marinaraは実行されるコードそのものをSHA-256でフィンガープリント化します。草案を開いてコードを読み、表示されているハッシュを照合したうえで、そのバージョンを受け入れられる場合にだけ**Review and Run**(確認して実行)を選びます。実行されるコードを編集したり、以前のリビジョンを復元したりすると、拡張機能は無効に戻り、あらためて承認が必要になります。

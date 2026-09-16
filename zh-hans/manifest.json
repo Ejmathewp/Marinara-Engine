@@ -1,6 +1,6 @@
 {
   "language": "zh-hans",
-  "sourceCommit": "b2b26e25cb94fdd88594afe3b54a0f497692811d",
+  "sourceCommit": "95db530c1284a3c40066830f6921ebc1dd281c0b",
   "files": [
     {
       "path": "CONFIGURATION.md",
@@ -349,8 +349,8 @@
     },
     {
       "path": "extending/personal-extensions.md",
-      "sha256": "06d561b384bb461581bf722e7563b474ca62b782761331a5c189c30d2b06b716",
-      "bytes": 15349
+      "sha256": "337d4e73b37d4575d72ef0e76506f4bb4a005c7b9d7f28cc72c22924e414f605",
+      "bytes": 15965
     },
     {
       "path": "extending/regex-scripts.md",

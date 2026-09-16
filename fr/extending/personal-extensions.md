@@ -10,6 +10,16 @@ Cette section ne propose ni action New Draft, ni contrôle d'import. Demande à 
 
 Pour écrire et importer ton propre paquet, consulte le [guide de création des extensions personnelles](writing-personal-extensions.md). Les paquets que tu écris passent par le flux Extensions externes, protégé séparément.
 
+## Estimer les tokens d’un texte
+
+Les extensions personnelles Browser, Full page access et Server peuvent utiliser l’estimateur de tokens de texte intégré à Marinara :
+
+```js
+const tokens = marinara.estimateTextTokens(text);
+```
+
+La signature est `estimateTextTokens(text: string): number`. Elle est aussi décrite par le type `PersonalExtensionTokenApi`, exporté depuis `@marinara-engine/shared`. L’appel est synchrone, ne demande aucune permission supplémentaire et renvoie l’estimation de tokens de Marinara, indépendante du modèle, plutôt que le résultat exact d’un tokenizer. Sur une ancienne version d’Engine, vérifie `typeof marinara.estimateTextTokens === "function"` avant d’appeler la fonction.
+
 ## Relire et activer
 
 Tout brouillon arrive désactivé. Marinara calcule une empreinte SHA-256 du code exécutable exact. Ouvre le brouillon, examine le code, compare l'empreinte affichée, puis choisis **Review and Run** (relire et exécuter) seulement si tu acceptes cette version précise. La moindre modification du code exécutable, ou la restauration d'une révision, désactive l'extension et impose une nouvelle approbation.
