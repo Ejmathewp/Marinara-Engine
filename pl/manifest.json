@@ -349,8 +349,8 @@
     },
     {
       "path": "extending/personal-extensions.md",
-      "sha256": "439a9e6d1391158f06bad2a48ddce5c2a0bebb9461c4a6217167fbcfe97cbbca",
-      "bytes": 18869
+      "sha256": "ab5ab55a31e6f99ff150ba45cd9046c8956cf91b3b08455bdfad6e0c513be411",
+      "bytes": 18870
     },
     {
       "path": "extending/regex-scripts.md",

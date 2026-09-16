@@ -12,7 +12,7 @@ Jeśli chcesz napisać i zaimportować własny pakiet, skorzystaj z [przewodnika
 
 ## Szacowanie liczby tokenów w tekście
 
-Rozszerzenia osobiste typu Browser, Full page access i Server mogą korzystać z wbudowanej w Marinara funkcji szacowania liczby tokenów w tekście:
+Rozszerzenia osobiste typu Browser, Full page access i Server mogą korzystać ze wbudowanej w Marinara funkcji szacowania liczby tokenów w tekście:
 
 ```js
 const tokens = marinara.estimateTextTokens(text);
