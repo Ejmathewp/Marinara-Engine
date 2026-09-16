@@ -160,6 +160,8 @@ Hängt eine externe Erweiterung tatsächlich vom Zugriff auf das Host-DOM ab, da
 
 **Vollzugriff auf die Seite ist keine Sandbox-Funktion.** Freigegebenes JavaScript und CSS laufen direkt in Marinaras Seite. Der Code kann alles lesen und verändern, was die aktuelle Browser-Sitzung sieht, Chats und Karten auswerten, den Browser-Speicher nutzen, Netzwerkanfragen stellen und Marinara-APIs derselben Origin aufrufen. In der Praxis hat er dieselbe Macht wie Code, den du in die Browser-Konsole einfügst. Entwürfe von Professor Mari dürfen ihn nicht anfordern.
 
+Erweiterungen mit Vollzugriff auf die Seite sollten für Netzwerkanfragen `marinara.fetch(...)` verwenden. Signatur und Rückgabewert entsprechen `window.fetch`. So kann **Settings > Addons > External Extensions** (Einstellungen > Addons > externe Erweiterungen) für diese Erweiterung die Anzahl der Anfragen in der aktuellen Sitzung, die von Antworten gemeldete übertragene Datenmenge in Bytes, die aktuelle Anfragerate und eine Warnung bei anhaltend hohem Datenverkehr anzeigen. Direkte Aufrufe von `window.fetch` bleiben möglich, weil Code mit Vollzugriff als vertrauenswürdiger Seitencode läuft; diese Anfragen lassen sich der Erweiterung jedoch nicht zuordnen.
+
 Ein älteres v1-Paket mit `kind: "marinara.extension"` und ohne ausdrückliches Feld `capabilities` erkennt Marinara als Paket von vor der Sandbox und vergibt beim Import **Full page access**. So landen alte Pakete wie WeatherTweaker im richtigen Prüfablauf, statt still im Worker zu scheitern. Ein modernes Paket, das dieses Format nutzt, aber in der sicheren Laufzeitumgebung bleiben will, muss `"capabilities": []` angeben.
 
 Die beiden Schalter für externe Erweiterungen und die Freigabe per exaktem Hash gelten unverändert. Jede Änderung an Code, CSS oder Berechtigungen deaktiviert die Erweiterung und verlangt eine neue Freigabe. Beim Deaktivieren entfernt Marinara die eigenen Script- und Stylesheet-Knoten, bricht die über die Kompatibilitäts-API angelegten Timer ab und ruft die mit `marinara.onCleanup(...)` registrierten Callbacks auf. Weil Code in der Seite auch nicht registrierte Listener, Timer, globale Variablen oder DOM-Änderungen hinterlassen kann, bleibt das Aufräumen ein Versuch nach bestem Wissen: Lade die Seite nach dem Deaktivieren neu, falls etwas übrig bleibt.
@@ -177,8 +179,11 @@ Browser-Erweiterungen sperrt bereits der Browser selbst in eine Sandbox – sie 
 | macOS                   | ✅ In Sandbox                    | ⚠️ Ausdrückliches Vertrauen nötig     | ✅ In Sandbox (Seatbelt)                    |
 | Linux (mit Bubblewrap)  | ✅ In Sandbox                    | ⚠️ Ausdrückliches Vertrauen nötig     | ✅ In Sandbox (Bubblewrap)                  |
 | Linux (ohne `bwrap`)    | ✅ In Sandbox                    | ⚠️ Ausdrückliches Vertrauen nötig     | ⛔ Deaktiviert – `bwrap` installieren       |
+| Docker (Standard) | ✅ In Sandbox | ⚠️ Ausdrückliches Vertrauen nötig | ⛔ Deaktiviert – Container-Berechtigungen |
 | Windows                 | ✅ In Sandbox                    | ⚠️ Ausdrückliches Vertrauen nötig     | ⛔ Deaktiviert – Browser-Erweiterung nutzen |
 | Android                 | ✅ In Sandbox                    | ⚠️ Ausdrückliches Vertrauen nötig     | ⛔ Deaktiviert – Browser-Erweiterung nutzen |
+
+Das offizielle Docker-Image enthält Bubblewrap. Der standardmäßig mit minimalen Berechtigungen laufende Container kann jedoch die verschachtelten Namespaces und Mounts nicht erstellen, die Bubblewrap benötigt. Marinara prüft die Sandbox zur Laufzeit und lässt Server-Erweiterungen deaktiviert, wenn der Container sie nicht zulässt. Unter [Fehlerbehebung](../TROUBLESHOOTING.md#a-server-extension-says-no-supported-sandbox-is-available) findest du die ausdrückliche Anpassung der Docker-Berechtigungen und die damit verbundenen Sicherheitsabwägungen.
 
 Unter Windows und Android gibt es keine unterstützte Prozess-Sandbox des Betriebssystems, deshalb entfallen Server-Erweiterungen dort bewusst. Nimm stattdessen eine Browser-Erweiterung – oder betreibe den Marinara-Server auf macOS oder Linux (mit `bwrap`), wenn du eine Server-Erweiterung brauchst.
 

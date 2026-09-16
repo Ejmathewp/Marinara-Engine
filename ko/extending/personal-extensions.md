@@ -160,6 +160,8 @@ External Extension이 정말로 호스트 DOM 접근에 의존한다면 다음�
 
 **페이지 전체 접근은 샌드박스 기능이 아닙니다.** 승인된 JavaScript와 CSS가 Marinara의 페이지 안에서 그대로 실행됩니다. 이 코드는 현재 브라우저 세션에 보이는 것이라면 무엇이든 읽거나 바꿀 수 있고, 채팅과 카드를 들여다보고, 브라우저 저장소를 쓰고, 네트워크 요청을 보내고, 동일 출처의 Marinara API를 호출할 수 있습니다. 브라우저 콘솔에 코드를 붙여넣어 실행하는 것과 실질적으로 같은 권한입니다. Professor Mari가 만든 초안은 이 권한을 요청할 수 없습니다.
 
+페이지 전체 접근 권한을 가진 확장은 네트워크 요청에 `marinara.fetch(...)`를 사용하세요. 함수 시그니처와 반환값은 `window.fetch`와 같으며, **Settings > Addons > External Extensions**(설정 > 애드온 > 외부 확장)에서 해당 확장의 세션 내 요청 수, 응답에 보고된 전송 바이트 수, 최근 요청 빈도, 높은 트래픽이 지속될 때의 경고를 표시할 수 있습니다. 페이지 전체 접근 코드는 신뢰하는 페이지 코드로 실행되므로 `window.fetch` 직접 호출도 계속 사용할 수 있지만, 해당 요청은 확장에 귀속시킬 수 없습니다.
+
 Marinara는 `capabilities` 필드가 없는 구형 `kind: "marinara.extension"` v1 형식을 샌드박스 이전 패키지로 인식하고, 가져오는 시점에 **Full page access**를 부여합니다. 덕분에 WeatherTweaker 같은 구형 패키지가 Worker 안에서 조용히 실패하지 않고 올바른 검토 절차를 밟게 됩니다. 이 형식을 쓰면서도 안전한 런타임을 원하는 최신 패키지라면 `"capabilities": []`를 넣어야 합니다.
 
 External Extension의 두 단계 안전장치와 정확한 해시 승인은 이 경우에도 그대로 적용됩니다. 코드, CSS, 권한이 바뀌면 확장이 비활성화되고 승인을 다시 받아야 합니다. 비활성화하면 Marinara가 넣어 둔 스크립트와 스타일시트 노드를 제거하고, 호환 API로 만든 타이머를 취소하고, `marinara.onCleanup(...)`으로 등록한 콜백을 실행합니다. 다만 페이지 코드는 등록되지 않은 리스너, 타이머, 전역 변수, DOM 변경을 만들어 낼 수 있어서 정리는 최선을 다하는 수준입니다. 확장을 비활성화한 뒤에도 흔적이 남아 있으면 페이지를 새로 고치세요.
@@ -177,8 +179,11 @@ Browser Extension은 브라우저 자체가 격리해 주므로 어디서나 동
 | macOS                      | ✅ 샌드박스 적용           | ⚠️ 명시적 신뢰 필요            | ✅ 샌드박스 적용(Seatbelt)             |
 | Linux(Bubblewrap 있음)     | ✅ 샌드박스 적용           | ⚠️ 명시적 신뢰 필요            | ✅ 샌드박스 적용(Bubblewrap)           |
 | Linux(`bwrap` 없음)        | ✅ 샌드박스 적용           | ⚠️ 명시적 신뢰 필요            | ⛔ 비활성화. `bwrap`을 설치하세요      |
+| Docker(기본값) | ✅ 샌드박스 적용 | ⚠️ 명시적 신뢰 필요 | ⛔ 비활성화 – 컨테이너 권한 제한 |
 | Windows                    | ✅ 샌드박스 적용           | ⚠️ 명시적 신뢰 필요            | ⛔ 비활성화. Browser Extension을 쓰세요 |
 | Android                    | ✅ 샌드박스 적용           | ⚠️ 명시적 신뢰 필요            | ⛔ 비활성화. Browser Extension을 쓰세요 |
+
+공식 Docker 이미지에는 Bubblewrap이 포함되어 있지만, 최소 권한으로 실행되는 기본 컨테이너는 Bubblewrap에 필요한 중첩 네임스페이스와 마운트를 생성할 수 없습니다. Marinara는 실행 중에 샌드박스를 검사하고 컨테이너가 허용하지 않으면 Server Extension을 비활성화된 상태로 유지합니다. Docker 권한을 명시적으로 변경하는 방법과 그에 따른 보안상의 절충은 [문제 해결](../TROUBLESHOOTING.md#a-server-extension-says-no-supported-sandbox-is-available)을 참고하세요.
 
 Windows와 Android에는 지원되는 운영체제 프로세스 샌드박스가 없어서 Server Extension을 설계상 쓸 수 없습니다. 대신 Browser Extension을 쓰거나, Server Extension이 꼭 필요하다면 Marinara 서버를 macOS나 Linux(`bwrap` 설치 필요)에서 실행하세요.
 
